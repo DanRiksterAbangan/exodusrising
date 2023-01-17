@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function homeRedirect(){
+        return redirect()->route("home");
+    }
     public function index(){
         return view("pages.home");
     }

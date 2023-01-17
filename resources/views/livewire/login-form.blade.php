@@ -6,11 +6,15 @@
             <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
             <!--end::Title-->
             <!--begin::Subtitle-->
-            <div class="text-gray-500 fw-semibold fs-6">Your Social Campaigns</div>
+            {{-- <div class="text-gray-500 fw-semibold fs-6">Join the battle</div> --}}
             <!--end::Subtitle=-->
         </div>
         <!--begin::Heading-->
-
+        @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
         <!--begin::Input group=-->
         <div class="fv-row mb-8">
             <!--begin::Email-->

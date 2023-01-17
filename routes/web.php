@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(["middleware"=>"auth"],function(){
-    Route::get('/', [HomeController::class,"index"]);
+    Route::get('/', [HomeController::class,"index"])->name("home");
+    Route::get('/home', [HomeController::class,"homeRedirect"]);
+    Route::get("/myaccount",[AccountController::class,"index"])->name("myaccount");
 });
 
+Route::post('/logout', [LoginController::class,"logout"])->name("logout");
 
-Route::get('/login', [LoginController::class,"index"])->name("login");
+Route::group(['middleware'=>'guest'],function(){
+     Route::get('/login', [LoginController::class,"index"])->name("login");
+});

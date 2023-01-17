@@ -4273,7 +4273,10 @@
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="authentication/layouts/corporate/sign-in.html" class="menu-link px-5">Sign Out</a>
+                            <form action="{{ route("logout") }}" method="post">
+                                @csrf
+                                <button type="submit" class="menu-link px-5">Sign Out</button>
+                            </form>
                         </div>
                         <!--end::Menu item-->
                     </div>
