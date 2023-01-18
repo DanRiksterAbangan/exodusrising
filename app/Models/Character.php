@@ -21,4 +21,8 @@ class Character extends Model
     public function characterAbility(){
         return $this->hasOne(CharacterAbility::class,"char_id","id");
     }
+
+    public function conqueror(){
+        return $this->hasOne(Conqueror::class,"char_id","id");
+    }
 }

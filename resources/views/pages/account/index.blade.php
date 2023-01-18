@@ -70,7 +70,7 @@
                     </div>
                     <!--end::Info-->
                     <!--begin::Subtitle-->
-                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Conqueror Level: 10</span>
+                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Conqueror Level: {{ $character->conqueror->conquerorlevel }}</span>
                     <!--end::Subtitle-->
                 </div>
                 <!--end::Title-->
@@ -79,66 +79,58 @@
             <div class="row">
                 <div class="col-xxl-6">
                     <!--begin::Card body-->
-            <div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
-                <!--begin::Chart-->
-                <div class="d-flex flex-center me-5 pt-2">
-                    <div id="kt_card_widget_17_chart" style="min-width: 70px; min-height: 70px" data-kt-size="70" data-kt-line="11"></div>
-                </div>
-                <!--end::Chart-->
-                <!--begin::Labels-->
-                <div class="d-flex flex-column content-justify-center flex-row-fluid">
-                    <!--begin::Label-->
-                    <div class="d-flex fw-semibold align-items-center">
-                        <!--begin::Bullet-->
-                        <div class="bullet w-8px h-3px rounded-2 bg-danger me-3"></div>
-                        <!--end::Bullet-->
-                        <!--begin::Label-->
-                        <div class="text-gray-500 flex-grow-1 me-4">Strength</div>
-                        <!--end::Label-->
-                        <!--begin::Stats-->
-                        <div class="fw-bolder text-gray-700 text-xxl-end">100</div>
-                        <!--end::Stats-->
+                    <div class="card-body pt-2 pb-4 align-items-center">
+
+                        <!--begin::Labels-->
+                        <div class="d-flex flex-column content-justify-center flex-row-fluid">
+                            <!--begin::Label-->
+                            <div class="d-flex fw-semibold align-items-center">
+                                <!--begin::Bullet-->
+                                <div class="bullet w-8px h-3px rounded-2 bg-danger me-3"></div>
+                                <!--end::Bullet-->
+                                <!--begin::Label-->
+                                <div class="text-gray-500 flex-grow-1 me-4">Strength</div>
+                                <!--end::Label-->
+                                <!--begin::Stats-->
+                                <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->strength }}</div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::Label-->
+                            <!--begin::Label-->
+                            <div class="d-flex fw-semibold align-items-center my-3">
+                                <!--begin::Bullet-->
+                                <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
+                                <!--end::Bullet-->
+                                <!--begin::Label-->
+                                <div class="text-gray-500 flex-grow-1 me-4">Agility</div>
+                                <!--end::Label-->
+                                <!--begin::Stats-->
+                                <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->quickness }}</div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::Label-->
+                            <!--begin::Label-->
+                            <div class="d-flex fw-semibold align-items-center">
+                                <!--begin::Bullet-->
+                                <div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: #E4E6EF"></div>
+                                <!--end::Bullet-->
+                                <!--begin::Label-->
+                                <div class="text-gray-500 flex-grow-1 me-4">Psyche</div>
+                                <!--end::Label-->
+                                <!--begin::Stats-->
+                                <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->mentality }}</div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::Label-->
+                        </div>
+                        <!--end::Labels-->
                     </div>
-                    <!--end::Label-->
-                    <!--begin::Label-->
-                    <div class="d-flex fw-semibold align-items-center my-3">
-                        <!--begin::Bullet-->
-                        <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
-                        <!--end::Bullet-->
-                        <!--begin::Label-->
-                        <div class="text-gray-500 flex-grow-1 me-4">Agility</div>
-                        <!--end::Label-->
-                        <!--begin::Stats-->
-                        <div class="fw-bolder text-gray-700 text-xxl-end">200</div>
-                        <!--end::Stats-->
-                    </div>
-                    <!--end::Label-->
-                    <!--begin::Label-->
-                    <div class="d-flex fw-semibold align-items-center">
-                        <!--begin::Bullet-->
-                        <div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: #E4E6EF"></div>
-                        <!--end::Bullet-->
-                        <!--begin::Label-->
-                        <div class="text-gray-500 flex-grow-1 me-4">Psyche</div>
-                        <!--end::Label-->
-                        <!--begin::Stats-->
-                        <div class="fw-bolder text-gray-700 text-xxl-end">100</div>
-                        <!--end::Stats-->
-                    </div>
-                    <!--end::Label-->
-                </div>
-                <!--end::Labels-->
-            </div>
             <!--end::Card body-->
                 </div>
                 <div class="col-xxl-6">
                     <!--begin::Card body-->
-            <div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
-                <!--begin::Chart-->
-                <div class="d-flex flex-center me-5 pt-2">
-                    <div id="kt_card_widget_17_chart" style="min-width: 70px; min-height: 70px" data-kt-size="70" data-kt-line="11"></div>
-                </div>
-                <!--end::Chart-->
+            <div class="card-body pt-2 pb-4 align-items-center">
+
                 <!--begin::Labels-->
                 <div class="d-flex flex-column content-justify-center flex-row-fluid">
                     <!--begin::Label-->
@@ -150,7 +142,7 @@
                         <div class="text-gray-500 flex-grow-1 me-4">Vitalty</div>
                         <!--end::Label-->
                         <!--begin::Stats-->
-                        <div class="fw-bolder text-gray-700 text-xxl-end">100</div>
+                        <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->health }}</div>
                         <!--end::Stats-->
                     </div>
                     <!--end::Label-->
@@ -163,7 +155,7 @@
                         <div class="text-gray-500 flex-grow-1 me-4">Dexterity</div>
                         <!--end::Label-->
                         <!--begin::Stats-->
-                        <div class="fw-bolder text-gray-700 text-xxl-end">200</div>
+                        <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->dexterity }}</div>
                         <!--end::Stats-->
                     </div>
                     <!--end::Label-->
@@ -176,7 +168,7 @@
                         <div class="text-gray-500 flex-grow-1 me-4">Intelligence</div>
                         <!--end::Label-->
                         <!--begin::Stats-->
-                        <div class="fw-bolder text-gray-700 text-xxl-end">100</div>
+                        <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->intelligence }}</div>
                         <!--end::Stats-->
                     </div>
                     <!--end::Label-->

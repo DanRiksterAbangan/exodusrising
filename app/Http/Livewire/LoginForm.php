@@ -21,10 +21,12 @@ class LoginForm extends Component
         $user = User::where("login_id",$this->username)->first();
         if($user){
             if($user->login_pw == md5($this->password)){
-                $loggedin = Auth::login($user);
-                session()->flash('message', $loggedin  ? "LOGIN $loggedin" : "AWDAWD11 $loggedin");
+                Auth::login($user);
+                return redirect()->route("home");
             }
         }
+
+        return session()->flash("message","Invalid credentials");
 
     }
 
