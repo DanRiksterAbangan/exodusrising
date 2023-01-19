@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(["middleware"=>"auth"],function(){
     Route::get("/",[HomeController::class,"index"])->name("home");
     Route::get("/itemmall",[ItemmallController::class,"index"])->name("itemmall");
+
+    Route::group(["middleware"=>"admin"],function(){
+        Route::get("/itemmall/additem",[ItemmallController::class,"addItemView"])->name("itemmall.additem");
+    });
+
 });
 
 Route::post('/logout', [LoginController::class,"logout"])->name("logout");

@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index(){
 
         $user = auth()->user();
-        $characters = Cache::remember("characters_".$user->id,120,function()use($user){
+        $characters = Cache::remember("characters_".$user->user_id,120,function()use($user){
             $characters = $user->characters;
             $characters->load(["conqueror","characterAbility"]);
             return $characters;

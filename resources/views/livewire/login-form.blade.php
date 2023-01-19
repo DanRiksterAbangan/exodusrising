@@ -1,5 +1,5 @@
 <div>
-    <form class="form w-100" novalidate="novalidate" wire:submit.prevent="submit" >
+    <form class="form w-100" novalidate="novalidate" wire:submit.prevent="submit">
         <!--begin::Heading-->
         <div class="text-center mb-11">
             <!--begin::Title-->
@@ -11,22 +11,24 @@
         </div>
         <!--begin::Heading-->
         @if (session()->has('message'))
-        <div class="alert alert-warning">
-            {{ session('message') }}
-        </div>
-    @endif
+            <div class="alert alert-warning">
+                {{ session('message') }}
+            </div>
+        @endif
         <!--begin::Input group=-->
         <div class="fv-row mb-8">
             <!--begin::Email-->
-            <input type="text" placeholder="Username" wire:model="username" name="username" autocomplete="off" class="form-control bg-transparent" />
-            @error('username') <span class="text-danger">{{ $message }}</span> @enderror
+            <input type="text" placeholder="Username" wire:model="username" name="username" autocomplete="off"
+                class="form-control bg-transparent" />
+            {{-- @error('username') <span class="text-danger">{{ $username }}</span> @enderror --}}
             <!--end::Email-->
         </div>
         <!--end::Input group=-->
         <div class="fv-row mb-3">
             <!--begin::Password-->
-            <input type="password" placeholder="Password" wire:model="password" name="password" autocomplete="off" class="form-control bg-transparent" />
-            @error('password') <span class="text-danger">{{ $message }}</span> @enderror
+            <input type="password" placeholder="Password" wire:model="password" name="password" autocomplete="off"
+                class="form-control bg-transparent" />
+            {{-- @error('password') <span class="text-danger">{{ $message }}</span> @enderror --}}
             <!--end::Password-->
         </div>
         <!--end::Input group=-->
@@ -46,14 +48,15 @@
                 <!--end::Indicator label-->
                 <!--begin::Indicator progress-->
                 <span class="indicator-progress">Please wait...
-                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                 <!--end::Indicator progress-->
             </button>
         </div>
         <!--end::Submit button-->
         <!--begin::Sign up-->
         <div class="text-gray-500 text-center fw-semibold fs-6">Not a Member yet?
-        <a href="sign-up.html" class="link-primary">Sign up</a></div>
+            <a href="sign-up.html" class="link-primary">Sign up</a>
+        </div>
         <!--end::Sign up-->
     </form>
 </div>

@@ -201,9 +201,7 @@
 
                     </div>
                     <!--end::Info-->
-                    <!--begin::Subtitle-->
-                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Conqueror Level: 10</span>
-                    <!--end::Subtitle-->
+
                 </div>
                 <!--end::Title-->
             </div>

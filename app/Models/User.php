@@ -49,4 +49,9 @@ class User extends Authenticatable
     public function characters(){
         return $this->hasMany(Character::class,"user_id","user_id");
     }
+
+
+    public function isAdmin(){
+        return $this->grade == 250;
+    }
 }
