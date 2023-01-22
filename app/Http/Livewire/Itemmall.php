@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire\Component;
 
@@ -14,6 +15,7 @@ class Itemmall extends Component
     public $search = "";
     public $page = 1;
     public $pageCount = 10;
+    public $quantity = 1;
     public function mount()
     {
         $tcat = [
@@ -31,6 +33,8 @@ class Itemmall extends Component
         $this->categories = $tcat;
     }
 
+
+
     public function render()
     {
         $this->items = Item::where(function($q){
@@ -45,6 +49,49 @@ class Itemmall extends Component
         return view('livewire.itemmall',[
             'items'=>$this->items
         ]);
+    }
+
+    public function buyItem($id){
+
+
+        $item = Item::where("id",$id)->first();
+        if($item){
+            $user = User::where("user_id",auth()->user()->user_id)->first();
+            $amountToDeduct =  $item->amount * $this->quantity;
+            $amountToDeduct = $amountToDeduct - ($amountToDeduct * ($item->discount / 100));
+            if($user->Point >= $amountToDeduct){
+                $user->decrement("Point", $amountToDeduct);
+                for($i = 1; $i <= $this->quantity; $i++){
+                    $user->mallItems()->create([
+                        'type' => $item->type,
+                        'attr' => 0x0,
+                        'stack' => $item->stack,
+                        'rank' => 0,
+                        'equip_level' => 0,
+                        'equip_strength' => 0,
+                        'equip_dexterity' => 0,
+                        'equip_intelligence' => 0,
+                        'date' => now(),
+                    ]);
+                }
+                $this->emit("updatedUser",$user);
+                return $this->emit("buy_response",[
+                   "success"=>true,
+                   "message"=>"You have successfully bought ".$this->quantity."x ".$item->name
+               ]);
+
+            }else{
+                return $this->emit("buy_response",[
+                    "success"=>false,
+                    "message"=>"You don't have enough points to buy this item"
+                ]);
+            }
+        }
+        return $this->emit("buy_response",[
+            "success"=>false,
+            "message"=>"Item not found"
+        ]);
+
     }
 
 
