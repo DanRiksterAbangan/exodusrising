@@ -83,7 +83,8 @@
                                     <button type="button" class="btn btn-primary me-3 btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#kt_customers_export_modal{{ $item->id }}">
                                         Buy Now</button>
-                                        <button type="button" class="btn btn-warning me-3 btn-sm" wire:click="addtocart({{ $item}})">
+                                    <button type="button" class="btn btn-warning me-3 btn-sm"
+                                        wire:click="addtocart({{ $item }})">
                                         Add to cart</button>
                                 </td>
 
@@ -179,7 +180,6 @@
 </div>
 
 @push('scripts')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $('.form-select').select2();

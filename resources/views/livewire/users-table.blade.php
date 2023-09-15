@@ -7,9 +7,8 @@
                         <span class="svg-icon svg-icon-1 position-absolute ms-6">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546"
-                                    height="2" rx="1" transform="rotate(45 17.0365 15.1223)"
-                                    fill="currentColor" />
+                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2"
+                                    rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
                                 <path
                                     d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
                                     fill="currentColor" />
@@ -51,11 +50,11 @@
                                     </div>
                                 </td>
                                 <td>
-                                        <ul class="tw-list-disc">
-                                            @foreach ($user->characters as $character)
-                                                <li>{{ $character->name }}</li>
-                                            @endforeach
-                                        </ul>
+                                    <ul class="tw-list-disc">
+                                        @foreach ($user->characters as $character)
+                                            <li>{{ $character->name }}</li>
+                                        @endforeach
+                                    </ul>
                                 </td>
 
                                 <td>
@@ -73,11 +72,11 @@
                         @endforelse
                     </tbody>
                     <tbody class="text-gray-600 fw-semibold" wire:loading>
-                            <tr>
-                                <td colspan="5" class="text-center tw-text-gray-600">
-                                    Loading...
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="5" class="text-center tw-text-gray-600">
+                                Loading...
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -85,18 +84,21 @@
         </div>
         <div class="d-flex flex-stack flex-wrap pt-10">
             <div class="fs-6 fw-semibold text-gray-700">
-                Showing {{$page}} to {{$limit}} of {{$userCount}} entries
+                Showing {{ $page }} to {{ $limit }} of {{ $userCount }} entries
             </div>
             <!--begin::Pages-->
             <ul class="pagination">
 
                 <li class="page-item previous">
-                    <button wire:loading.attr="disabled" {{ $page == 1 ? 'disabled' : '' }} class="page-link tw-space-x-2" wire:click="prevPage"><i class="previous"></i>
+                    <button wire:loading.attr="disabled" {{ $page == 1 ? 'disabled' : '' }}
+                        class="page-link tw-space-x-2" wire:click="prevPage"><i class="previous"></i>
                         <span>Prev</span></button>
 
                 </li>
                 <li class="page-item next">
-                    <button wire:loading.attr="disabled" {{ $page == ceil($userCount / $limit) ? 'disabled' : '' }} class="page-link tw-space-x-2" wire:click="nextPage"><span>Next</span><i class="next"></i></button>
+                    <button wire:loading.attr="disabled" {{ $page == ceil($userCount / $limit) ? 'disabled' : '' }}
+                        class="page-link tw-space-x-2" wire:click="nextPage"><span>Next</span><i
+                            class="next"></i></button>
                 </li>
             </ul>
             <!--end::Pages-->
@@ -104,31 +106,30 @@
     </div>
 </div>
 
-  @push('scripts')
-      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      <script>
-          $(document).ready(function() {
-              $('.form-select').select2();
-              $('.form-select').on('change', function(e) {
-                  @this.set('category', e.target.value);
-              });
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.form-select').select2();
+            $('.form-select').on('change', function(e) {
+                @this.set('category', e.target.value);
+            });
 
-              Livewire.on('buy_response', response => {
-                  if (response.success) {
-                      Swal.fire(
-                          'Success',
-                          response.message,
-                          'success'
-                      )
-                  } else {
-                      Swal.fire(
-                          'Warning',
-                          response.message,
-                          'warning'
-                      )
-                  }
+            Livewire.on('buy_response', response => {
+                if (response.success) {
+                    Swal.fire(
+                        'Success',
+                        response.message,
+                        'success'
+                    )
+                } else {
+                    Swal.fire(
+                        'Warning',
+                        response.message,
+                        'warning'
+                    )
+                }
 
-              })
-          });
-      </script>
-  @endpush
+            })
+        });
+    </script>
+@endpush
