@@ -12,7 +12,7 @@
      <!--begin::Content-->
      <div id="kt_account_settings_profile_details" class="collapse show">
          <!--begin::Form-->
-         <form wire:submit.prevent="addItem">
+         <form wire:submit="addItem">
              <!--begin::Card body-->
              <div class="card-body border-top p-9">
                  <!--begin::Input group-->
@@ -38,7 +38,7 @@
                                  data-kt-image-input-action="change" title="Change item image">
                                  <i class="bi bi-pencil-fill fs-7"></i>
                                  <!--begin::Inputs-->
-                                 <input wire:model="image" type="file" name="avatar"
+                                 <input wire:model.live="image" type="file" name="avatar"
                                      accept=".png, .jpg, .jpeg .gif" />
                                  <input type="hidden" name="avatar_remove" />
                                  <!--end::Inputs-->
@@ -73,7 +73,7 @@
                          <div class="row">
                              <!--begin::Col-->
                              <div class="col-lg-12 fv-row">
-                                 <input type="text" wire:model="type"
+                                 <input type="text" wire:model.live="type"
                                      class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                      placeholder="Item Type" value="" />
                                  @error('type')
@@ -99,7 +99,7 @@
                          <div class="row">
                              <!--begin::Col-->
                              <div class="col-lg-12 fv-row">
-                                 <input type="text" wire:model="name"
+                                 <input type="text" wire:model.live="name"
                                      class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                      placeholder="Item Name" value="" />
                                  @error('name')
@@ -121,7 +121,7 @@
                      <!--end::Label-->
                      <!--begin::Col-->
                      <div class="col-lg-8 fv-row">
-                         <textarea type="text" wire:model="description" class="form-control form-control-lg form-control-solid"
+                         <textarea type="text" wire:model.live="description" class="form-control form-control-lg form-control-solid"
                              placeholder="Item Description" value="Keenthemes"></textarea>
                          @error('description')
                              <span class="text-danger">{{ $message }}</span>
@@ -140,7 +140,7 @@
                      <!--end::Label-->
                      <!--begin::Col-->
                      <div class="col-lg-8 fv-row">
-                         <select wire:model="category" aria-label="Select a Country" data-control="select2"
+                         <select wire:model.live="category" aria-label="Select a Country" data-control="select2"
                              data-placeholder="Select a category..."
                              class="form-select form-select-solid form-select-lg fw-semibold">
                              <option value="">Select a Category...</option>
@@ -168,7 +168,7 @@
                      <!--end::Label-->
                      <!--begin::Col-->
                      <div class="col-lg-8 fv-row">
-                         <input type="number" wire:model="stack"
+                         <input type="number" wire:model.live="stack"
                              class="form-control form-control-lg form-control-solid" placeholder="Stacks"
                              value="1" />
                          @error('number')
@@ -188,7 +188,7 @@
                      <!--end::Label-->
                      <!--begin::Col-->
                      <div class="col-lg-8 fv-row">
-                         <input type="number" wire:model="amount"
+                         <input type="number" wire:model.live="amount"
                              class="form-control form-control-lg form-control-solid" placeholder="Price"
                              value="" />
                          @error('price')
@@ -208,7 +208,7 @@
                      <!--end::Label-->
                      <!--begin::Col-->
                      <div class="col-lg-8 fv-row">
-                         <input type="number" wire:model="discount"
+                         <input type="number" wire:model.live="discount"
                              class="form-control form-control-lg form-control-solid" placeholder="Discount"
                              value="" />
                          @error('discount')
@@ -231,7 +231,7 @@
                      <!--begin::Label-->
                      <div class="col-lg-8 d-flex align-items-center">
                          <div class="form-check form-check-solid form-switch form-check-custom fv-row">
-                             <input wire:model="show" class="form-check-input w-45px h-30px" type="checkbox"
+                             <input wire:model.live="show" class="form-check-input w-45px h-30px" type="checkbox"
                                  id="allowmarketing" checked="checked" />
                              <label class="form-check-label" for="allowmarketing"></label>
                          </div>

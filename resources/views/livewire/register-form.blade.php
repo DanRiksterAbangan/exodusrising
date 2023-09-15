@@ -3,7 +3,7 @@
         <!--begin::Heading-->
         <div class="text-center mb-11">
             <!--begin::Title-->
-            <h1 class="text-dark fw-bolder mb-3">Login</h1>
+            <h1 class="text-dark fw-bolder mb-3">Register</h1>
             <!--end::Title-->
             <!--begin::Subtitle-->
             {{-- <div class="text-gray-500 fw-semibold fs-6">Join the battle</div> --}}
@@ -20,7 +20,7 @@
             <!--begin::Email-->
             <input type="text" placeholder="Username" wire:model.live="username" name="username" autocomplete="off"
                 class="form-control bg-transparent" />
-            {{-- @error('username') <span class="text-danger">{{ $username }}</span> @enderror --}}
+            @error('username') <span class="text-danger">{{ $username }}</span> @enderror
             <!--end::Email-->
         </div>
         <!--end::Input group=-->
@@ -28,8 +28,14 @@
             <!--begin::Password-->
             <input type="password" placeholder="Password" wire:model.live="password" name="password" autocomplete="off"
                 class="form-control bg-transparent" />
-            {{-- @error('password') <span class="text-danger">{{ $message }}</span> @enderror --}}
+            @error('password') <span class="text-danger">{{ $message }}</span> @enderror
             <!--end::Password-->
+        </div>
+
+        <div class="fv-row mb-3">
+            <input type="password" placeholder="Confirm Password" wire:model.live="password_confirmation" name="password" autocomplete="off"
+                class="form-control bg-transparent" />
+
         </div>
         <!--end::Input group=-->
         <!--begin::Wrapper-->

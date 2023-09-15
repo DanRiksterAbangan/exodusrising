@@ -70,7 +70,7 @@
                                       </svg>
                                   </span>
                                   <!--end::Svg Icon-->
-                                  <input wire:model="search" type="text" wire:keydown.enter="searchData"
+                                  <input wire:model.live="search" type="text" wire:keydown.enter="searchData"
                                       class="form-control form-control-solid w-250px ps-14" placeholder="Search Item" />
                               </div>
                               <!--end::Search-->
@@ -259,7 +259,7 @@
                                                               <!--end::Info-->
                                                               <div class="mb-10">
                                                                   <label for="Stack">Quantity:</label>
-                                                                  <select class="form-control" wire:model="quantity"
+                                                                  <select class="form-control" wire:model.live="quantity"
                                                                       name="stack" id="">
                                                                       <option value="1">1</option>
                                                                       <option value="2">2</option>

@@ -43,174 +43,179 @@
 <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
     <!--begin::Col-->
 
-    @forelse  ($characters as $character)
-    <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-{{ $characters->count() > 1 ? '3' : '6' }} mb-md-5 mb-xl-10">
-        <!--begin::Card widget 17-->
-        <div class="card card-flush ">
-            <!--begin::Header-->
-            <div class="card-header pt-5">
-                <!--begin::Title-->
-                <div class="card-title d-flex flex-column">
-                    <!--begin::Info-->
-                    <div class="d-flex align-items-center">
-                        <!--begin::Currency-->
-                        {{-- <span class="fs-4 fw-semibold text-gray-400 me-1 align-self-start">$</span> --}}
-                        <!--end::Currency-->
-                        <!--begin::Amount-->
-                        <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">{{ $character->name }}</span>
-                        <!--end::Amount-->
-                        <!--begin::Badge-->
-                        <span class="badge badge-light-success fs-base">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                        <span class="svg-icon svg-icon-5 svg-icon-success ms-n1">
-                           Lv.
-                        </span>
-                        <!--end::Svg Icon-->{{ $character->characterAbility->level }}</span>
-                        <!--end::Badge-->
-                    </div>
-                    <!--end::Info-->
-                    <!--begin::Subtitle-->
-                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Conqueror Level: {{ $character->conqueror->conquerorlevel }}</span>
-                    <!--end::Subtitle-->
-                </div>
-                <!--end::Title-->
-            </div>
-            <!--end::Header-->
-            <div class="row">
-                <div class="col-xxl-6">
-                    <!--begin::Card body-->
-                    <div class="card-body pt-2 pb-4 align-items-center">
+    <div class="col-12 col-xxl-6">
 
-                        <!--begin::Labels-->
-                        <div class="d-flex flex-column content-justify-center flex-row-fluid">
-                            <!--begin::Label-->
-                            <div class="d-flex fw-semibold align-items-center">
-                                <!--begin::Bullet-->
-                                <div class="bullet w-8px h-3px rounded-2 bg-danger me-3"></div>
-                                <!--end::Bullet-->
-                                <!--begin::Label-->
-                                <div class="text-gray-500 flex-grow-1 me-4">Strength</div>
-                                <!--end::Label-->
-                                <!--begin::Stats-->
-                                <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->strength }}</div>
-                                <!--end::Stats-->
-                            </div>
-                            <!--end::Label-->
-                            <!--begin::Label-->
-                            <div class="d-flex fw-semibold align-items-center my-3">
-                                <!--begin::Bullet-->
-                                <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
-                                <!--end::Bullet-->
-                                <!--begin::Label-->
-                                <div class="text-gray-500 flex-grow-1 me-4">Agility</div>
-                                <!--end::Label-->
-                                <!--begin::Stats-->
-                                <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->quickness }}</div>
-                                <!--end::Stats-->
-                            </div>
-                            <!--end::Label-->
-                            <!--begin::Label-->
-                            <div class="d-flex fw-semibold align-items-center">
-                                <!--begin::Bullet-->
-                                <div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: #E4E6EF"></div>
-                                <!--end::Bullet-->
-                                <!--begin::Label-->
-                                <div class="text-gray-500 flex-grow-1 me-4">Psyche</div>
-                                <!--end::Label-->
-                                <!--begin::Stats-->
-                                <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->mentality }}</div>
-                                <!--end::Stats-->
-                            </div>
-                            <!--end::Label-->
+    <div class="row">
+        @forelse  ($characters as $character)
+        <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-{{ $characters->count() > 1 ? '6' : '12' }} mb-md-5 mb-xl-10">
+            <!--begin::Card widget 17-->
+            <div class="card card-flush ">
+                <!--begin::Header-->
+                <div class="card-header pt-5">
+                    <!--begin::Title-->
+                    <div class="card-title d-flex flex-column">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center">
+                            <!--begin::Currency-->
+                            {{-- <span class="fs-4 fw-semibold text-gray-400 me-1 align-self-start">$</span> --}}
+                            <!--end::Currency-->
+                            <!--begin::Amount-->
+                            <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">{{ $character->name }}</span>
+                            <!--end::Amount-->
+                            <!--begin::Badge-->
+                            <span class="badge badge-light-success fs-base">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+                            <span class="svg-icon svg-icon-5 svg-icon-success ms-n1">
+                               Lv.
+                            </span>
+                            <!--end::Svg Icon-->{{ $character->characterAbility->level }}</span>
+                            <!--end::Badge-->
                         </div>
-                        <!--end::Labels-->
+                        <!--end::Info-->
+                        <!--begin::Subtitle-->
+                        <span class="text-gray-400 pt-1 fw-semibold fs-6">Conqueror Level: {{ $character->conqueror->conquerorlevel }}</span>
+                        <!--end::Subtitle-->
                     </div>
-            <!--end::Card body-->
+                    <!--end::Title-->
                 </div>
-                <div class="col-xxl-6">
-                    <!--begin::Card body-->
-            <div class="card-body pt-2 pb-4 align-items-center">
+                <!--end::Header-->
+                <div class="row">
+                    <div class="col-xxl-6">
+                        <!--begin::Card body-->
+                        <div class="card-body pt-2 pb-4 align-items-center">
 
-                <!--begin::Labels-->
-                <div class="d-flex flex-column content-justify-center flex-row-fluid">
-                    <!--begin::Label-->
-                    <div class="d-flex fw-semibold align-items-center">
-                        <!--begin::Bullet-->
-                        <div class="bullet w-8px h-3px rounded-2 bg-danger me-3"></div>
-                        <!--end::Bullet-->
-                        <!--begin::Label-->
-                        <div class="text-gray-500 flex-grow-1 me-4">Vitalty</div>
-                        <!--end::Label-->
-                        <!--begin::Stats-->
-                        <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->health }}</div>
-                        <!--end::Stats-->
+                            <!--begin::Labels-->
+                            <div class="d-flex flex-column content-justify-center flex-row-fluid">
+                                <!--begin::Label-->
+                                <div class="d-flex fw-semibold align-items-center">
+                                    <!--begin::Bullet-->
+                                    <div class="bullet w-8px h-3px rounded-2 bg-danger me-3"></div>
+                                    <!--end::Bullet-->
+                                    <!--begin::Label-->
+                                    <div class="text-gray-500 flex-grow-1 me-4">Strength</div>
+                                    <!--end::Label-->
+                                    <!--begin::Stats-->
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->strength }}</div>
+                                    <!--end::Stats-->
+                                </div>
+                                <!--end::Label-->
+                                <!--begin::Label-->
+                                <div class="d-flex fw-semibold align-items-center my-3">
+                                    <!--begin::Bullet-->
+                                    <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
+                                    <!--end::Bullet-->
+                                    <!--begin::Label-->
+                                    <div class="text-gray-500 flex-grow-1 me-4">Agility</div>
+                                    <!--end::Label-->
+                                    <!--begin::Stats-->
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->quickness }}</div>
+                                    <!--end::Stats-->
+                                </div>
+                                <!--end::Label-->
+                                <!--begin::Label-->
+                                <div class="d-flex fw-semibold align-items-center">
+                                    <!--begin::Bullet-->
+                                    <div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: #E4E6EF"></div>
+                                    <!--end::Bullet-->
+                                    <!--begin::Label-->
+                                    <div class="text-gray-500 flex-grow-1 me-4">Psyche</div>
+                                    <!--end::Label-->
+                                    <!--begin::Stats-->
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->mentality }}</div>
+                                    <!--end::Stats-->
+                                </div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Labels-->
+                        </div>
+                <!--end::Card body-->
                     </div>
-                    <!--end::Label-->
-                    <!--begin::Label-->
-                    <div class="d-flex fw-semibold align-items-center my-3">
-                        <!--begin::Bullet-->
-                        <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
-                        <!--end::Bullet-->
+                    <div class="col-xxl-6">
+                        <!--begin::Card body-->
+                <div class="card-body pt-2 pb-4 align-items-center">
+
+                    <!--begin::Labels-->
+                    <div class="d-flex flex-column content-justify-center flex-row-fluid">
                         <!--begin::Label-->
-                        <div class="text-gray-500 flex-grow-1 me-4">Dexterity</div>
+                        <div class="d-flex fw-semibold align-items-center">
+                            <!--begin::Bullet-->
+                            <div class="bullet w-8px h-3px rounded-2 bg-danger me-3"></div>
+                            <!--end::Bullet-->
+                            <!--begin::Label-->
+                            <div class="text-gray-500 flex-grow-1 me-4">Vitalty</div>
+                            <!--end::Label-->
+                            <!--begin::Stats-->
+                            <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->health }}</div>
+                            <!--end::Stats-->
+                        </div>
                         <!--end::Label-->
-                        <!--begin::Stats-->
-                        <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->dexterity }}</div>
-                        <!--end::Stats-->
-                    </div>
-                    <!--end::Label-->
-                    <!--begin::Label-->
-                    <div class="d-flex fw-semibold align-items-center">
-                        <!--begin::Bullet-->
-                        <div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: #E4E6EF"></div>
-                        <!--end::Bullet-->
                         <!--begin::Label-->
-                        <div class="text-gray-500 flex-grow-1 me-4">Intelligence</div>
+                        <div class="d-flex fw-semibold align-items-center my-3">
+                            <!--begin::Bullet-->
+                            <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
+                            <!--end::Bullet-->
+                            <!--begin::Label-->
+                            <div class="text-gray-500 flex-grow-1 me-4">Dexterity</div>
+                            <!--end::Label-->
+                            <!--begin::Stats-->
+                            <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->dexterity }}</div>
+                            <!--end::Stats-->
+                        </div>
                         <!--end::Label-->
-                        <!--begin::Stats-->
-                        <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->intelligence }}</div>
-                        <!--end::Stats-->
+                        <!--begin::Label-->
+                        <div class="d-flex fw-semibold align-items-center">
+                            <!--begin::Bullet-->
+                            <div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: #E4E6EF"></div>
+                            <!--end::Bullet-->
+                            <!--begin::Label-->
+                            <div class="text-gray-500 flex-grow-1 me-4">Intelligence</div>
+                            <!--end::Label-->
+                            <!--begin::Stats-->
+                            <div class="fw-bolder text-gray-700 text-xxl-end">{{ $character->characterAbility->intelligence }}</div>
+                            <!--end::Stats-->
+                        </div>
+                        <!--end::Label-->
                     </div>
-                    <!--end::Label-->
+                    <!--end::Labels-->
                 </div>
-                <!--end::Labels-->
-            </div>
-            <!--end::Card body-->
+                <!--end::Card body-->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    @empty
+        @empty
 
-    <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-{{ $characters->count() > 1 ? '3' : '6' }} mb-md-5 mb-xl-10">
-        <!--begin::Card widget 17-->
-        <div class="card card-flush ">
-            <!--begin::Header-->
-            <div class="card-header pt-5">
-                <!--begin::Title-->
-                <div class="card-title d-flex flex-column">
-                    <!--begin::Info-->
-                    <div class="d-flex align-items-center">
-                        <!--begin::Currency-->
-                        {{-- <span class="fs-4 fw-semibold text-gray-400 me-1 align-self-start">$</span> --}}
-                        <!--end::Currency-->
-                        <!--begin::Amount-->
-                        <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">No character created</span>
-                        <!--end::Amount-->
-                        <!--begin::Badge-->
+        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-{{ $characters->count() > 1 ? '3' : '6' }} mb-md-5 mb-xl-10">
+            <!--begin::Card widget 17-->
+            <div class="card card-flush ">
+                <!--begin::Header-->
+                <div class="card-header pt-5">
+                    <!--begin::Title-->
+                    <div class="card-title d-flex flex-column">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center">
+                            <!--begin::Currency-->
+                            {{-- <span class="fs-4 fw-semibold text-gray-400 me-1 align-self-start">$</span> --}}
+                            <!--end::Currency-->
+                            <!--begin::Amount-->
+                            <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">No character created</span>
+                            <!--end::Amount-->
+                            <!--begin::Badge-->
+
+                        </div>
+                        <!--end::Info-->
 
                     </div>
-                    <!--end::Info-->
-
+                    <!--end::Title-->
                 </div>
-                <!--end::Title-->
+
             </div>
-
         </div>
-    </div>
 
-    @endforelse
-    <!--begin::Col-->
+        @endforelse
+        <!--begin::Col-->
+    </div>
+    </div>
 
 
     <!--begin::Col-->
@@ -221,94 +226,10 @@
             <div class="card-header pt-5">
                 <!--begin::Title-->
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bold text-gray-800">Character Stats</span>
+                    <span class="card-label fw-bold text-gray-800">Characters Status</span>
                     <span class="text-gray-400 mt-1 fw-semibold fs-6">Avg. 69.34% Conv. Rate</span>
                 </h3>
                 <!--end::Title-->
-                <!--begin::Toolbar-->
-                <div class="card-toolbar">
-                    <!--begin::Menu-->
-                    <button class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-overflow="true">
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen023.svg-->
-                        <span class="svg-icon svg-icon-1 svg-icon-gray-300 me-n1">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="4" fill="currentColor" />
-                                <rect x="11" y="11" width="2.6" height="2.6" rx="1.3" fill="currentColor" />
-                                <rect x="15" y="11" width="2.6" height="2.6" rx="1.3" fill="currentColor" />
-                                <rect x="7" y="11" width="2.6" height="2.6" rx="1.3" fill="currentColor" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                    </button>
-                    <!--begin::Menu 2-->
-                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px" data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <div class="menu-content fs-6 text-dark fw-bold px-3 py-4">Quick Actions</div>
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu separator-->
-                        <div class="separator mb-3 opacity-75"></div>
-                        <!--end::Menu separator-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3">New Ticket</a>
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3">New Customer</a>
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-start">
-                            <!--begin::Menu item-->
-                            <a href="#" class="menu-link px-3">
-                                <span class="menu-title">New Group</span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <!--end::Menu item-->
-                            <!--begin::Menu sub-->
-                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3">Admin Group</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3">Staff Group</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3">Member Group</a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu sub-->
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3">New Contact</a>
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu separator-->
-                        <div class="separator mt-3 opacity-75"></div>
-                        <!--end::Menu separator-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <div class="menu-content px-3 py-3">
-                                <a class="btn btn-primary btn-sm px-4" href="#">Generate Reports</a>
-                            </div>
-                        </div>
-                        <!--end::Menu item-->
-                    </div>
-                    <!--end::Menu 2-->
-                    <!--end::Menu-->
-                </div>
-                <!--end::Toolbar-->
             </div>
             <!--end::Header-->
             <!--begin::Body-->
@@ -325,7 +246,7 @@
                             </div>
                             <!--end::Icon-->
                             <!--begin::Title-->
-                            <span class="nav-text text-gray-800 fw-bold fs-6 lh-1">Kills</span>
+                            <span class="nav-text text-gray-800 fw-bold fs-6 lh-1">Trade</span>
                             <!--end::Title-->
                             <!--begin::Bullet-->
                             <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
@@ -344,64 +265,7 @@
                             </div>
                             <!--end::Icon-->
                             <!--begin::Title-->
-                            <span class="nav-text text-gray-800 fw-bold fs-6 lh-1">Crypto</span>
-                            <!--end::Title-->
-                            <!--begin::Bullet-->
-                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
-                            <!--end::Bullet-->
-                        </a>
-                        <!--end::Link-->
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="nav-item mb-3 me-3 me-lg-6">
-                        <!--begin::Link-->
-                        <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2" id="kt_stats_widget_16_tab_link_3" data-bs-toggle="pill" href="#kt_stats_widget_16_tab_3">
-                            <!--begin::Icon-->
-                            <div class="nav-icon mb-3">
-                                <i class="fonticon-like-1 fs-1 p-0"></i>
-                            </div>
-                            <!--end::Icon-->
-                            <!--begin::Title-->
-                            <span class="nav-text text-gray-800 fw-bold fs-6 lh-1">Social</span>
-                            <!--end::Title-->
-                            <!--begin::Bullet-->
-                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
-                            <!--end::Bullet-->
-                        </a>
-                        <!--end::Link-->
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="nav-item mb-3 me-3 me-lg-6">
-                        <!--begin::Link-->
-                        <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2" id="kt_stats_widget_16_tab_link_4" data-bs-toggle="pill" href="#kt_stats_widget_16_tab_4">
-                            <!--begin::Icon-->
-                            <div class="nav-icon mb-3">
-                                <i class="fonticon-remote-control fs-1 p-0"></i>
-                            </div>
-                            <!--end::Icon-->
-                            <!--begin::Title-->
-                            <span class="nav-text text-gray-800 fw-bold fs-6 lh-1">Mobile</span>
-                            <!--end::Title-->
-                            <!--begin::Bullet-->
-                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
-                            <!--end::Bullet-->
-                        </a>
-                        <!--end::Link-->
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="nav-item mb-3 me-3 me-lg-6">
-                        <!--begin::Link-->
-                        <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2" id="kt_stats_widget_16_tab_link_5" data-bs-toggle="pill" href="#kt_stats_widget_16_tab_5">
-                            <!--begin::Icon-->
-                            <div class="nav-icon mb-3">
-                                <i class="fonticon-telegram fs-1 p-0"></i>
-                            </div>
-                            <!--end::Icon-->
-                            <!--begin::Title-->
-                            <span class="nav-text text-gray-800 fw-bold fs-6 lh-1">Others</span>
+                            <span class="nav-text text-gray-800 fw-bold fs-6 lh-1">Kills</span>
                             <!--end::Title-->
                             <!--begin::Bullet-->
                             <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
@@ -423,15 +287,16 @@
                                 <!--begin::Table head-->
                                 <thead>
                                     <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
-                                        <th class="p-0 pb-3 min-w-150px text-start">AUTHOR</th>
-                                        <th class="p-0 pb-3 min-w-100px text-end pe-13">CONV.</th>
-                                        <th class="p-0 pb-3 w-125px text-end pe-7">CHART</th>
-                                        <th class="p-0 pb-3 w-50px text-end">VIEW</th>
+                                        <th class="p-0 pb-3 w-150px text-start">Item Type</th>
+                                        <th class="p-0 pb-3 w-125px text-end pe-7">From</th>
+                                        <th class="p-0 pb-3 w-125px text-end pe-7">To</th>
+                                        <th class="p-0 pb-3 w-50px text-end">Date</th>
                                     </tr>
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
+                                    {{-- @forelse  ($character->tradeItem  as $tradeItem)
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -463,99 +328,17 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-circle symbol-50px me-3">
-                                                    <img src="assets/media/avatars/300-2.jpg" class="" alt="" />
-                                                </div>
-                                                <div class="d-flex justify-content-start flex-column">
-                                                    <a href="pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Jane Cooper</a>
-                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Monaco</span>
-                                                </div>
-                                            </div>
+                                    @empty
+
+                                    <tr >
+                                        <td colspan="4" class="text-center">
+                                            No Trades yet
                                         </td>
-                                        <td class="text-end pe-13">
-                                            <span class="text-gray-600 fw-bold fs-6">63.83%</span>
-                                        </td>
-                                        <td class="text-end pe-0">
-                                            <div id="kt_table_widget_16_chart_1_2" class="h-50px mt-n8 pe-7" data-kt-chart-color="danger"></div>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </a>
-                                        </td>
+
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-circle symbol-50px me-3">
-                                                    <img src="assets/media/avatars/300-9.jpg" class="" alt="" />
-                                                </div>
-                                                <div class="d-flex justify-content-start flex-column">
-                                                    <a href="pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Jacob Jones</a>
-                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Poland</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-end pe-13">
-                                            <span class="text-gray-600 fw-bold fs-6">92.56%</span>
-                                        </td>
-                                        <td class="text-end pe-0">
-                                            <div id="kt_table_widget_16_chart_1_3" class="h-50px mt-n8 pe-7" data-kt-chart-color="success"></div>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-circle symbol-50px me-3">
-                                                    <img src="assets/media/avatars/300-7.jpg" class="" alt="" />
-                                                </div>
-                                                <div class="d-flex justify-content-start flex-column">
-                                                    <a href="pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Cody Fishers</a>
-                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Mexico</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-end pe-13">
-                                            <span class="text-gray-600 fw-bold fs-6">63.08%</span>
-                                        </td>
-                                        <td class="text-end pe-0">
-                                            <div id="kt_table_widget_16_chart_1_4" class="h-50px mt-n8 pe-7" data-kt-chart-color="success"></div>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </a>
-                                        </td>
-                                    </tr>
+
+                                    @endforelse --}}
+
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
@@ -573,15 +356,15 @@
                                 <!--begin::Table head-->
                                 <thead>
                                     <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
-                                        <th class="p-0 pb-3 min-w-150px text-start">AUTHOR</th>
-                                        <th class="p-0 pb-3 min-w-100px text-end pe-13">CONV.</th>
-                                        <th class="p-0 pb-3 w-125px text-end pe-7">CHART</th>
-                                        <th class="p-0 pb-3 w-50px text-end">VIEW</th>
+                                        <th class="p-0 pb-3 min-w-150px text-start">Killed</th>
+                                        <th class="p-0 pb-3 w-125px text-end pe-7">Type</th>
+                                        <th class="p-0 pb-3 min-w-100px text-end pe-13">KILL SECONDS</th>
                                     </tr>
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
+                                    {{-- @forelse  ($character->killed  as $tradeItem)
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -613,99 +396,17 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-circle symbol-50px me-3">
-                                                    <img src="assets/media/avatars/300-24.jpg" class="" alt="" />
-                                                </div>
-                                                <div class="d-flex justify-content-start flex-column">
-                                                    <a href="pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Esther Howard</a>
-                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Mexico</span>
-                                                </div>
-                                            </div>
+                                    @empty
+
+                                    <tr >
+                                        <td colspan="4" class="text-center">
+                                            No Kills yet
                                         </td>
-                                        <td class="text-end pe-13">
-                                            <span class="text-gray-600 fw-bold fs-6">74.83%</span>
-                                        </td>
-                                        <td class="text-end pe-0">
-                                            <div id="kt_table_widget_16_chart_2_2" class="h-50px mt-n8 pe-7" data-kt-chart-color="danger"></div>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </a>
-                                        </td>
+
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-circle symbol-50px me-3">
-                                                    <img src="assets/media/avatars/300-20.jpg" class="" alt="" />
-                                                </div>
-                                                <div class="d-flex justify-content-start flex-column">
-                                                    <a href="pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Annette Black</a>
-                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Haiti</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-end pe-13">
-                                            <span class="text-gray-600 fw-bold fs-6">90.06%</span>
-                                        </td>
-                                        <td class="text-end pe-0">
-                                            <div id="kt_table_widget_16_chart_2_3" class="h-50px mt-n8 pe-7" data-kt-chart-color="success"></div>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-circle symbol-50px me-3">
-                                                    <img src="assets/media/avatars/300-17.jpg" class="" alt="" />
-                                                </div>
-                                                <div class="d-flex justify-content-start flex-column">
-                                                    <a href="pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Marvin McKinney</a>
-                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Monaco</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-end pe-13">
-                                            <span class="text-gray-600 fw-bold fs-6">54.08%</span>
-                                        </td>
-                                        <td class="text-end pe-0">
-                                            <div id="kt_table_widget_16_chart_2_4" class="h-50px mt-n8 pe-7" data-kt-chart-color="success"></div>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </a>
-                                        </td>
-                                    </tr>
+
+                                    @endforelse --}}
+
                                 </tbody>
                                 <!--end::Table body-->
                             </table>

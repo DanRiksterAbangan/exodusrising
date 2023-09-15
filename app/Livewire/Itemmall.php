@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Item;
 use App\Models\User;
@@ -74,7 +74,7 @@ class Itemmall extends Component
                         'date' => now(),
                     ]);
                 }
-                $this->emit("updatedUser",$user);
+                $this->dispatch("updatedUser",$user);
                 return $this->emit("buy_response",[
                    "success"=>true,
                    "message"=>"You have successfully bought ".$this->quantity."x ".$item->name
