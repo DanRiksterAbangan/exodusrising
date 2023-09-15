@@ -16,7 +16,7 @@
             </div>
         @endif
         <!--begin::Input group=-->
-        <div class="fv-row mb-8">
+        <div class="fv-row mb-3">
             <!--begin::Email-->
             <input type="text" placeholder="Username" wire:model.live="username" name="username" autocomplete="off"
                 class="form-control bg-transparent" />
@@ -60,8 +60,8 @@
         </div>
         <!--end::Submit button-->
         <!--begin::Sign up-->
-        <div class="text-gray-500 text-center fw-semibold fs-6">Not a Member yet?
-            <a href="sign-up.html" class="link-primary">Sign up</a>
+        <div class="text-gray-500 text-center fw-semibold fs-6">Already registered?
+            <a href="/login" class="link-primary">Login</a>
         </div>
         <!--end::Sign up-->
     </form>

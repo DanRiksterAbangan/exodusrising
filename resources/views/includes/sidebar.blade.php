@@ -1,12 +1,13 @@
 <!--begin::Sidebar-->
-<div id="kt_app_sidebar" class="app-sidebar flex-column"  data-kt-drawer-name="app-sidebar"
+<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer-name="app-sidebar"
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px"
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
     <!--begin::Logo-->
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
         <a href="index.html">
-            <img alt="Logo" src="assets/media/logos/default-dark.svg" class="h-30px app-sidebar-logo-default" />
+            <img alt="Logo" src="{{ asset('assets/media/logos/default-dark.svg') }}"
+                class="h-30px app-sidebar-logo-default" />
         </a>
         <!--end::Logo image-->
         <!--begin::Sidebar toggle-->
@@ -42,27 +43,53 @@
                 data-kt-menu="true" data-kt-menu-expand="false">
 
 
-                <div class="menu-item here show  menu-accordion">
+                <div class="menu-item {{ Route::currentRouteName() == 'itemmall' ? 'show' : '' }}">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('itemmall') }}">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Itemmall</span>
+                    </a>
+                </div>
+
+                @if (auth()->check() &&
+                        auth()->user()->isAdmin())
+                    <div class="menu-item pt-5">
+                        <div class="menu-content">
+                            <span class="menu-heading fw-bold text-uppercase fs-7">Administration</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item {{ Route::currentRouteName() == 'users' ? 'show' : '' }}">
+                        <!--begin:Menu link-->
+                        <a class="menu-link" href="{{ route('users') }}">
+                            <span class="menu-icon tw-text-white">
+                                {!! Mdi::mdi('account-group', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'users' ? '#ffff' : '#fff5',
+                                ]) !!}
+                            </span>
+                            <span class="menu-title">Users</span>
+                        </a>
+                    </div>
+                @endif
+
+                <div class="menu-item pt-5">
+                    <div class="menu-content">
+                        <span class="menu-heading fw-bold text-uppercase fs-7">Account</span>
+                    </div>
+                </div>
+                <div class="menu-item  {{ Route::currentRouteName() == 'home' ? 'show' : '' }} menu-accordion">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('home') }}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                             <span class="svg-icon svg-icon-2">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                        fill="currentColor" />
-                                    <path
-                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                        fill="currentColor" />
-                                </svg>
+                                {!! Mdi::mdi('shield-account', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
                             </span>
                             <!--end::Svg Icon-->
                         </span>
@@ -73,63 +100,31 @@
                 </div>
                 <!--end:Menu item-->
 
-
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21 10H13V11C13 11.6 12.6 12 12 12C11.4 12 11 11.6 11 11V10H3C2.4 10 2 10.4 2 11V13H22V11C22 10.4 21.6 10 21 10Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M12 12C11.4 12 11 11.6 11 11V3C11 2.4 11.4 2 12 2C12.6 2 13 2.4 13 3V11C13 11.6 12.6 12 12 12Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M18.1 21H5.9C5.4 21 4.9 20.6 4.8 20.1L3 13H21L19.2 20.1C19.1 20.6 18.6 21 18.1 21ZM13 18V15C13 14.4 12.6 14 12 14C11.4 14 11 14.4 11 15V18C11 18.6 11.4 19 12 19C12.6 19 13 18.6 13 18ZM17 18V15C17 14.4 16.6 14 16 14C15.4 14 15 14.4 15 15V18C15 18.6 15.4 19 16 19C16.6 19 17 18.6 17 18ZM9 18V15C9 14.4 8.6 14 8 14C7.4 14 7 14.4 7 15V18C7 18.6 7.4 19 8 19C8.6 19 9 18.6 9 18Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
+                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
                         </span>
-                        <span class="menu-title">Itemmall</span>
+                        <span class="menu-title">Change password</span>
                     </a>
                 </div>
 
 
-                <!--begin:Menu item-->
+
+
+
                 <div class="menu-item pt-5">
-                    <!--begin:Menu content-->
                     <div class="menu-content">
                         <span class="menu-heading fw-bold text-uppercase fs-7">Topups</span>
                     </div>
-                    <!--end:Menu content-->
                 </div>
-                <!--end:Menu item-->
 
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21 10H13V11C13 11.6 12.6 12 12 12C11.4 12 11 11.6 11 11V10H3C2.4 10 2 10.4 2 11V13H22V11C22 10.4 21.6 10 21 10Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M12 12C11.4 12 11 11.6 11 11V3C11 2.4 11.4 2 12 2C12.6 2 13 2.4 13 3V11C13 11.6 12.6 12 12 12Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M18.1 21H5.9C5.4 21 4.9 20.6 4.8 20.1L3 13H21L19.2 20.1C19.1 20.6 18.6 21 18.1 21ZM13 18V15C13 14.4 12.6 14 12 14C11.4 14 11 14.4 11 15V18C11 18.6 11.4 19 12 19C12.6 19 13 18.6 13 18ZM17 18V15C17 14.4 16.6 14 16 14C15.4 14 15 14.4 15 15V18C15 18.6 15.4 19 16 19C16.6 19 17 18.6 17 18ZM9 18V15C9 14.4 8.6 14 8 14C7.4 14 7 14.4 7 15V18C7 18.6 7.4 19 8 19C8.6 19 9 18.6 9 18Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
+                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
                         </span>
                         <span class="menu-title">Buy RPS</span>
                     </a>
@@ -139,22 +134,7 @@
                     <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21 10H13V11C13 11.6 12.6 12 12 12C11.4 12 11 11.6 11 11V10H3C2.4 10 2 10.4 2 11V13H22V11C22 10.4 21.6 10 21 10Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M12 12C11.4 12 11 11.6 11 11V3C11 2.4 11.4 2 12 2C12.6 2 13 2.4 13 3V11C13 11.6 12.6 12 12 12Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M18.1 21H5.9C5.4 21 4.9 20.6 4.8 20.1L3 13H21L19.2 20.1C19.1 20.6 18.6 21 18.1 21ZM13 18V15C13 14.4 12.6 14 12 14C11.4 14 11 14.4 11 15V18C11 18.6 11.4 19 12 19C12.6 19 13 18.6 13 18ZM17 18V15C17 14.4 16.6 14 16 14C15.4 14 15 14.4 15 15V18C15 18.6 15.4 19 16 19C16.6 19 17 18.6 17 18ZM9 18V15C9 14.4 8.6 14 8 14C7.4 14 7 14.4 7 15V18C7 18.6 7.4 19 8 19C8.6 19 9 18.6 9 18Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
+                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
                         </span>
                         <span class="menu-title">Topup History</span>
                     </a>
@@ -166,7 +146,7 @@
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->
                     <div class="menu-content">
-                        <span class="menu-heading fw-bold text-uppercase fs-7">My Account</span>
+                        <span class="menu-heading fw-bold text-uppercase fs-7">Others</span>
                     </div>
                     <!--end:Menu content-->
                 </div>
@@ -178,74 +158,20 @@
                     <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21 10H13V11C13 11.6 12.6 12 12 12C11.4 12 11 11.6 11 11V10H3C2.4 10 2 10.4 2 11V13H22V11C22 10.4 21.6 10 21 10Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M12 12C11.4 12 11 11.6 11 11V3C11 2.4 11.4 2 12 2C12.6 2 13 2.4 13 3V11C13 11.6 12.6 12 12 12Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M18.1 21H5.9C5.4 21 4.9 20.6 4.8 20.1L3 13H21L19.2 20.1C19.1 20.6 18.6 21 18.1 21ZM13 18V15C13 14.4 12.6 14 12 14C11.4 14 11 14.4 11 15V18C11 18.6 11.4 19 12 19C12.6 19 13 18.6 13 18ZM17 18V15C17 14.4 16.6 14 16 14C15.4 14 15 14.4 15 15V18C15 18.6 15.4 19 16 19C16.6 19 17 18.6 17 18ZM9 18V15C9 14.4 8.6 14 8 14C7.4 14 7 14.4 7 15V18C7 18.6 7.4 19 8 19C8.6 19 9 18.6 9 18Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
+                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
                         </span>
                         <span class="menu-title">Fix 5101</span>
                     </a>
                 </div>
 
 
-                <div class="menu-item">
-                    <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('itemmall') }}">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21 10H13V11C13 11.6 12.6 12 12 12C11.4 12 11 11.6 11 11V10H3C2.4 10 2 10.4 2 11V13H22V11C22 10.4 21.6 10 21 10Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M12 12C11.4 12 11 11.6 11 11V3C11 2.4 11.4 2 12 2C12.6 2 13 2.4 13 3V11C13 11.6 12.6 12 12 12Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M18.1 21H5.9C5.4 21 4.9 20.6 4.8 20.1L3 13H21L19.2 20.1C19.1 20.6 18.6 21 18.1 21ZM13 18V15C13 14.4 12.6 14 12 14C11.4 14 11 14.4 11 15V18C11 18.6 11.4 19 12 19C12.6 19 13 18.6 13 18ZM17 18V15C17 14.4 16.6 14 16 14C15.4 14 15 14.4 15 15V18C15 18.6 15.4 19 16 19C16.6 19 17 18.6 17 18ZM9 18V15C9 14.4 8.6 14 8 14C7.4 14 7 14.4 7 15V18C7 18.6 7.4 19 8 19C8.6 19 9 18.6 9 18Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <span class="menu-title">Change password</span>
-                    </a>
-                </div>
 
 
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21 10H13V11C13 11.6 12.6 12 12 12C11.4 12 11 11.6 11 11V10H3C2.4 10 2 10.4 2 11V13H22V11C22 10.4 21.6 10 21 10Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M12 12C11.4 12 11 11.6 11 11V3C11 2.4 11.4 2 12 2C12.6 2 13 2.4 13 3V11C13 11.6 12.6 12 12 12Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M18.1 21H5.9C5.4 21 4.9 20.6 4.8 20.1L3 13H21L19.2 20.1C19.1 20.6 18.6 21 18.1 21ZM13 18V15C13 14.4 12.6 14 12 14C11.4 14 11 14.4 11 15V18C11 18.6 11.4 19 12 19C12.6 19 13 18.6 13 18ZM17 18V15C17 14.4 16.6 14 16 14C15.4 14 15 14.4 15 15V18C15 18.6 15.4 19 16 19C16.6 19 17 18.6 17 18ZM9 18V15C9 14.4 8.6 14 8 14C7.4 14 7 14.4 7 15V18C7 18.6 7.4 19 8 19C8.6 19 9 18.6 9 18Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
+                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
                         </span>
                         <span class="menu-title">Transactions</span>
                     </a>

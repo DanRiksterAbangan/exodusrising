@@ -54,8 +54,8 @@
         </div>
         <!--end::Submit button-->
         <!--begin::Sign up-->
-        <div class="text-gray-500 text-center fw-semibold fs-6">Not a Member yet?
-            <a href="sign-up.html" class="link-primary">Sign up</a>
+        <div class="text-gray-500 text-center fw-semibold fs-6">Not a Registered?
+            <a href="/register" class="link-primary">Register</a>
         </div>
         <!--end::Sign up-->
     </form>

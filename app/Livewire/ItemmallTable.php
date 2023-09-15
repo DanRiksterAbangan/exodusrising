@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire\Component;
 
-class Itemmall extends Component
+class ItemmallTable extends Component
 {
     public $categories;
     public $category = "all";
@@ -46,7 +46,7 @@ class Itemmall extends Component
             $this->items = $this->items->where("category",$this->category)->offset(($this->page - 1) * $this->pageCount)->limit($this->pageCount)->get();
         }
 
-        return view('livewire.itemmall',[
+        return view('livewire.itemmall-table',[
             'items'=>$this->items
         ]);
     }

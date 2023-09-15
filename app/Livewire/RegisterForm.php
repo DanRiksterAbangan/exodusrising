@@ -21,7 +21,8 @@ class RegisterForm extends Component
         $this->validate();
         $user = User::where("login_id",$this->username)->first();
         if($user){
-            return session()->flash("message","Already registered");
+            session()->flash("message", "Already registered");
+            return redirect()->route("register");
         }
         $user = User::create([
             "login_id" => $this->username,

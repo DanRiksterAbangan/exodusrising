@@ -26,4 +26,5 @@ class Kill extends Model
     public function killer(){
         return $this->belongsTo(Character::class,"char_id","id");
     }
+
 }
