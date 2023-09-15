@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Cart;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
@@ -93,8 +94,18 @@ class ItemmallTable extends Component
         ]);
 
     }
+    public function addtocart($item){
+        Cart::create([
+            "user_id"=>auth()->user()->user_id,
+            "item_id"=>$item["id"],
+            "stack"=>1
+        ]);
 
-
+        return $this->dispatch("addtocart",[
+            "success"=>true,
+            "message"=>$item["name"]." is added to cart"
+        ]);
+    }
 
 
 }

@@ -42,8 +42,10 @@
                                                         </span>
                                                         {{ $character->characterAbility->level }}</span>
                                                 </div>
+                                                @if ($character->conqueror)
                                                 <span class="text-gray-400 pt-1 fw-semibold fs-6">Conqueror Level:
-                                                    {{ $character->conqueror->conquerorlevel }}</span>
+                                                    {{ $character->conqueror?->conquerorlevel }}</span>
+                                                    @endif
                                             </div>
                                         </div>
                                         <div class="row">

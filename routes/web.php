@@ -30,6 +30,7 @@ Route::group(["middleware"=>"auth"],function(){
 
 Route::post('/logout', [LoginController::class,"logout"])->name("logout");
 
+
 Route::group(['middleware'=>'guest'],function(){
      Route::get('/login', [LoginController::class,"index"])->name("login");
      Route::get('/register', [RegisterController::class,"index"])->name("register");

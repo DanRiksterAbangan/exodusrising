@@ -83,6 +83,8 @@
                                     <button type="button" class="btn btn-primary me-3 btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#kt_customers_export_modal{{ $item->id }}">
                                         Buy Now</button>
+                                        <button type="button" class="btn btn-warning me-3 btn-sm" wire:click="addtocart({{ $item}})">
+                                        Add to cart</button>
                                 </td>
 
                             </tr>
@@ -186,6 +188,23 @@
             });
 
             Livewire.on('buy_response', response => {
+                if (response[0] && response[0].success) {
+                    Swal.fire(
+                        'Success',
+                        response[0].message,
+                        'success'
+                    )
+                } else {
+                    Swal.fire(
+                        'Warning',
+                        response[0] && response[0].message || "Please try again later",
+                        'warning'
+                    )
+                }
+
+            })
+
+            Livewire.on('addtocart', response => {
                 if (response[0] && response[0].success) {
                     Swal.fire(
                         'Success',

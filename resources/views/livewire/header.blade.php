@@ -39,7 +39,14 @@
                 </div>
             </div>
             <div class="app-navbar flex-shrink-0">
-
+                <div class="app-navbar-item">
+                    <a href="#"
+                    class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
+                    data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent"
+                    data-kt-menu-placement="bottom-end" wire:ignore>
+                        <span>{!! Mdi::mdi('cart', 'tw-text-white', 20, ['fill' => '#999']) !!}</span>
+                </a>
+                </div>
 
                 <div class="app-navbar-item ms-1 ms-lg-3">
                     <a href="#"
@@ -181,167 +188,37 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="app-navbar-item ms-1 ms-lg-3">
                     <div class="cursor-pointer symbol symbol-35px symbol-md-40px"
                         data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
                         data-kt-menu-placement="bottom-end">
-                        <img src="assets/media/avatars/300-3.jpg" alt="user" />
+                        <span class="tw-flex tw-items-center tw-space-x-4">
+
+                            <span>
+                                @if(auth ()->user()->isAdmin())
+                                <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Admin</span>
+                                @else
+                                <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Normal</span>
+                                @endif
+                                <span class="tw-text-[#666] tw-font-bold">{{auth ()->user()->login_id}}</span>
+                            </span>
+                        </span>
+                        {{-- <img src="assets/media/avatars/300-3.jpg" alt="user" /> --}}
                     </div>
-                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
+                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 tw-w-[130px] tw-justify-center"
                         data-kt-menu="true">
-                        <div class="menu-item px-3">
-                            <div class="menu-content d-flex align-items-center px-3">
-                                <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="assets/media/avatars/300-3.jpg" />
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <div class="fw-bold d-flex align-items-center fs-5">Max Smith
-                                        <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
-                                    </div>
-                                    <a href="#"
-                                        class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="separator my-2"></div>
-                        <div class="menu-item px-5">
-                            <a href="account/overview.html" class="menu-link px-5">My Profile</a>
-                        </div>
-                        <div class="menu-item px-5">
-                            <a href="apps/projects/list.html" class="menu-link px-5">
-                                <span class="menu-text">My Projects</span>
-                                <span class="menu-badge">
-                                    <span class="badge badge-light-danger badge-circle fw-bold fs-7">3</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                            data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
-                            <a href="#" class="menu-link px-5">
-                                <span class="menu-title">My Subscription</span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                <div class="menu-item px-3">
-                                    <a href="account/referrals.html" class="menu-link px-5">Referrals</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="account/billing.html" class="menu-link px-5">Billing</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="account/statements.html" class="menu-link px-5">Payments</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="account/statements.html"
-                                        class="menu-link d-flex flex-stack px-5">Statements
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                            title="View your statements"></i></a>
-                                </div>
-                                <div class="separator my-2"></div>
-                                <div class="menu-item px-3">
-                                    <div class="menu-content px-3">
-                                        <label class="form-check form-switch form-check-custom form-check-solid">
-                                            <input class="form-check-input w-30px h-20px" type="checkbox"
-                                                value="1" checked="checked" name="notifications" />
-                                            <span class="form-check-label text-muted fs-7">Notifications</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end::Menu sub-->
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5">
-                            <a href="account/statements.html" class="menu-link px-5">My Statements</a>
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu separator-->
-                        <div class="separator my-2"></div>
-                        <!--end::Menu separator-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                            data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
-                            <a href="#" class="menu-link px-5">
-                                <span class="menu-title position-relative">Language
-                                    <span
-                                        class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                                        <img class="w-15px h-15px rounded-1 ms-2"
-                                            src="assets/media/flags/united-states.svg" alt="" /></span></span>
-                            </a>
-                            <!--begin::Menu sub-->
-                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/settings.html" class="menu-link d-flex px-5 active">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1" src="assets/media/flags/united-states.svg"
-                                                alt="" />
-                                        </span>English</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1" src="assets/media/flags/spain.svg"
-                                                alt="" />
-                                        </span>Spanish</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1" src="assets/media/flags/germany.svg"
-                                                alt="" />
-                                        </span>German</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1" src="assets/media/flags/japan.svg"
-                                                alt="" />
-                                        </span>Japanese</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1" src="assets/media/flags/france.svg"
-                                                alt="" />
-                                        </span>French</a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu sub-->
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5 my-1">
-                            <a href="account/settings.html" class="menu-link px-5">Account Settings</a>
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
+
                         <div class="menu-item px-5">
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <button type="submit" class="menu-link px-5">Sign Out</button>
                             </form>
                         </div>
-                        <!--end::Menu item-->
                     </div>
-                    <!--end::User account menu-->
-                    <!--end::Menu wrapper-->
                 </div>
-                <!--end::User menu-->
-                <!--begin::Header menu toggle-->
                 <div class="app-navbar-item d-lg-none ms-2 me-n3" title="Show header menu">
                     <div class="btn btn-icon btn-active-color-primary w-35px h-35px">
-                        <!--begin::Svg Icon | path: icons/duotune/text/txt001.svg-->
                         <span class="svg-icon svg-icon-1">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -353,19 +230,12 @@
                                     fill="currentColor" />
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->
                     </div>
                 </div>
-                <!--end::Header menu toggle-->
             </div>
-            <!--end::Navbar-->
         </div>
-        <!--end::Header wrapper-->
     </div>
-    <!--end::Header container-->
 </div>
-
-
 @push('scripts')
     <script>
         $(document).ready(() => {
