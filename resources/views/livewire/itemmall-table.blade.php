@@ -7,9 +7,8 @@
                         <span class="svg-icon svg-icon-1 position-absolute ms-6">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546"
-                                    height="2" rx="1" transform="rotate(45 17.0365 15.1223)"
-                                    fill="currentColor" />
+                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2"
+                                    rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
                                 <path
                                     d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
                                     fill="currentColor" />
@@ -22,10 +21,9 @@
                 <div class="card-toolbar">
                     <div class="d-flex justify-content-end " style="align-items:flex-start">
                         <div style="width:200px" wire:ignore>
-                            <select class="form-select form-select-solid fw-bold"
-                                data-placeholder="Select category">
-                                <option style="color: #fff; background-color: #333; padding-top: 10px"
-                                    value="all" selected>
+                            <select class="form-select form-select-solid fw-bold" data-placeholder="Select category">
+                                <option style="color: #fff; background-color: #333; padding-top: 10px" value="all"
+                                    selected>
                                     All</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ strtolower($category ?? '') }}">{{ $category }}
@@ -55,8 +53,8 @@
                                     <div class="symbol symbol-50px overflow-hidden me-3">
                                         <a href="#">
                                             <div class="symbol-label">
-                                                <img src="{{ Storage::url($item->image) }}"
-                                                    alt="{{ $item->name }}" class="w-100" />
+                                                <img src="{{ Storage::url($item->image) }}" alt="{{ $item->name }}"
+                                                    class="w-100" />
                                             </div>
                                         </a>
                                     </div>
@@ -82,15 +80,14 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary me-3 btn-sm"
-                                        data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-primary me-3 btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#kt_customers_export_modal{{ $item->id }}">
                                         Buy Now</button>
                                 </td>
 
                             </tr>
-                            <div class="modal fade" id="kt_customers_export_modal{{ $item->id }}"
-                                wire:ignore tabindex="-1" aria-hidden="true">
+                            <div class="modal fade" id="kt_customers_export_modal{{ $item->id }}" wire:ignore
+                                tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered ">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -102,12 +99,10 @@
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <rect opacity="0.5" x="6" y="17.3137"
                                                             width="16" height="2" rx="1"
-                                                            transform="rotate(-45 6 17.3137)"
-                                                            fill="currentColor" />
+                                                            transform="rotate(-45 6 17.3137)" fill="currentColor" />
                                                         <rect x="7.41422" y="6" width="16"
                                                             height="2" rx="1"
-                                                            transform="rotate(45 7.41422 6)"
-                                                            fill="currentColor" />
+                                                            transform="rotate(45 7.41422 6)" fill="currentColor" />
                                                     </svg>
                                                 </span>
                                             </div>
@@ -116,8 +111,7 @@
                                             <div class="card">
                                                 <div class="card-body ">
                                                     <div class="mb-5">
-                                                        <div
-                                                            class="symbol symbol-75px d-flex flex-center flex-column">
+                                                        <div class="symbol symbol-75px d-flex flex-center flex-column">
                                                             <img src="{{ Storage::url($item->image) }}"
                                                                 alt="{{ $item->name }}" class="w-full" />
                                                         </div>
@@ -182,31 +176,31 @@
     </div>
 </div>
 
-  @push('scripts')
-      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      <script>
-          $(document).ready(function() {
-              $('.form-select').select2();
-              $('.form-select').on('change', function(e) {
-                  @this.set('category', e.target.value);
-              });
+@push('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            $('.form-select').select2();
+            $('.form-select').on('change', function(e) {
+                @this.set('category', e.target.value);
+            });
 
-              Livewire.on('buy_response', response => {
-                  if (response.success) {
-                      Swal.fire(
-                          'Success',
-                          response.message,
-                          'success'
-                      )
-                  } else {
-                      Swal.fire(
-                          'Warning',
-                          response.message,
-                          'warning'
-                      )
-                  }
+            Livewire.on('buy_response', response => {
+                if (response[0] && response[0].success) {
+                    Swal.fire(
+                        'Success',
+                        response[0].message,
+                        'success'
+                    )
+                } else {
+                    Swal.fire(
+                        'Warning',
+                        response[0] && response[0].message || "Please try again later",
+                        'warning'
+                    )
+                }
 
-              })
-          });
-      </script>
-  @endpush
+            })
+        });
+    </script>
+@endpush

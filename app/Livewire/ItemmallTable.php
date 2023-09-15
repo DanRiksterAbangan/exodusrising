@@ -75,19 +75,19 @@ class ItemmallTable extends Component
                     ]);
                 }
                 $this->dispatch("updatedUser",$user);
-                return $this->emit("buy_response",[
+                return $this->dispatch("buy_response",[
                    "success"=>true,
                    "message"=>"You have successfully bought ".$this->quantity."x ".$item->name
                ]);
 
             }else{
-                return $this->emit("buy_response",[
+                return $this->dispatch("buy_response",[
                     "success"=>false,
                     "message"=>"You don't have enough points to buy this item"
                 ]);
             }
         }
-        return $this->emit("buy_response",[
+        return $this->dispatch("buy_response",[
             "success"=>false,
             "message"=>"Item not found"
         ]);

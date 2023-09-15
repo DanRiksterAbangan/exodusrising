@@ -370,7 +370,7 @@
     <script>
         $(document).ready(() => {
             Livewire.on('updatedUser', (user) => {
-                document.getElementById('user_points').innerHTML = user.Point
+                document.getElementById('user_points').innerHTML = user[0].Point
             })
         })
     </script>
