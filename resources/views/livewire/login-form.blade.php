@@ -1,7 +1,8 @@
 <div>
     <form class="form w-100" novalidate="novalidate" wire:submit="submit">
         <div class="text-center mb-11">
-            <h1 class="text-dark fw-bolder mb-3">Login</h1>
+            <h1 class="text-dark fw-bolder mb-3">Login </h1>
+            <span>Welcome to rohan</span>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-warning">
