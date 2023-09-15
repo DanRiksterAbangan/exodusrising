@@ -7,7 +7,6 @@
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">My Account test
                     </h1>
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                        <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
                             <a href="../../index.html" class="text-muted text-hover-primary">
                                 Account </a>
@@ -168,7 +167,6 @@
                                                 <td class="text-end">
                                                     <a href="#"
                                                         class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
                                                         <span class="svg-icon svg-icon-5 svg-icon-gray-700">
                                                             <svg width="24" height="24" viewBox="0 0 24 24"
                                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -180,7 +178,6 @@
                                                                     fill="currentColor" />
                                                             </svg>
                                                         </span>
-                                                        <!--end::Svg Icon-->
                                                     </a>
                                                 </td>
                                             </tr>

@@ -1,20 +1,14 @@
-<!--begin::Sidebar-->
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer-name="app-sidebar"
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px"
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
-    <!--begin::Logo-->
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
-        <!--begin::Logo image-->
         <a href="index.html">
             <img alt="Logo" src="{{ asset('assets/media/logos/default-dark.svg') }}"
                 class="h-30px app-sidebar-logo-default" />
         </a>
-        <!--end::Logo image-->
-        <!--begin::Sidebar toggle-->
         <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-sm h-30px w-30px rotate"
             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
             data-kt-toggle-name="app-sidebar-minimize">
-            <!--begin::Svg Icon | path: icons/duotune/arrows/arr079.svg-->
             <span class="svg-icon svg-icon-2 rotate-180">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -26,32 +20,23 @@
                         fill="currentColor" />
                 </svg>
             </span>
-            <!--end::Svg Icon-->
         </div>
-        <!--end::Sidebar toggle-->
     </div>
-    <!--end::Logo-->
-    <!--begin::sidebar menu-->
     <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
-        <!--begin::Menu wrapper-->
         <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5"
             data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto"
             data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer"
             data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px">
-            <!--begin::Menu-->
             <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold px-3" id="#kt_app_sidebar_menu"
                 data-kt-menu="true" data-kt-menu-expand="false">
 
 
                 <div class="menu-item {{ Route::currentRouteName() == 'itemmall' ? 'show' : '' }}">
-                    <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
                             <span class="svg-icon svg-icon-2">
                                 {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
                             </span>
-                            <!--end::Svg Icon-->
                         </span>
                         <span class="menu-title">Itemmall</span>
                     </a>
@@ -66,7 +51,6 @@
                     </div>
 
                     <div class="menu-item {{ Route::currentRouteName() == 'users' ? 'show' : '' }}">
-                        <!--begin:Menu link-->
                         <a class="menu-link" href="{{ route('users') }}">
                             <span class="menu-icon tw-text-white">
                                 {!! Mdi::mdi('account-group', 'tw-text-white', 20, [
@@ -84,24 +68,18 @@
                     </div>
                 </div>
                 <div class="menu-item  {{ Route::currentRouteName() == 'home' ? 'show' : '' }} menu-accordion">
-                    <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('home') }}">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                             <span class="svg-icon svg-icon-2">
                                 {!! Mdi::mdi('shield-account', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
                             </span>
-                            <!--end::Svg Icon-->
                         </span>
                         <span class="menu-title">My Account</span>
                     </a>
-                    <!--end:Menu link-->
 
                 </div>
-                <!--end:Menu item-->
 
                 <div class="menu-item">
-                    <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
                             {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
@@ -121,7 +99,6 @@
                 </div>
 
                 <div class="menu-item">
-                    <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
                             {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
@@ -131,7 +108,6 @@
                 </div>
 
                 <div class="menu-item">
-                    <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
                             {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
@@ -139,23 +115,12 @@
                         <span class="menu-title">Topup History</span>
                     </a>
                 </div>
-
-
-
-                <!--begin:Menu item-->
                 <div class="menu-item pt-5">
-                    <!--begin:Menu content-->
                     <div class="menu-content">
                         <span class="menu-heading fw-bold text-uppercase fs-7">Others</span>
                     </div>
-                    <!--end:Menu content-->
                 </div>
-                <!--end:Menu item-->
-
-
-
                 <div class="menu-item">
-                    <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
                             {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
@@ -163,12 +128,7 @@
                         <span class="menu-title">Fix 5101</span>
                     </a>
                 </div>
-
-
-
-
                 <div class="menu-item">
-                    <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
                             {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
