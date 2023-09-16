@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ItemStats;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -216,6 +217,7 @@ return [
         "Mdi" => Mdi\Mdi::class,
         "Route" => Illuminate\Support\Facades\Route::class,
         "Carbon" => Carbon\Carbon::class,
+        "ItemStats" => ItemStats::class,
     ])->toArray(),
 
 ];

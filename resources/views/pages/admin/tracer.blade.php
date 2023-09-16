@@ -11,7 +11,7 @@
                 </div>
             </div>
 
-
+            @livewire('character-item-table')
 
         </div>
     </div>

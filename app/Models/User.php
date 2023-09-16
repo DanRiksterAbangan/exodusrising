@@ -17,7 +17,7 @@ class User extends Authenticatable
 
     protected $connection = 'sqlsrv_user';
     public $timestamps = false;
-    protected $table = "tuser";
+    protected $table = "dbo.tuser";
     protected $primaryKey = 'user_id';
 
     /**

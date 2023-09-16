@@ -30,7 +30,7 @@
                             <div class="row">
                                 @forelse  ($characters as $character)
                                     <div
-                                        class="col-md-12 col-lg-6 col-xl-6 col-xxl-{{ $characters->count() > 1 ? '6' : '12' }} mb-md-5 mb-xl-10">
+                                        class="col-md-12 col-lg-6 col-xl-6 col-xxl-{{ $characters->count() > 1 ? '6' : '12' }} mb-md-5 ">
                                         <div class="card card-flush ">
                                             <div class="card-header pt-5">
                                                 <div class="card-title d-flex flex-column">

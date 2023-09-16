@@ -14,7 +14,7 @@ class Character extends Model
 
     protected $connection = 'sqlsrv_game';
     public $timestamps = false;
-    protected $table = "tcharacter";
+    protected $table = "dbo.tcharacter";
     protected $primaryKey = 'id';
 
     public function user(){

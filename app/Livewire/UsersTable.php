@@ -55,14 +55,14 @@ class UsersTable extends Component
                     ->orWhere("grade", "like", "%" . $this->search . "%");
 
             });
-            $usersCount = $users->count();
+            $userCount = $users->count();
             $users = $users->offset(($this->page - 1) * $this->limit)->limit($this->limit)->get();
             return [
                 "users" => $users,
-                "usersCount" => $usersCount
+                "userCount" => $userCount
             ];
         });
-        $this->userCount = $data["usersCount"];
+        $this->userCount = $data["userCount"];
         $this->users = $data["users"];
 
     }

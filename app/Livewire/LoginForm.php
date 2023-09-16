@@ -22,7 +22,7 @@ class LoginForm extends Component
         if($user){
             if($user->login_pw == md5($this->password)){
                 Auth::login($user);
-                return redirect()->route("home");
+                return redirect()->route("account");
             }
         }
 
