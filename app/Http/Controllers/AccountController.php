@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
-
-class HomeController extends Controller
+class AccountController extends Controller
 {
     public function index(){
 
@@ -16,9 +15,13 @@ class HomeController extends Controller
             return $characters;
         });
         $kills = Cache::remember("kills_".$user->user_id,60,function()use($user){
-            return $user->kills;
+            return collect($user->kills)->merge($user->killedBy)->sortByDesc("date");;
         });
 
-        return view("pages.account.index",compact('characters','kills'));
+        return view("pages.account.myaccount",compact('characters','kills'));
+    }
+
+    public function redirect(){
+        return redirect()->route("account");
     }
 }

@@ -215,6 +215,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         "Mdi" => Mdi\Mdi::class,
         "Route" => Illuminate\Support\Facades\Route::class,
+        "Carbon" => Carbon\Carbon::class,
     ])->toArray(),
 
 ];

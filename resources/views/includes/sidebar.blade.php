@@ -50,14 +50,25 @@
                         </div>
                     </div>
 
-                    <div class="menu-item {{ Route::currentRouteName() == 'users' ? 'show' : '' }}">
-                        <a class="menu-link" href="{{ route('users') }}">
+                    <div class="menu-item {{ Route::currentRouteName() == 'admin.users' ? 'show' : '' }}">
+                        <a class="menu-link" href="{{ route('admin.users') }}">
                             <span class="menu-icon tw-text-white">
                                 {!! Mdi::mdi('account-group', 'tw-text-white', 20, [
-                                    'fill' => Route::currentRouteName() == 'users' ? '#ffff' : '#fff5',
+                                    'fill' => Route::currentRouteName() == 'admin.users' ? '#ffff' : '#fff5',
                                 ]) !!}
                             </span>
                             <span class="menu-title">Users</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-item {{ Route::currentRouteName() == 'admin.tracer' ? 'show' : '' }}">
+                        <a class="menu-link" href="{{ route('admin.tracer') }}">
+                            <span class="menu-icon tw-text-white">
+                                {!! Mdi::mdi('magnify', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'admin.tracer' ? '#ffff' : '#fff5',
+                                ]) !!}
+                            </span>
+                            <span class="menu-title">Item Tracer</span>
                         </a>
                     </div>
                 @endif
@@ -67,8 +78,8 @@
                         <span class="menu-heading fw-bold text-uppercase fs-7">Account</span>
                     </div>
                 </div>
-                <div class="menu-item  {{ Route::currentRouteName() == 'home' ? 'show' : '' }} menu-accordion">
-                    <a class="menu-link" href="{{ route('home') }}">
+                <div class="menu-item  {{ Route::currentRouteName() == 'account' ? 'show' : '' }} menu-accordion">
+                    <a class="menu-link" href="{{ route('account') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 {!! Mdi::mdi('shield-account', 'tw-text-white', 20, ['fill' => '#fff5']) !!}

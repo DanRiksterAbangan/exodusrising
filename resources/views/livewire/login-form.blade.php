@@ -1,5 +1,5 @@
 <div>
-    <form class="form w-100" novalidate="novalidate" wire:submit="submit">
+    <form class="form w-100" novalidate="novalidate" wire:submit.prevent="submit">
         <div class="text-center mb-11">
             <h1 class="text-dark fw-bolder mb-3">Login </h1>
             <span>Welcome to rohan</span>
@@ -10,11 +10,11 @@
             </div>
         @endif
         <div class="fv-row mb-8">
-            <input type="text" placeholder="Username" wire:model.live="username" name="username" autocomplete="off"
+            <input type="text" placeholder="Username" wire:model="username" name="username" autocomplete="off"
                 class="form-control bg-transparent" />
         </div>
         <div class="fv-row mb-3">
-            <input type="password" placeholder="Password" wire:model.live="password" name="password" autocomplete="off"
+            <input type="password" placeholder="Password" wire:model="password" name="password" autocomplete="off"
                 class="form-control bg-transparent" />
             {{-- @error('password') <span class="text-danger">{{ $message }}</span> @enderror --}}
 

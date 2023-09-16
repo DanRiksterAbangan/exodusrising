@@ -59,6 +59,9 @@ class User extends Authenticatable
         return $this->hasManyThrough(Kill::class,Character::class,"user_id","char_id","user_id","id");
     }
 
+    public function killedBy(){
+        return $this->hasManyThrough(Kill::class,Character::class,"user_id","pk_char_id","user_id","id");
+    }
 
     public function isAdmin(){
         return $this->grade == 250;

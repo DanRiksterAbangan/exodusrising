@@ -9,19 +9,23 @@
             </div>
         @endif
         <div class="fv-row mb-3">
-            <input type="text" placeholder="Username" wire:model.live="username" name="username" autocomplete="off"
+            <input type="text" placeholder="Username" wire:model="username" name="username" autocomplete="off"
                 class="form-control bg-transparent" />
-            @error('username') <span class="text-danger">{{ $username }}</span> @enderror
+            @error('username')
+                <span class="text-danger">{{ $username }}</span>
+            @enderror
         </div>
         <div class="fv-row mb-3">
-            <input type="password" placeholder="Password" wire:model.live="password" name="password" autocomplete="off"
+            <input type="password" placeholder="Password" wire:model="password" name="password" autocomplete="off"
                 class="form-control bg-transparent" />
-            @error('password') <span class="text-danger">{{ $message }}</span> @enderror
+            @error('password')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="fv-row mb-3">
-            <input type="password" placeholder="Confirm Password" wire:model.live="password_confirmation" name="password" autocomplete="off"
-                class="form-control bg-transparent" />
+            <input type="password" placeholder="Confirm Password" wire:model="password_confirmation" name="password"
+                autocomplete="off" class="form-control bg-transparent" />
 
         </div>
         <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">

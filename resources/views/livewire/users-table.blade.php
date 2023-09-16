@@ -58,7 +58,10 @@
                                 </td>
 
                                 <td>
-                                    <button class="btn btn-warning tw-px-4 tw-py-2 tw-text-sm">Block</button>
+                                    <a class="btn btn-primary tw-px-4 tw-py-2 tw-text-sm"
+                                        href="{{ route('admin.user', ['user' => $user]) }}">View</a>
+                                    <button class="btn btn-danger tw-px-4 tw-py-2 tw-text-sm">Ban</button>
+                                    <button class="btn btn-warning tw-px-4 tw-py-2 tw-text-sm">Disconnect</button>
                                 </td>
 
 
