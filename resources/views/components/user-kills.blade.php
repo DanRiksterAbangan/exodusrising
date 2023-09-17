@@ -1,4 +1,4 @@
-<div class="card card-flush tw-pb-10">
+<div class="card card-flush tw-pb-10 tw-h-full tw-max-h-[525px]">
     <div class="card-header pt-5">
         <h3 class="card-title align-items-start flex-column">
             <span class="card-label fw-bold text-gray-800">Characters Kills</span>

@@ -42,6 +42,22 @@
                     </a>
                 </div>
 
+                <div class="menu-item  {{ Route::currentRouteName() == 'account' ? 'show' : '' }} menu-accordion">
+                    <a class="menu-link" href="{{ route('account') }}">
+                        <span class="menu-icon">
+                            <span class="svg-icon svg-icon-2">
+                                {!! Mdi::mdi('shield-account', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
+                            </span>
+                        </span>
+                        <span class="menu-title">My Account</span>
+                    </a>
+
+                </div>
+
+
+
+
+
                 @if (auth()->check() &&
                         auth()->user()->isAdmin())
                     <div class="menu-item pt-5">
@@ -72,33 +88,6 @@
                         </a>
                     </div>
                 @endif
-
-                <div class="menu-item pt-5">
-                    <div class="menu-content">
-                        <span class="menu-heading fw-bold text-uppercase fs-7">Account</span>
-                    </div>
-                </div>
-                <div class="menu-item  {{ Route::currentRouteName() == 'account' ? 'show' : '' }} menu-accordion">
-                    <a class="menu-link" href="{{ route('account') }}">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-2">
-                                {!! Mdi::mdi('shield-account', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
-                            </span>
-                        </span>
-                        <span class="menu-title">My Account</span>
-                    </a>
-
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link" href="{{ route('itemmall') }}">
-                        <span class="menu-icon">
-                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
-                        </span>
-                        <span class="menu-title">Change password</span>
-                    </a>
-                </div>
-
 
 
 

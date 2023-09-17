@@ -85,26 +85,10 @@
 
             </div>
         </div>
-        <div class="d-flex flex-stack flex-wrap pt-10">
-            <div class="fs-6 fw-semibold text-gray-700">
-                Showing {{ $page }} to {{ $limit }} of {{ $userCount }} entries
+        <div class="d-flex justify-content-end tw-mt-10 tw-p-10">
+            <div>
+                {{ $users->links() }}
             </div>
-            <!--begin::Pages-->
-            <ul class="pagination">
-
-                <li class="page-item previous">
-                    <button wire:loading.attr="disabled" {{ $page == 1 ? 'disabled' : '' }}
-                        class="page-link tw-space-x-2" wire:click="prevPage"><i class="previous"></i>
-                        <span>Prev</span></button>
-
-                </li>
-                <li class="page-item next">
-                    <button wire:loading.attr="disabled" {{ $page == ceil($userCount / $limit) ? 'disabled' : '' }}
-                        class="page-link tw-space-x-2" wire:click="nextPage"><span>Next</span><i
-                            class="next"></i></button>
-                </li>
-            </ul>
-            <!--end::Pages-->
         </div>
     </div>
 </div>

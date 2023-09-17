@@ -26,8 +26,13 @@
             <div class="app-content flex-column-fluid">
                 <div class="app-container container-xxl">
                     <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-                        <div class="col-12 col-xxl-6">
+                        <div class="col-12 col-xxl-6 tw-pr-2">
                             <div class="row">
+                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 tw-mb-4">
+
+                                    @livewire('user-account-info', ['user' => $user])
+                                </div>
+
                                 @forelse  ($characters as $character)
                                     <div
                                         class="col-md-12 col-lg-6 col-xl-6 col-xxl-{{ $characters->count() > 1 ? '6' : '12' }} mb-md-5 ">
@@ -145,17 +150,99 @@
                                         </div>
                                     </div>
                                 @endforelse
+
+
                             </div>
                         </div>
 
-
-                        <div class="col-xxl-6">
+                        <div class="col-12 col-xxl-6 tw-pl-2 tw-mb-5 tw-mt-0 lg:tw-mt-10">
                             <x-user-kills :$kills />
+                        </div>
+
+                        <div class="col-md-12 md:-tw-mt-4">
+                            <div class="card tw-mt-4 ">
+                                <!--begin::Header-->
+                                <div class="card-header card-header-stretch">
+
+                                    <!--begin::Toolbar-->
+                                    <div class="card-toolbar m-0">
+                                        <!--begin::Tab nav-->
+                                        <ul class="nav nav-stretch fs-5 fw-semibold nav-line-tabs border-transparent"
+                                            role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <a id="kt_referrals_year_tab" class="nav-link text-active-gray-800 active"
+                                                    data-bs-toggle="tab" role="tab" href="#Transactions"
+                                                    aria-selected="true">
+                                                    Transactions
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item" role="presentation">
+                                                <a id="kt_referrals_2019_tab" class="nav-link text-active-gray-800 me-4"
+                                                    data-bs-toggle="tab" role="tab" href="#TopupHistory"
+                                                    aria-selected="false" tabindex="-1">
+                                                    Topup History </a>
+                                            </li>
+
+                                        </ul>
+                                        <!--end::Tab nav-->
+                                    </div>
+                                    <!--end::Toolbar-->
+                                </div>
+                                <!--end::Header-->
+
+                                <!--begin::Tab Content-->
+                                <div id="kt_referred_users_tab_content" class="tab-content">
+                                    <!--begin::Tab panel-->
+                                    <div id="Transactions" class="card-body p-0 tab-pane fade show active" role="tabpanel"
+                                        aria-labelledby="kt_referrals_year_tab">
+                                        @livewire('user-transaction-history', ['user' => $user])
+                                    </div>
+                                    <!--end::Tab panel-->
+                                    <!--begin::Tab panel-->
+                                    <div id="TopupHistory" class="card-body p-0 tab-pane fade " role="tabpanel"
+                                        aria-labelledby="kt_referrals_2019_tab">
+                                        <div class="table-responsive">
+                                            <!--begin::Table-->
+                                            <table class="table align-middle table-row-bordered table-row-solid gy-4 gs-9">
+                                                <!--begin::Thead-->
+                                                <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
+                                                    <tr>
+                                                        <th class="min-w-175px ps-9">Date</th>
+                                                        <th class="min-w-150px px-0">Ref #</th>
+                                                        <th class="min-w-350px">Type</th>
+                                                        <th class="min-w-125px">Amount</th>
+                                                        <th class="min-w-125px text-center">Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <!--end::Thead-->
+
+                                                <!--begin::Tbody-->
+                                                <tbody class="fs-6 fw-semibold text-gray-600">
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--end::Tab Content-->
+                            </div>
                         </div>
                     </div>
 
 
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-modal="true" role="dialog"
+        data-bs-backdrop='static'>
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <div class="modal-content">
+                @livewire('modal.reset-password')
             </div>
         </div>
     </div>

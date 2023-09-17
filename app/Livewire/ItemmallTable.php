@@ -58,9 +58,10 @@ class ItemmallTable extends Component
         $item = Item::where("id",$id)->first();
         if($item){
             $user = User::where("user_id",auth()->user()->user_id)->first();
-            $amountToDeduct =  $item->amount * $this->quantity;
-            $amountToDeduct = $amountToDeduct - ($amountToDeduct * ($item->discount / 100));
+            $amountToDeductOrig =  $item->amount * $this->quantity;
+            $amountToDeduct = $amountToDeductOrig - ($amountToDeductOrig * ($item->discount / 100));
             if($user->Point >= $amountToDeduct){
+                $from_rps = $user->Point;
                 $user->decrement("Point", $amountToDeduct);
                 for($i = 1; $i <= $this->quantity; $i++){
                     $user->mallItems()->create([
@@ -74,7 +75,20 @@ class ItemmallTable extends Component
                         'equip_intelligence' => 0,
                         'date' => now(),
                     ]);
+
+
                 }
+                $item->transactions()->create([
+                    "user_id"=>$user->user_id,
+                    "item_type"=>$item->type,
+                    "stacks"=>$this->quantity,
+                    "amount"=>$amountToDeduct,
+                    "original_amount"=>$amountToDeductOrig,
+                    "from_rps"=>$from_rps,
+                    "to_rps"=>$user->Point,
+                    "discount"=>$item->discount,
+                ]);
+
                 $this->dispatch("updatedUser",$user);
                 return $this->dispatch("buy_response",[
                    "success"=>true,

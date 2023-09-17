@@ -18,4 +18,8 @@ class Item extends Model
     public function getDiscountedPriceAttribute(){
         return $this->amount - ($this->amount * ($this->discount / 100));
     }
+
+    public function transactions(){
+        return $this->hasMany(Transaction::class,"item_id","id");
+    }
 }
