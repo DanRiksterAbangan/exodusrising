@@ -6,11 +6,12 @@ use BenSampo\Enum\Enum;
 
 final class ItemStats extends Enum
 {
-    const str = "01";
-    const dex = "02";
-    const int = "03";
 
-    const psy = "04";
+    const Str = "01";
+    const Dex = "02";
+    const Int = "03";
+
+    const Psy = "04";
     const Vit = "05";
     const Agility = "06";
 

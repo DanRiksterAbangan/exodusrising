@@ -2,8 +2,8 @@
     <div class="app-container container-xxl">
         <div class="card">
             <div class="card-header border-0 pt-6">
-                <div class="card-title">
-                    <div class="tw-grid tw-grid-cols-5 tw-gap-x-5">
+                <div class="card-title tw-flex tw-flex-col">
+                    <div class="tw-grid tw-grid-cols-8 tw-gap-x-5">
                         <div>
                             <label for="" class="tw-text-gray-500 tw-text-base">Item Type</label>
                             <div class="d-flex align-items-center position-relative my-1">
@@ -155,6 +155,59 @@
                             </div>
                         </div>
                     </div>
+                    <div class="tw-flex tw-justify-start tw-w-full tw-mt-4">
+                        <div>
+                            <div x-data="{ stats: [] }" x-init="stats = {{ json_encode($searchStat) }}">
+                                <div class="tw-flex tw-items-center tw-space-x-3">
+                                    <button
+                                        x-on:click="if(!!!stats.find(stat=> stat.name == document.getElementById('statsSelection').value  )){stats.push({ name: document.getElementById('statsSelection').value ,value: 0})}"
+                                        class="tw-px-4 tw-py-3 btn btn-primary tw-flex tw-items-center">{!! Mdi::mdi('plus', 'tw-text-white', 20, [
+                                            'fill' => '#fff',
+                                        ]) !!}
+                                        <span>Add
+                                            Stats</span></button>
+                                    <div style="width:200px" wire:ignore>
+                                        <select id="statsSelection" class="form-select form-select-solid fw-bold"
+                                            data-placeholder="Select category">
+
+                                            @foreach ($itemStatsList as $statName)
+                                                <option value="{{ $statName }}">
+                                                    {{ $statName }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="tw-grid tw-grid-cols-8 tw-gap-2 tw-p-4 tw-rounded-lg tw-bg-blue-100 tw-mt-2">
+                                    <template x-for="(stat,index) in stats" :key="stat.name">
+                                        <div class="tw-relative">
+                                            <label class="tw-text-gray-500 tw-uppercase tw-text-xs"
+                                                x-text="stat.name"></label>
+                                            <div class="d-flex align-items-center position-relative my-1">
+                                                <input x-model="stat.value" value="0" type="number"
+                                                    class="form-control form-control-solid" placeholder="Value" />
+                                            </div>
+                                            <button
+                                                x-on:click="stats = stats.filter((item) => item.name !== stat.name); $wire.clearStat(stat)"
+                                                class="tw-italic tw-text-gray-500 tw-text-xs">Remove</button>
+
+                                        </div>
+                                    </template>
+                                </div>
+                                <template x-if="stats.length > 0">
+                                    <button class="btn btn-primary btn-sm tw-mt-2"
+                                        x-on:click="$wire.searchData(stats)">Search</button>
+                                </template>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -185,6 +238,7 @@
                                 <td>
                                     <div>
                                         <ul class="tw-list-disc">
+
                                             @php
                                                 $hexData = unpack('H*hex', $item->attr)['hex'];
                                                 for ($i = 0; $i < strlen($hexData); $i += 6) {
@@ -197,8 +251,10 @@
                                                     if ($enumKey && $enumKey !== null) {
                                                         $enumKey = ItemStats::getKey(Str::upper($hexPair));
                                                         $hexValue = substr($hexData, $i + 2, 4);
-                                                        $reversedHex = strrev($hexValue);
-                                                        $decimalValue = hexdec($reversedHex);
+                                                        $bytePairs = str_split($hexValue, 2);
+                                                        $reversedBytePairs = array_reverse($bytePairs);
+                                                        $reversedHexValue = implode('', $reversedBytePairs);
+                                                        $decimalValue = hexdec($reversedHexValue);
                                                         echo "<li>$enumKey : $decimalValue </li>";
                                                     }
                                                 }
@@ -266,6 +322,11 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function() {});
+        Livewire.hook('component.init', ({
+            component
+        }) => {
+            window.component = component;
+        })
+        $('.form-select').select2();
     </script>
 @endpush

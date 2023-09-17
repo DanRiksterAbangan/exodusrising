@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Enums\ItemStats;
 use App\Models\CharacterItem;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class CharacterItemTable extends Component
@@ -20,34 +21,59 @@ class CharacterItemTable extends Component
     public $userIdSearch = "";
 
 
+
     public $limit = 50;
 
     public $page = 1;
     public $items = [];
     public $itemCount = 0;
-    protected $queryString = ['itemTypeSearch','equipLevelSearch','equipStrSearch','equipDexSearch','equipIntSearch','stackSearch','charNameSearch','userIdSearch','limit','page'];
+
+    public $itemStatsList = [];
+
+    public $searchStat = [];
+    protected $queryString = ['searchStat','itemTypeSearch','equipLevelSearch','equipStrSearch','equipDexSearch','equipIntSearch','stackSearch','charNameSearch','userIdSearch','limit','page'];
+
 
     public function mount(){
-        $this->itemTypeSearch = request()->query("itemTypeSearch","");
-        $this->equipLevelSearch = request()->query("equipLevelSearch","");
-        $this->equipStrSearch = request()->query("equipStrSearch","");
-        $this->equipDexSearch = request()->query("equipDexSearch","");
-        $this->equipIntSearch = request()->query("equipIntSearch","");
-        $this->stackSearch = request()->query("stackSearch","");
-        $this->charNameSearch = request()->query("charNameSearch","");
-        $this->userIdSearch = request()->query("userIdSearch","");
+
+        $this->itemStatsList = ItemStats::getKeys();
         $this->limit = (int)request()->query("limit",50);
         $this->page = (int)(request()->query("page",1));
         $this->searchData();
     }
 
-    public function searchData(){
+    public function clearStat($stat){
+        foreach ($this->searchStat as $key => $item) {
+            if ($item['name'] === $stat['name']) {
+                unset($this->searchStat[$key]);
+            }
+        }
+
+        // Re-index the array if needed
+        $this->searchStat = array_values($this->searchStat);
+        $this->searchData();
+
+    }
+
+    public function searchData($stats = []){
+        $nstats = [];
+
+        if(count($stats)){
+            $this->searchStat = $stats;
+            $nstats = collect($stats)->filter(fn($item) => isset($item['value']) && $item['value'] != "0" && $item['value'] != "")->map(function($item){
+                $binaryString = pack('v', $item['value']);
+                $hexadecimal = bin2hex($binaryString);
+                return [
+                    "value" => $hexadecimal,
+                    "name" => ItemStats::getValue($item['name'])
+                ];
+            });
+        }
+
         is_integer($this->limit) || $this->limit = 50;
         is_integer($this->page) || $this->page = 1;
-        $slug = $this->stackSearch ."-".$this->charNameSearch."-".$this->userIdSearch. $this->itemTypeSearch."-".$this->equipLevelSearch."-".$this->equipStrSearch."-".$this->equipDexSearch."-".$this->equipIntSearch."-".$this->limit."-".$this->page;
-        $data = Cache::remember("character-items-$slug", 60, function () {
-
-            $items = CharacterItem::with(["character", 'user'])->where(function ($q) {
+        // ,DB::raw("CONVERT(NVARCHAR(MAX), attr, 2) as attr2"),DB::raw("SUBSTRING(CONVERT(NVARCHAR(MAX), attr, 2), 0, 6) as attr1")
+            $items = CharacterItem::select(["dbo.titem.*"])->with(["character", 'user'])->where(function ($q) {
                 $q->where(function ($query) {
                     $query->where("type", "like", "%" . $this->itemTypeSearch. "%");
                     if($this->equipLevelSearch)
@@ -65,19 +91,23 @@ class CharacterItemTable extends Component
                     $q->where("user_id", "like", "%" . $this->userIdSearch . "%");
 
               });
+            })->where(function ($query)use($nstats) {
+                for ($x = 0; $x < count($nstats);$x++){
+                $query->where(function ($q) use ($nstats, $x) {
+                    for ($i = 0; $i < 42; $i += ($i == 0 ? 7 : 6)) {
+                        $q->orWhere(function ($q) use ($nstats, $x, $i) {
+                                $q->whereRaw("SUBSTRING(CONVERT(NVARCHAR(MAX), attr, 2), $i, ".($i == 0 ? "7" : "6").") = ?", [$nstats[$x]['name'].$nstats[$x]['value']]);
+                            });
+                        }
+                });
+
+                }
             })
             ->whereHas("character",function($q){
                 $q->where("name", "like", "%" . $this->charNameSearch . "%");
             });
-            $itemCount = $items->count();
-            $items = $items->offset(($this->page - 1) * $this->limit)->limit($this->limit)->get();
-            return [
-                "items" => $items,
-                "itemCount" => $itemCount
-            ];
-        });
-        $this->itemCount = $data["itemCount"];
-        $this->items = $data["items"];
+            $this->itemCount  = $items->count();
+            $this->items  = $items->offset(($this->page - 1) * $this->limit)->limit($this->limit)->get();
     }
 
     public function nextPage(){
