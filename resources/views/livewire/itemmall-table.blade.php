@@ -1,6 +1,6 @@
 <div class="app-content flex-column-fluid">
     <div class="app-container container-xxl">
-        <div class="card">
+        <div class="card tw-mb-0">
             <div class="card-header border-0 pt-6">
                 <div class="card-title">
                     <div class="d-flex align-items-center position-relative my-1">
@@ -14,8 +14,9 @@
                                     fill="currentColor" />
                             </svg>
                         </span>
-                        <input wire:model.live="search" type="text" wire:keydown.enter="searchData"
-                            class="form-control form-control-solid w-250px ps-14" placeholder="Search Item" />
+                        <input wire:model="search" type="text" wire:keydown.enter="searchData"
+                            class="form-control form-control-solid w-250px ps-14" placeholder="Search Item"
+                            name="search" />
                     </div>
                 </div>
                 <div class="card-toolbar">
@@ -175,7 +176,13 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-flex justify-content-end tw-py-5 tw-pr-5">
+                <div>
+                    {{ $items->links() }}
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
 

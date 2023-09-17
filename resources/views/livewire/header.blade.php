@@ -40,12 +40,12 @@
             </div>
             <div class="app-navbar flex-shrink-0">
                 <div class="app-navbar-item">
-                    <a href="#"
-                    class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
-                    data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent"
-                    data-kt-menu-placement="bottom-end" wire:ignore>
+                    <a href="{{ route('itemmall.cart') }}"
+                        class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
+                        data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent"
+                        data-kt-menu-placement="bottom-end" wire:ignore>
                         <span>{!! Mdi::mdi('cart', 'tw-text-white', 20, ['fill' => '#999']) !!}</span>
-                </a>
+                    </a>
                 </div>
 
                 <div class="app-navbar-item ms-1 ms-lg-3">
@@ -196,12 +196,12 @@
                         <span class="tw-flex tw-items-center tw-space-x-4">
 
                             <span>
-                                @if(auth ()->user()->isAdmin())
-                                <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Admin</span>
+                                @if (auth()->user()->isAdmin())
+                                    <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Admin</span>
                                 @else
-                                <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Normal</span>
+                                    <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Normal</span>
                                 @endif
-                                <span class="tw-text-[#666] tw-font-bold">{{auth ()->user()->login_id}}</span>
+                                <span class="tw-text-[#666] tw-font-bold">{{ auth()->user()->login_id }}</span>
                             </span>
                         </span>
                         {{-- <img src="assets/media/avatars/300-3.jpg" alt="user" /> --}}

@@ -55,7 +55,7 @@
         </table>
 
     </div>
-    <div class="d-flex justify-content-end tw-mt-10 tw-p-10">
+    <div class="d-flex justify-content-end tw-py-5 tw-pr-5">
         <div>
             {{ $transactions->links() }}
         </div>

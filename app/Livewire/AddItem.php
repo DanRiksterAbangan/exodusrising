@@ -45,7 +45,7 @@ class AddItem extends Component
         ]);
 
         $itemImage = $this->image->storePublicly('/public/items_images');
-        $item = Item::create([
+        Item::create([
             "type"=> $this->type,
             "image"=> $itemImage,
             "name"=> $this->name,

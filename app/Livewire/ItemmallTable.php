@@ -7,16 +7,22 @@ use App\Models\Item;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ItemmallTable extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
     public $categories;
     public $category = "all";
-    public $items = [];
     public $search = "";
     public $page = 1;
-    public $pageCount = 10;
     public $quantity = 1;
+    public $limit = 20;
+
+    private $items = [];
+
+    protected $queryString = ['search'=>['except'=>''],'category','limit','page'=>['except'=>1]];
     public function mount()
     {
         $tcat = [
@@ -34,27 +40,32 @@ class ItemmallTable extends Component
         $this->categories = $tcat;
     }
 
+    public function searchData(){
+        $this->page = 1;
+    }
 
-
-    public function render()
-    {
-        $this->items = Item::where(function($q){
+    public function itemsData(){
+        $items = Item::where(function($q){
             $q->where("name","like","%".($this->search ?? "")."%")->orWhere("description","like","%".($this->search ?? "")."%");
         });
         if(strtolower($this->category ?? "all") == "all"){
-            $this->items = $this->items->offset(($this->page - 1) * $this->pageCount)->limit($this->pageCount)->get();
+            $items = $items->paginate($this->limit, ['*'], 'page', $this->page);
         }else{
-            $this->items = $this->items->where("category",$this->category)->offset(($this->page - 1) * $this->pageCount)->limit($this->pageCount)->get();
+            $items = $items->where("category",$this->category)->paginate($this->limit, ['*'], 'page', $this->page);
         }
+        $this->items = $items;
 
+    }
+
+    public function render()
+    {
+        $this->itemsData();
         return view('livewire.itemmall-table',[
-            'items'=>$this->items
+            "items" => $this->items
         ]);
     }
 
     public function buyItem($id){
-
-
         $item = Item::where("id",$id)->first();
         if($item){
             $user = User::where("user_id",auth()->user()->user_id)->first();

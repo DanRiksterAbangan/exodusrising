@@ -16,33 +16,15 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                Item List </li>
+                                Cart </li>
 
                         </ul>
                     </div>
-                    <div>
-                        @if (auth()->check() &&
-                                auth()->user()->isAdmin())
-                            <div class="d-flex align-items-center gap-2 gap-lg-3">
-                                <div class="d-flex">
-                                    <a href="{{ route('itemmall.additem') }}"
-                                        class="btn  btn-sm btn-success  tw-flex tw-items-center">
-                                        <span class="svg-icon svg-icon-2">
-                                            {!! Mdi::mdi('plus', 'tw-text-white', 20, ['fill' => '#fff']) !!}
-                                        </span>
-                                        <span> Add Item</span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        @endif
-                    </div>
-
 
                 </div>
             </div>
 
-            @livewire('itemmall-table')
+            @livewire('cart-table')
 
         </div>
     </div>

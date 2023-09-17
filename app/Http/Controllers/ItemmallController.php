@@ -15,4 +15,9 @@ class ItemmallController extends Controller
         return view("pages.itemmall.additem");
     }
 
+
+    public function cart(){
+        return view("pages.itemmall.cart");
+    }
+
 }

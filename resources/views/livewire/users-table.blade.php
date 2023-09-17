@@ -14,8 +14,9 @@
                                     fill="currentColor" />
                             </svg>
                         </span>
-                        <input wire:model="search" type="text" wire:keydown.enter="searchData"
-                            class="form-control form-control-solid w-250px ps-14" placeholder="Search" />
+                        <input wire:loading.attr="disabled" wire:model="search" type="text"
+                            wire:keydown.enter="searchData" class="form-control form-control-solid w-250px ps-14"
+                            placeholder="Search" />
                     </div>
                 </div>
 
@@ -84,12 +85,13 @@
                 </table>
 
             </div>
-        </div>
-        <div class="d-flex justify-content-end tw-mt-10 tw-p-10">
-            <div>
-                {{ $users->links() }}
+            <div class="d-flex justify-content-end tw-py-5 tw-pr-5">
+                <div>
+                    {{ $users->links() }}
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 

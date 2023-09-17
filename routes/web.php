@@ -22,6 +22,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/", [AccountController::class, "redirect"])->name("redirect");
     Route::get("/myaccount",[AccountController::class,"index"])->name("account");
     Route::get("/itemmall",[ItemmallController::class,"index"])->name("itemmall");
+    Route::get("/itemmall/cart",[ItemmallController::class,"cart"])->name("itemmall.cart");
 
     Route::group(["prefix"=>"admin","middleware"=>"admin"],function(){
         Route::get("/users",[UserController::class,"users"])->name("admin.users");

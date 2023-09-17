@@ -33,15 +33,14 @@ class CharacterItemTable extends Component
 
     public $searchStat = [];
     public $searchStatParsed = [];
+
+    private $items = [];
     protected $queryString = ['searchStat','itemTypeSearch','equipLevelSearch','equipStrSearch','equipDexSearch','equipIntSearch','stackSearch','charNameSearch','userIdSearch','limit','page'];
 
 
     public function mount(){
-
         $this->itemStatsList = ItemStats::getKeys();
-        $this->limit = (int)request()->query("limit",50);
-        $this->page = (int)(request()->query("page",1));
-        $this->itemsData();
+        $this->itemData();
     }
 
     public function clearStat($stat){
@@ -53,13 +52,12 @@ class CharacterItemTable extends Component
 
         // Re-index the array if needed
         $this->searchStat = array_values($this->searchStat);
-        $this->itemsData();
+        $this->itemData();
 
     }
 
     public function searchData(){
         $this->page = 1;
-        $this->itemsData();
     }
 
     public function setStats($stats){
@@ -78,9 +76,9 @@ class CharacterItemTable extends Component
         }
     }
 
-    public function itemsData($stats = []){
+    public function itemData(){
         // ,DB::raw("CONVERT(NVARCHAR(MAX), attr, 2) as attr2"),DB::raw("SUBSTRING(CONVERT(NVARCHAR(MAX), attr, 2), 0, 6) as attr1")
-        return CharacterItem::select(["dbo.titem.*"])->with(["character", 'user'])->where(function ($q) {
+        $this->items = CharacterItem::select(["dbo.titem.*"])->with(["character", 'user'])->where(function ($q) {
                 $q->where(function ($query) {
                     if($this->itemTypeSearch)
                     $query->where("type",  $this->itemTypeSearch);
@@ -113,14 +111,16 @@ class CharacterItemTable extends Component
 
                 }
             })
-           ->paginate($this->limit);
+           ->paginate($this->limit, ['*'], 'page', $this->page);
     }
 
 
     public function render()
     {
-        $items = $this->itemsData();
-        return view('livewire.character-item-table',compact('items'));
+        $this->itemData();
+        return view('livewire.character-item-table',[
+            "items" => $this->items
+        ]);
     }
 
 }
