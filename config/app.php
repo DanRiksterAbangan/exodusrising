@@ -218,7 +218,7 @@ return [
         "Route" => Illuminate\Support\Facades\Route::class,
         "Carbon" => Carbon\Carbon::class,
         "ItemStats" => ItemStats::class,
-        "Str" => \Illuminate\Support\Str::class,
+        "Str" => \Illuminate\Support\Str::class
     ])->toArray(),
 
 ];

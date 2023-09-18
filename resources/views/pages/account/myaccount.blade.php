@@ -29,7 +29,6 @@
                         <div class="col-12 col-xxl-6 tw-pr-2">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 tw-mb-4">
-
                                     @livewire('user-account-info', ['user' => $user])
                                 </div>
 
@@ -37,7 +36,7 @@
                                     <div
                                         class="col-md-12 col-lg-6 col-xl-6 col-xxl-{{ $characters->count() > 1 ? '6' : '12' }} mb-md-5 ">
                                         <div class="card card-flush ">
-                                            <div class="card-header pt-5">
+                                            <div class="card-header pt-5 tw-relative">
                                                 <div class="card-title d-flex flex-column">
                                                     <div class="d-flex align-items-center">
                                                         <span
@@ -53,6 +52,63 @@
                                                             Level:
                                                             {{ $character->conqueror?->conquerorlevel }}</span>
                                                     @endif
+                                                </div>
+                                                <div class="tw-absolute tw-top-2 tw-right-2">
+                                                    <div class="me-0">
+                                                        <button data-kt-menu-trigger="click"
+                                                            data-kt-menu-placement="bottom-end"
+                                                            class="tw-p-1 hover:tw-bg-gray-100 tw-rounded-full">
+                                                            {!! Mdi::mdi('cog', '', 20, ['fill' => '#777']) !!}
+                                                        </button>
+                                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3 "
+                                                            data-kt-menu="true"
+                                                            style="z-index: 107; position: fixed; inset: 0px 0px auto auto; margin: 0px; transform: translate(-59px, 216px);"
+                                                            data-popper-placement="bottom-end">
+                                                            <div class="menu-item px-3">
+                                                                <div
+                                                                    class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
+                                                                    Settings
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="menu-item px-3">
+                                                                <a wire:ignore data-bs-toggle="modal"
+                                                                    data-bs-target="#changeName{{ $character->id }}"
+                                                                    href="#" class="menu-link px-3">
+                                                                    Change Name
+                                                                </a>
+                                                            </div>
+
+
+                                                            <div class="menu-item px-3">
+                                                                <a wire:ignore data-bs-toggle="modal"
+                                                                    data-bs-target="#changeGender{{ $character->id }}"
+                                                                    href="#" class="menu-link px-3">
+                                                                    Change Gender
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal fade" id="changeName{{ $character->id }}"
+                                                        tabindex="-1" aria-modal="true" role="dialog"
+                                                        data-bs-backdrop='static'>
+                                                        <div class="modal-dialog modal-dialog-centered mw-650px">
+                                                            <div class="modal-content">
+                                                                @livewire('modal.change-character-name', ['character' => $character])
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal fade" id="changeGender{{ $character->id }}"
+                                                        tabindex="-1" aria-modal="true" role="dialog"
+                                                        data-bs-backdrop='static'>
+                                                        <div class="modal-dialog modal-dialog-centered mw-650px">
+                                                            <div class="modal-content">
+                                                                @livewire('modal.change-character-gender', ['character' => $character])
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row tw-text-xs">
@@ -194,8 +250,8 @@
                                 <!--begin::Tab Content-->
                                 <div id="kt_referred_users_tab_content" class="tab-content">
                                     <!--begin::Tab panel-->
-                                    <div id="Transactions" class="card-body p-0 tab-pane fade show active" role="tabpanel"
-                                        aria-labelledby="kt_referrals_year_tab">
+                                    <div id="Transactions" class="card-body p-0 tab-pane fade show active"
+                                        role="tabpanel" aria-labelledby="kt_referrals_year_tab">
                                         @livewire('user-transaction-history', ['user' => $user])
                                     </div>
                                     <!--end::Tab panel-->
@@ -235,14 +291,6 @@
 
 
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-modal="true" role="dialog"
-        data-bs-backdrop='static'>
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <div class="modal-content">
-                @livewire('modal.reset-password')
             </div>
         </div>
     </div>

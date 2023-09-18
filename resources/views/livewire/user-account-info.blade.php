@@ -29,7 +29,19 @@
 
 
     </div>
+
+    {{-- MODALS --}}
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-modal="true" role="dialog"
+        data-bs-backdrop='static'>
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <div class="modal-content">
+                @livewire('modal.reset-password')
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 
 @push('scripts')
