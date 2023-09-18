@@ -14,7 +14,6 @@ class UsersTable extends Component
     public $search = "";
     public $limit = 50;
 
-    public $page = 1;
     private $users = [];
     protected $queryString = ['search' => ['except'=>''],'limit','page' => ['except' => 1]];
 
@@ -23,7 +22,7 @@ class UsersTable extends Component
     }
 
     public function searchData(){
-        $this->page = 1;
+        $this->userData();
     }
 
     public function userData(){
@@ -33,7 +32,7 @@ class UsersTable extends Component
                     ->orWhere("login_id", "like", "%" . $this->search . "%")
                     ->orWhere("grade", "like", "%" . $this->search . "%");
 
-            })->paginate($this->limit, ['*'], 'page', $this->page);
+            })->paginate($this->limit);
     }
 
     public function render()

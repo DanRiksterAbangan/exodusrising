@@ -27,7 +27,6 @@ class CharacterItemTable extends Component
 
     public $limit = 50;
 
-    public $page = 1;
 
     public $itemStatsList = [];
 
@@ -57,7 +56,7 @@ class CharacterItemTable extends Component
     }
 
     public function searchData(){
-        $this->page = 1;
+
     }
 
     public function setStats($stats){
@@ -111,7 +110,7 @@ class CharacterItemTable extends Component
 
                 }
             })
-           ->paginate($this->limit, ['*'], 'page', $this->page);
+           ->paginate($this->limit);
     }
 
 

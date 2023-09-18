@@ -306,11 +306,8 @@
 
 @push('scripts')
     <script>
-        Livewire.hook('component.init', ({
-            component
-        }) => {
-            window.component = component;
+        $(document).ready(() => {
+            $('.form-select').select2();
         })
-        $('.form-select').select2();
     </script>
 @endpush
