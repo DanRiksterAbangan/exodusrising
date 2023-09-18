@@ -11,6 +11,9 @@ class ChangeCharacterGender extends Component
     public $oldGender;
     public $newGender;
 
+    public $oldGenderType;
+    public $newGenderType;
+
     public function mount($character){
         $this->character = $character;
         $ctypename = characterClassNames()[$this->character->ctype_id];
@@ -18,6 +21,8 @@ class ChangeCharacterGender extends Component
         $opposite = $sameClass->filter(fn($cl,$key)=>$key != $this->character->ctype_id);
         $this->oldGender = $this->character->ctype_id > $opposite->keys()->first() ? "MALE" : "FEMALE";
         $this->newGender = $this->character->ctype_id < $opposite->keys()->first() ? "MALE" : "FEMALE";
+        $this->oldGenderType = $this->character->ctype_id;
+        $this->newGenderType = $opposite->keys()->first();
     }
 
 
@@ -41,7 +46,8 @@ class ChangeCharacterGender extends Component
 
         $this->oldGender = $old_ctype_id < $this->character->ctype_id ? "MALE" : "FEMALE";
         $this->newGender = $old_ctype_id > $this->character->ctype_id ? "MALE" : "FEMALE";
-
+        $this->oldGenderType = $this->character->ctype_id;
+        $this->newGenderType =$old_ctype_id;
         session()->flash('success', "Changing name from ".$this->character->name." gender to $this->oldGender has been successfull.");
         $this->dispatch("updatedUser", $user);
 

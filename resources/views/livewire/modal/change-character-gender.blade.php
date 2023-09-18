@@ -32,11 +32,18 @@
 
             <div>
                 <div class="tw-flex tw-items-center tw-gap-3 tw-mb-10">
-                    <div class="tw-text-lg tw-font-semibold">{{ $character->name }} ({{ $oldGender }})</div>
+                    <div class="tw-flex tw-items-center tw-space-x-2">
+                        <img src="{{ asset("assets/images/Classhero/$oldGenderType.gif") }}" alt="">
+                        <div class="tw-text-lg tw-font-semibold">{{ $character->name }} ({{ $oldGender }})</div>
+                    </div>
+
                     <div>
                         {!! Mdi::mdi('arrow-right-bold') !!}
                     </div>
-                    <div class="tw-text-lg tw-font-semibold">{{ $character->name }} ({{ $newGender }})</div>
+                    <div class="tw-flex tw-items-center tw-space-x-2">
+                        <img src="{{ asset("assets/images/Classhero/$newGenderType.gif") }}" alt="">
+                        <div class="tw-text-lg tw-font-semibold">{{ $character->name }} ({{ $newGender }})</div>
+                    </div>
                 </div>
 
             </div>

@@ -39,13 +39,19 @@
                                             <div class="card-header pt-5 tw-relative">
                                                 <div class="card-title d-flex flex-column">
                                                     <div class="d-flex align-items-center">
-                                                        <span
-                                                            class=" fw-bold text-dark me-2 lh-1 ls-n2 tw-text-xl">{{ $character->name }}</span>
-                                                        <span class="badge badge-light-success fs-base">
-                                                            <span class="svg-icon svg-icon-5 svg-icon-success ms-n1">
-                                                                Lv.
-                                                            </span>
-                                                            {{ $character->characterAbility->level }}</span>
+                                                        <div class="tw-flex tw-items-center tw-space-x-2 ">
+                                                            <img class="tw-w-8"
+                                                                src="{{ asset("assets/images/Classhero/$character->ctype_id.gif") }}"
+                                                                alt="">
+                                                            <span
+                                                                class=" fw-bold text-dark lh-1 ls-n2 tw-text-lg">{{ $character->name }}</span>
+                                                            <span class="badge badge-light-success fs-base">
+                                                                <span class="svg-icon svg-icon-5 svg-icon-success ms-n1">
+                                                                    Lv.
+                                                                </span>
+                                                                {{ $character->characterAbility->level }}</span>
+                                                        </div>
+
                                                     </div>
                                                     @if ($character->conqueror)
                                                         <span class="text-gray-400 pt-1 fw-semibold fs-6">Conqueror
