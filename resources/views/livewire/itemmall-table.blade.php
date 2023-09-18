@@ -41,7 +41,7 @@
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
 
                             <th class="min-w-125px">Item</th>
-                            <th class="min-w-125px">Stack</th>
+                            <th class="min-w-125px">Stack(s)</th>
                             <th class="min-w-125px">Category</th>
                             <th class="min-w-125px">Amount</th>
                             <th class="min-w-125px">Actions</th>
@@ -157,7 +157,7 @@
                                                     <div>
                                                         <button data-bs-toggle="modal"
                                                             wire:click="buyItem({{ $item }})"
-                                                            class="btn btn-sm btn-light-primary fw-bold ">Buy
+                                                            class="btn btn-sm btn-primary fw-bold ">Buy
                                                             Now</button>
                                                     </div>
                                                 </div>

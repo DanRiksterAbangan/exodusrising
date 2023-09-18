@@ -120,12 +120,20 @@ class ItemmallTable extends Component
 
     }
     public function addtocart($item){
-        Cart::create([
-            "user_id"=>auth()->user()->user_id,
-            "item_id"=>$item["id"],
-            "stack"=>1
-        ]);
 
+        $cartItem = Cart::where("user_id",auth()->user()->user_id)->where("item_id",$item["id"])->first();
+        if($cartItem){
+            $cartItem->increment("stack");
+        }else{
+            $cartItem = Cart::create([
+                "user_id"=>auth()->user()->user_id,
+                "item_id"=>$item["id"],
+                "stack"=>1
+            ]);
+        }
+        $this->dispatch("updateCartCount", [
+            "count" => $cartItem->user->carts->count()
+        ]);
         return $this->dispatch("addtocart",[
             "success"=>true,
             "message"=>$item["name"]." is added to cart"

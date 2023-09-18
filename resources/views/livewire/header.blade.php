@@ -41,10 +41,14 @@
             <div class="app-navbar flex-shrink-0">
                 <div class="app-navbar-item">
                     <a href="{{ route('itemmall.cart') }}"
-                        class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
+                        class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px tw-relative"
                         data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent"
                         data-kt-menu-placement="bottom-end" wire:ignore>
                         <span>{!! Mdi::mdi('cart', 'tw-text-white', 20, ['fill' => '#999']) !!}</span>
+
+                        <span
+                            class=" @if ($cart_count <= 0) tw-hidden @endif badge badge-circle badge-primary fw-bolder tw-absolute -tw-right-2 -tw-top-2 "
+                            id="cart_count">{{ $cart_count > 99 ? '99+' : $cart_count }}</span>
                     </a>
                 </div>
 
@@ -241,6 +245,18 @@
         $(document).ready(() => {
             Livewire.on('updatedUser', (user) => {
                 document.getElementById('user_points').innerHTML = user[0].Point
+            })
+
+            Livewire.on('updateCartCount', (cart) => {
+                console.log("awd", cart[0].count)
+                if (Number(cart[0].count) <= 0) {
+                    $("#cart_count").addClass('tw-hidden')
+                } else {
+                    $("#cart_count").removeClass('tw-hidden')
+                    document.getElementById('cart_count').innerHTML = cart[0].count
+                }
+
+
             })
         })
     </script>

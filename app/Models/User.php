@@ -66,7 +66,7 @@ class User extends Authenticatable
     public function isAdmin(){
         return $this->grade == 250;
     }
-    public function cart(){
+    public function carts(){
         return $this->hasMany(Cart::class,"user_id","user_id");
     }
 

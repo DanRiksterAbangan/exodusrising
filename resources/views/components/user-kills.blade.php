@@ -19,7 +19,8 @@
                         <td>
                             <div class="d-flex align-items-center">
                                 <div class="symbol symbol-circle symbol-50px me-3">
-                                    <img src="assets/media/avatars/300-3.jpg" class="" alt="" />
+                                    <img src="{{ asset('assets/images/Classhero/' . $kill->killer->ctype_id . '.gif') }}"
+                                        class="" alt="" />
                                 </div>
                                 <div class="tw-font-semibold tw-text-gray-600">
                                     {{ $kill->killer->name }}
@@ -32,7 +33,8 @@
                         <td>
                             <div class="d-flex align-items-center">
                                 <div class="symbol symbol-circle symbol-50px me-3">
-                                    <img src="assets/media/avatars/300-3.jpg" class="" alt="" />
+                                    <img src="{{ asset('assets/images/Classhero/' . $kill->killer->ctype_id . '.gif') }}"
+                                        class="" alt="" />
                                 </div>
                                 <div class="tw-font-semibold tw-text-gray-600">
                                     {{ $kill->killed->name }}
