@@ -245,52 +245,20 @@
                                                     aria-selected="false" tabindex="-1">
                                                     Topup History </a>
                                             </li>
-
                                         </ul>
-                                        <!--end::Tab nav-->
                                     </div>
-                                    <!--end::Toolbar-->
                                 </div>
-                                <!--end::Header-->
-
-                                <!--begin::Tab Content-->
                                 <div id="kt_referred_users_tab_content" class="tab-content">
-                                    <!--begin::Tab panel-->
                                     <div id="Transactions" class="card-body p-0 tab-pane fade show active"
                                         role="tabpanel" aria-labelledby="kt_referrals_year_tab">
                                         @livewire('user-transaction-history', ['user' => $user])
                                     </div>
-                                    <!--end::Tab panel-->
-                                    <!--begin::Tab panel-->
                                     <div id="TopupHistory" class="card-body p-0 tab-pane fade " role="tabpanel"
                                         aria-labelledby="kt_referrals_2019_tab">
-                                        <div class="table-responsive">
-                                            <!--begin::Table-->
-                                            <table class="table align-middle table-row-bordered table-row-solid gy-4 gs-9">
-                                                <!--begin::Thead-->
-                                                <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
-                                                    <tr>
-                                                        <th class="min-w-175px ps-9">Date</th>
-                                                        <th class="min-w-150px px-0">Ref #</th>
-                                                        <th class="min-w-350px">Type</th>
-                                                        <th class="min-w-125px">Amount</th>
-                                                        <th class="min-w-125px text-center">Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <!--end::Thead-->
-
-                                                <!--begin::Tbody-->
-                                                <tbody class="fs-6 fw-semibold text-gray-600">
-
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        @livewire('topup-transaction-history', ['user' => $user])
                                     </div>
 
                                 </div>
-                                <!--end::Tab Content-->
                             </div>
                         </div>
                     </div>

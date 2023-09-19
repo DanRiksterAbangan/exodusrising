@@ -32,13 +32,13 @@ class UsersTable extends Component
                     ->orWhere("login_id", "like", "%" . $this->search . "%")
                     ->orWhere("grade", "like", "%" . $this->search . "%");
 
-            })->paginate($this->limit);
+            })->latest()->paginate($this->limit);
     }
 
     public function render()
     {
         $this->userData();
-        return view('livewire.users-table',[
+        return view('livewire.admin.users-table',[
             "users" => $this->users
         ]);
     }

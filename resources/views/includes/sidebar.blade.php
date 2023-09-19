@@ -54,10 +54,6 @@
 
                 </div>
 
-
-
-
-
                 @if (auth()->check() &&
                         auth()->user()->isAdmin())
                     <div class="menu-item pt-5">
@@ -74,6 +70,17 @@
                                 ]) !!}
                             </span>
                             <span class="menu-title">Users</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-item {{ Route::currentRouteName() == 'admin.topups' ? 'show' : '' }}">
+                        <a class="menu-link" href="{{ route('admin.topups') }}">
+                            <span class="menu-icon tw-text-white">
+                                {!! Mdi::mdi('cash', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'admin.topups' ? '#ffff' : '#fff5',
+                                ]) !!}
+                            </span>
+                            <span class="menu-title">Topups</span>
                         </a>
                     </div>
 
@@ -98,26 +105,20 @@
                     </div>
                 </div>
 
-                <div class="menu-item">
-                    <a class="menu-link" href="{{ route('itemmall') }}">
+                <div class="menu-item {{ Route::currentRouteName() == 'topup' ? 'show' : '' }}">
+                    <a class="menu-link" href="{{ route('topup') }}">
                         <span class="menu-icon">
-                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
+                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, [
+                                'fill' => Route::currentRouteName() == 'topup' ? '#fff' : '#fff5',
+                            ]) !!}
                         </span>
                         <span class="menu-title">Buy RPS</span>
                     </a>
                 </div>
 
-                <div class="menu-item">
-                    <a class="menu-link" href="{{ route('itemmall') }}">
-                        <span class="menu-icon">
-                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
-                        </span>
-                        <span class="menu-title">Topup History</span>
-                    </a>
-                </div>
                 <div class="menu-item pt-5">
                     <div class="menu-content">
-                        <span class="menu-heading fw-bold text-uppercase fs-7">Others</span>
+                        <span class="menu-heading fw-bold text-uppercase fs-7">Games</span>
                     </div>
                 </div>
                 <div class="menu-item">

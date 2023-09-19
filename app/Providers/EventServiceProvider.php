@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\Cart;
 use App\Models\Character;
+use App\Models\TopupTransaction;
 use App\Observers\CartObserver;
 use App\Observers\CharacterObserver;
+use App\Observers\TopupTransactionObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -32,7 +34,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Character::observe(CharacterObserver::class);
-        Cart::observe(CartObserver::class);
+        TopupTransaction::observe(TopupTransactionObserver::class);
     }
 
     /**

@@ -117,7 +117,7 @@ class CharacterItemTable extends Component
     public function render()
     {
         $this->itemData();
-        return view('livewire.character-item-table',[
+        return view('livewire.admin.character-item-table',[
             "items" => $this->items
         ]);
     }

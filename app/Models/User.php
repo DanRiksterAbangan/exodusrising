@@ -77,4 +77,16 @@ class User extends Authenticatable
     public function disconnect(){
         return $this->hasOne(Disconnect::class,"user_id","user_id");
     }
+
+    public function topupTransactions(){
+        return $this->hasMany(TopupTransaction::class,"user_id","user_id");
+    }
+
+    public function pendingTopupTransactions(){
+        return $this->topupTransactions()->where("status","pending");
+    }
+
+    public function topupTransactionsProcessed(){
+        return $this->hasMany(TopupTransaction::class,"processed_by","user_id");
+    }
 }

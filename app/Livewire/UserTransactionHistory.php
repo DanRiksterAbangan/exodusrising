@@ -14,8 +14,6 @@ class UserTransactionHistory extends Component
     public $search = "";
     public $limit = 10;
 
-    protected $queryString = ['search','limit'];
-
     private $transactions = [];
     public $user;
 
@@ -34,7 +32,7 @@ class UserTransactionHistory extends Component
                     $q->where("name", "like", "%" . $this->search . "%");
                 });
 
-        })->paginate($this->limit);
+        })->latest()->paginate($this->limit);
     }
 
     public function render()

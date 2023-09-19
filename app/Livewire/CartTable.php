@@ -56,7 +56,7 @@ class CartTable extends Component
             })->orWhereHas("item", function ($q) {
                 $q->where("description", "like", "%" . ($this->search ?? "") . "%");
             });
-        })->paginate($this->limit, ['*'], 'page', $this->page);
+        })->latest()->paginate($this->limit, ['*'], 'page', $this->page);
         $this->items = $items;
 
     }

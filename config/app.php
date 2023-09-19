@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ItemStats;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
