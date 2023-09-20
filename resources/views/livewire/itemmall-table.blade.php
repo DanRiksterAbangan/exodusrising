@@ -44,6 +44,10 @@
                             <th class="min-w-125px">Stack(s)</th>
                             <th class="min-w-125px">Category</th>
                             <th class="min-w-125px">Amount</th>
+                            @if (auth()->check() &&
+                                    auth()->user()->isAdmin())
+                                <th class="min-w-125px">Show</th>
+                            @endif
                             <th class="min-w-125px">Actions</th>
                         </tr>
                     </thead>
@@ -80,6 +84,17 @@
                                         </div>
                                     @endif
                                 </td>
+
+                                @if (auth()->check() &&
+                                        auth()->user()->isAdmin())
+                                    <td>
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="checkbox"
+                                                wire:change="toggleShow({{ $item }})"
+                                                @if ($item->show) checked @endif>
+                                        </div>
+                                    </td>
+                                @endif
                                 <td>
                                     <button type="button" class="btn btn-primary me-3 btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#kt_customers_export_modal{{ $item->id }}">

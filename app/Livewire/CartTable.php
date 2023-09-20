@@ -11,8 +11,6 @@ use Livewire\WithPagination;
 
 class CartTable extends Component
 {
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
 
     public $search = "";
     public $page = 1;
@@ -32,12 +30,12 @@ class CartTable extends Component
 
     #[Computed]
     public function TotalPrice(){
-        return Cart::whereIn("id",$this->selectedItems)->get()->sum("discounted_price");
+        return Cart::whereIn("id",$this->itemSelections)->get()->sum("discounted_price");
     }
 
     #[Computed]
     public function selectedItems(){
-        return collect($this->itemSelections)->toArray();
+        return $this->items->whereIn("id",$this->itemSelections);
     }
 
     public function updatedSelectAll(){
@@ -48,6 +46,8 @@ class CartTable extends Component
         }
     }
 
+    public function searchData(){}
+
 
     public function itemsData(){
         $items = Cart::with("item")->where(function ($q) {
@@ -56,7 +56,7 @@ class CartTable extends Component
             })->orWhereHas("item", function ($q) {
                 $q->where("description", "like", "%" . ($this->search ?? "") . "%");
             });
-        })->latest()->paginate($this->limit, ['*'], 'page', $this->page);
+        })->latest()->get();
         $this->items = $items;
 
     }

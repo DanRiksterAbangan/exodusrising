@@ -20,10 +20,10 @@
                 <tr>
                     <th class="min-w-250px ps-9">Date</th>
                     <th class="min-w-150px px-0">Ref #</th>
-                    <th class="min-w-150px px-0">Amount</th>
+                    <th class="min-w-150px px-0">Amount (RPS)</th>
                     <th class="min-w-150px px-0">Status</th>
+                    <th class="min-w-150px px-0">Receipt</th>
                     <th class="min-w-150px px-0">Processed By</th>
-
                     <th class="min-w-350px">Processed Date</th>
                 </tr>
             </thead>
@@ -32,7 +32,9 @@
                     <tr>
                         <td class="ps-9">{{ (new Carbon($transaction->created_at))->toDayDateTimeString() }}</td>
                         <td>{{ $transaction->ref_id }}</td>
-                        <td>{{ $transaction->amount }}</td>
+                        <td> {{ number_format($transaction->amount) }} <span
+                                class="badge badge-secondary">({{ number_format($transaction->rps_amount) }})</span>
+                        </td>
                         <td>
                             @if ($transaction->status == 'pending')
                                 <span class="badge badge-warning">{{ ucfirst($transaction->status) }}</span>
@@ -42,19 +44,23 @@
                                 <span class="badge badge-danger">{{ ucfirst($transaction->status) }}</span>
                             @endif
                         </td>
+                        <td x-data="{}">
+                            <button class="tw-p-2 tw-rounded-lg hover:tw-bg-gray-100"
+                                x-on:click="viewReceipt('{{ asset("storage/$transaction->image") }}')">
+                                {!! Mdi::mdi('receipt-text-outline', '', 20, ['fill' => '#555']) !!}
+                            </button>
+                        </td>
                         <td class="text-success">
-                            <span class="badge badge-secondary">{{ $transaction->processedBy?->login_id ?? '-' }}</span>
+                            <span
+                                class="badge badge-secondary">{{ $transaction->processedBy?->login_id ? '[GM]' : '-' }}</span>
                         </td>
                         <td>
-                            <span
-                                class="badge badge-secondary">{{ $transaction->processed_date ? '-' : (new Carbon($transaction->processed_date))->format('Y-m-d H:m:s') }}</span>
+                            {{ $transaction->processed_date ? (new Carbon($transaction->processed_date))->format('Y-m-d H:m:s') : '-' }}
                         </td>
-
                     </tr>
-
                 @empty
                     <tr>
-                        <td colspan="5" class="tw-text-center">
+                        <td colspan="7" class="tw-text-center">
                             No Transactions
                         </td>
                     </tr>
@@ -70,3 +76,18 @@
     </div>
 
 </div>
+
+@push('scripts')
+    <script>
+        function viewReceipt(image) {
+            Swal.fire({
+                imageUrl: image,
+                imageHeight: 500,
+                imageWidth: 600,
+                width: 600,
+                showConfirmButton: false,
+                html: `<a href="${image}" class="btn btn-primary" download>Download image</a>`
+            })
+        }
+    </script>
+@endpush

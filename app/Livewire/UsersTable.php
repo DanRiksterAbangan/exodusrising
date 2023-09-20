@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,7 +15,10 @@ class UsersTable extends Component
     public $search = "";
     public $limit = 50;
 
+    public $bannedDays = 1;
+    public $bannedReason = "Bad behavior";
     private $users = [];
+
     protected $queryString = ['search' => ['except'=>''],'limit','page' => ['except' => 1]];
 
     public function mount(){
@@ -25,14 +29,71 @@ class UsersTable extends Component
         $this->userData();
     }
 
+
+    public function userDisconnect($user){
+        $user->disconnect()->create([
+            'server_id' => 1,
+            'char_id' => 0
+        ]);
+    }
     public function userData(){
-        $this->users = User::with("characters")->where(function ($q) {
+        $this->users = User::with("characters","banned")->where(function ($q) {
                 $q->where("user_id", "like", "%" . $this->search . "%")
                     ->orWhere("Point", "like", "%$this->search%")
                     ->orWhere("login_id", "like", "%" . $this->search . "%")
                     ->orWhere("grade", "like", "%" . $this->search . "%");
 
-            })->latest()->paginate($this->limit);
+            })->latest("user_id")->paginate($this->limit);
+    }
+
+    // #[On('disconnect-user')]
+    public function disconnectUser($user){
+        $nuser = User::where("user_id", $user['user_id'])->first();
+        if($nuser){
+            $this->userDisconnect($nuser);
+            $this->dispatch("alert",[
+                "type" => "success",
+                "message" => "User disconnected successfully"
+            ]);
+        }else{
+            $this->dispatch("alert",[
+                "type" => "error",
+                "message" => "User not found"
+            ]);
+        }
+
+    }
+
+    public function banUser($user){
+        $nuser = User::with("banned")->where("user_id", $user['user_id'])->first();
+        if($nuser){
+
+            if($nuser->isBanned()){
+                $this->dispatch("alert",[
+                    "type" => "error",
+                    "message" => "User already banned"
+                ]);
+                return;
+            }
+
+            $nuser->banned()->create([
+                'reason' => $this->bannedReason,
+                'until_date' => now()->addDays($this->bannedDays),
+                'banned_by' => auth()->user()->user_id
+            ]);
+            $this->userDisconnect($nuser);
+
+            $this->dispatch("alert",[
+                "type" => "success",
+                "user_id" => $nuser->user_id,
+                "message" => "$nuser->login_id banned successfully."
+            ]);
+        }else{
+            $this->dispatch("alert",[
+                "type" => "error",
+                "message" => "User not found"
+            ]);
+        }
     }
 
     public function render()

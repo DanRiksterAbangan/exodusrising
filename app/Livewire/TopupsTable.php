@@ -29,7 +29,7 @@ class TopupsTable extends Component
         $this->topups = TopupTransaction::with(["processedBy","user"])->where("ref_id", "like", "%" . $this->search . "%")->latest()->paginate($this->limit);
     }
 
-    public function approveTopup($id){
+    public function approveTopup($id,$amount){
 
         $user = auth()->user();
         $topup = TopupTransaction::find($id);
@@ -37,6 +37,7 @@ class TopupsTable extends Component
         $lockCredits = Cache::lock("credits_". $topup->user_id, 10);
         if ($lock->get() && $lockCredits->get()) {
             $topup->status = "approved";
+            $topup->rps_amount = $amount;
             $topup->processed_by = $user->user_id;
             $topup->processed_date = now();
             $topup->save();

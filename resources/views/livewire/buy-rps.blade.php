@@ -6,15 +6,19 @@
             <form class="card-body" wire:submit="buy">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="d-flex flex-column mb-10 fv-row">
+                        <div class="d-flex flex-column mb-3 fv-row">
                             <div class="fs-5 fw-bold form-label mb-3">
                                 Amount
                             </div>
-                            <input wire:model="amount" type="number" class="form-control form-control-solid rounded-3"
-                                placeholder="RPS Amount">
+                            <input wire:model.live.debounce.100="amount" type="number"
+                                class="form-control form-control-solid rounded-3" placeholder="Topup Amount">
                             @error('amount')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
+                        </div>
+                        <div class=" mb-4 fv-row tw-text-gray-600">
+                            <div>Equivalent RPS: <span
+                                    class="badge badge-success">{{ number_format($amount * 10) }}</span></div>
                         </div>
                         <div class="d-flex flex-column mb-5 fv-row rounded-3 p-7 border border-dashed border-gray-300">
                             <label class="form-check form-check-custom form-check-solid">
@@ -53,16 +57,12 @@
                     </div>
                 </div>
 
-                @if (session()->has('success'))
+                @if ($successMessage)
                     <div class="alert alert-success tw-mt-10">
-                        {{ session('success') }}
+                        {{ $successMessage }}
                     </div>
                 @endif
-                @if (session()->has('warning'))
-                    <div class="alert alert-warning tw-mt-10">
-                        {{ session('warning') }}
-                    </div>
-                @endif
+
             </form>
         </div>
     </div>
@@ -74,74 +74,38 @@
                 </div>
             </div>
             <div class="card-body pt-0 fs-6">
-
-
-                <!--begin::Seperator-->
                 <div class="separator separator-dashed mb-7"></div>
-                <!--end::Seperator-->
-
                 @if ($pendingTopup)
-                    <!--begin::Section-->
                     <div class="mb-7">
-                        <!--begin::Title-->
                         <h5 class="mb-3 tw-italic tw-text-gray-500">
                             {{ $pendingTopup->ref_id }}
                         </h5>
-                        <!--end::Title-->
-
-                        <!--begin::Details-->
                         <div class="mb-0 tw-flex">
-                            <!--begin::Plan-->
                             <span class="badge badge-light-warning me-2">Pending</span>
-                            <!--end::Plan-->
-
-                            <!--begin::Price-->
                             <span class="tw-flex tw-items-center tw-space-x-1">
                                 <span class="fw-semibold text-gray-600">
                                     {{ number_format($pendingTopup->amount) }}</span>
                                 <span class="badge badge-secondary">RPS</span>
                             </span>
-                            <!--end::Price-->
                         </div>
-                        <!--end::Details-->
                     </div>
-                    <!--end::Section-->
                 @else
                     <div class="mb-7">
-                        <!--begin::Title-->
                         <h5 class="mb-3">No Pending Topup</h5>
                     </div>
                 @endif
-
-                <!--begin::Seperator-->
                 <div class="separator separator-dashed mb-7"></div>
-                <!--end::Seperator-->
-
-                {{-- <!--begin::Section-->
-                <div class="mb-10">
-                    <!--begin::Title-->
-                    <h5 class="mb-3">Payment Details</h5>
-                    <!--end::Title-->
-
-                    <!--begin::Details-->
-                    <div class="mb-0">
-                        <!--begin::Card info-->
-                        <div class="fw-semibold text-gray-600 d-flex align-items-center">
-                            Mastercard
-
-                            <img src="/keen/demo1/assets/media/svg/card-logos/mastercard.svg" class="w-35px ms-2"
-                                alt="">
-                        </div>
-                        <!--end::Card info-->
-
-                        <!--begin::Card expiry-->
-                        <div class="fw-semibold text-gray-600">Expires Dec 2024</div>
-                        <!--end::Card expiry-->
-                    </div>
-                    <!--end::Details-->
-                </div>
-                <!--end::Section--> --}}
             </div>
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            Livewire.on('pending-topup', function(data) {
+                @this.set('pendingTopup', data[0]);
+            })
+        });
+    </script>
+@endpush

@@ -22,7 +22,7 @@ class ChangeCharacterName extends Component
 
     public function changeName(){
         $this->validate();
-        $user = auth()->user();
+        $user =  $this->character->user;
         if($user->Point < settings()->change_name_cost){
             session()->flash('danger', 'You do not have enough RPS to change the name.');
             return;

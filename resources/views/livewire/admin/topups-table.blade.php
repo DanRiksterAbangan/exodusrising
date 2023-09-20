@@ -30,7 +30,7 @@
                             <th class="min-w-125px">Username</th>
                             <th class="min-w-125px">Amount (RPS)</th>
                             <th class="min-w-125px">Status</th>
-
+                            <th class="min-w-125px">Receipt</th>
                             <th class="min-w-125px">Processed By</th>
                             <th class="min-w-125px">Date Processed</th>
                             <th class="min-w-125px">ACTION</th>
@@ -49,7 +49,8 @@
                                 </td>
 
                                 <td>
-                                    {{ number_format($topup->amount) }}
+                                    {{ number_format($topup->amount) }} <span
+                                        class="badge badge-secondary">({{ number_format($topup->rps_amount) }})</span>
                                 </td>
                                 <td>
                                     @if ($topup->status == 'pending')
@@ -59,6 +60,13 @@
                                     @else
                                         <span class="badge badge-danger">{{ ucfirst($topup->status) }}</span>
                                     @endif
+                                </td>
+
+                                <td x-data="{}">
+                                    <button class="tw-p-2 tw-rounded-lg hover:tw-bg-gray-100"
+                                        x-on:click="viewReceipt('{{ asset("storage/$topup->image") }}')">
+                                        {!! Mdi::mdi('receipt-text-outline', '', 20, ['fill' => '#555']) !!}
+                                    </button>
                                 </td>
                                 <td>
                                     <div class="badge badge-light fw-bold">{{ $topup->processedBy?->login_id ?? '-' }}
@@ -72,7 +80,8 @@
                                 <td x-data="{}">
                                     @if ($topup->status == 'pending')
                                         <button class="btn btn-primary tw-px-4 tw-py-2 tw-text-sm"
-                                            x-on:click="confirmApprove({{ $topup }})">Approve</button>
+                                            x-on:click="confirmApprove({{ $topup }})">
+                                            Approve</button>
                                         <button x-on:click="confirmReject({{ $topup }})"
                                             class="btn btn-danger tw-px-4 tw-py-2 tw-text-sm">Reject</button>
                                     @endif
@@ -110,15 +119,38 @@
 
 @push('scripts')
     <script>
+        function viewReceipt(image) {
+            Swal.fire({
+                imageUrl: image,
+                imageHeight: 500,
+                imageWidth: 600,
+                width: 600,
+                showConfirmButton: false,
+                html: `<a href="${image}" class="btn btn-primary" download>Download image</a>`
+            })
+        }
+
         function confirmApprove(data) {
             Swal.fire({
                 title: 'Are you sure you wan to approve this topup?',
-                html: `<div>REF ID: ${data.ref_id}</div><div class="alert alert-primary tw-my-3">${data.amount} RPS</div><div>USER: <span class="badge badge-primary">${data.user.login_id}</span></div>`,
+                html: `<div>REF ID: ${data.ref_id}</div><div class="alert alert-primary tw-my-3 tw-relative">${data.rps_amount} RPS</div><div>USER: <span class="badge badge-primary">${data.user.login_id}</span></div>`,
                 showCancelButton: true,
                 confirmButtonText: 'Yes, approve it!',
+                input: "number",
+                inputPlaceholder: "Confirm RPS Amount",
+                preConfirm: (amount) => {
+                    if (!amount) {
+                        Swal.showValidationMessage(
+                            `Please specify the confirmed RPS amount`
+                        )
+                        return;
+                    }
+                    return @this.approveTopup(data.id, amount)
+                },
+                allowOutsideClick: () => !Swal.isLoading()
             }).then((result) => {
                 if (result.isConfirmed) {
-                    @this.call('approveTopup', data.id)
+
                 }
             })
         }
@@ -132,7 +164,7 @@
                 confirmButtonColor: '#dc3545',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    @this.call('rejectTopup', data.id)
+                    @this.rejectTopup(data.id)
                 }
             })
         }

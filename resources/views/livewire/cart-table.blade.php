@@ -49,15 +49,15 @@
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
                                         <input class="form-check-input" type="checkbox"
                                             wire:change="toggleItem({{ $item }})"
-                                            @if (in_array($item->id, $this->selectedItems)) checked @endif>
+                                            @if (in_array($item->id, $itemSelections?->toArray())) checked @endif>
                                     </div>
                                 </td>
                                 <td class="d-flex align-items-center">
                                     <div class="symbol symbol-50px overflow-hidden me-3">
                                         <a href="#">
                                             <div class="symbol-label">
-                                                <img src="{{ Storage::url($item->image) }}" alt="{{ $item->name }}"
-                                                    class="w-100" />
+                                                <img src="{{ Storage::url($item->item->image) }}"
+                                                    alt="{{ $item->name }}" class="w-100" />
                                             </div>
                                         </a>
                                     </div>
@@ -124,18 +124,14 @@
 
 
 
-            <div class="d-flex justify-content-end tw-py-5 tw-pr-5">
-                <div>
-                    {{ $items->links() }}
-                </div>
-            </div>
         </div>
 
     </div>
 
 
-    <div class="modal fade" id="checkout-items-modal" wire:ignore tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="checkout-items-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered ">
+
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="fw-bold">Checkout Items</h2>
@@ -159,7 +155,7 @@
                                 Are you sure you want to checkout these Items?
                             </div>
                             <span class="tw-list-disc tw-py-10 tw-pt-5 tw-grid tw-grid-cols-1">
-                                @foreach ($items as $item)
+                                @foreach ($this->selectedItems as $item)
                                     <li><span class="tw-font-semibold">{{ $item->item->name }}</span> - <span
                                             class=" tw-italic">{{ $item->stack }} stack(s)</span>
                                     </li>

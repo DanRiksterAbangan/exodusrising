@@ -48,6 +48,9 @@ class ItemmallTable extends Component
         $items = Item::where(function($q){
             $q->where("name","like","%".($this->search ?? "")."%")->orWhere("description","like","%".($this->search ?? "")."%");
         });
+        if(auth()->check() && !auth()->user()->isAdmin()){
+            $items = $items->where("show",true);
+        }
         if(strtolower($this->category ?? "all") == "all"){
             $items = $items->paginate($this->limit, ['*'], 'page', $this->page);
         }else{
@@ -118,6 +121,12 @@ class ItemmallTable extends Component
             "message"=>"Item not found"
         ]);
 
+    }
+
+    public function toggleShow($item){
+        $nitem = Item::where("id",$item["id"])->first();
+        $nitem->show = !$nitem['show'];
+        $nitem->save();
     }
     public function addtocart($item){
 

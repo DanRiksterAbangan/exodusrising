@@ -27,7 +27,7 @@ class ChangeCharacterGender extends Component
 
 
     public function changeGender(){
-        $user = auth()->user();
+        $user = $this->character->user;
         if($user->Point < settings()->change_gender_cost){
             session()->flash('danger', 'You do not have enough RPS to change the gender.');
             return;

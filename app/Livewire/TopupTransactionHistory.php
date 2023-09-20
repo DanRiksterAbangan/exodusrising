@@ -23,7 +23,9 @@ class TopupTransactionHistory extends Component
     }
 
     public function topupData(){
-        $this->topupTransactions = auth()->user()->topupTransactions()->where("status","like","%".$this->search."%")->orWhere("ref_id","like","%".$this->search."%")
+        $this->topupTransactions = $this->user->topupTransactions()->where(function ($q) {
+            $q->where("status", "like", "%" . $this->search . "%")->orWhere("ref_id", "like", "%" . $this->search . "%");
+        })
         ->latest()->paginate(10);
     }
 

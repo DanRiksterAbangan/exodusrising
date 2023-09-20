@@ -22,7 +22,7 @@ class TopupTransactionObserver
     {
             if($topupTransaction->status == "approved"){
                 $topupTransaction->before_rps = $topupTransaction->user->Point;
-                $topupTransaction->user->increment("Point", $topupTransaction->amount);
+                $topupTransaction->user->increment("Point", $topupTransaction->rps_amount);
                 $topupTransaction->after_rps = $topupTransaction->user->Point;
             }
     }

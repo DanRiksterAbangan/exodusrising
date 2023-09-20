@@ -29,11 +29,12 @@
                             <th class="min-w-125px">USER #</th>
                             <th class="min-w-125px">USER NAME</th>
                             <th class="min-w-125px">POINTS</th>
+                            <th class="min-w-125px">IS BANNED</th>
                             <th class="min-w-125px">CHARACTERS</th>
                             <th class="min-w-125px">ACTION</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 fw-semibold" wire:loading.remove>
+                    <tbody class="text-gray-600 fw-semibold" wire:loading.remove wire:target="searchData">
                         @forelse($users as $user)
                             <tr>
                                 <td class="d-flex align-items-center">
@@ -51,6 +52,13 @@
                                     </div>
                                 </td>
                                 <td>
+                                    @if ($user->banned?->where('until_date', '>', now())->first())
+                                        <div class="badge badge-danger">
+                                            {{ $user->banned->where('until_date', '>', now())->first()->reason }}
+                                        </div>
+                                    @endif
+                                </td>
+                                <td>
                                     <ul class="tw-list-disc">
                                         @foreach ($user->characters as $character)
                                             <li>{{ $character->name }}</li>
@@ -61,8 +69,68 @@
                                 <td>
                                     <a class="btn btn-primary tw-px-4 tw-py-2 tw-text-sm"
                                         href="{{ route('admin.user', ['user' => $user]) }}">View</a>
-                                    <button class="btn btn-danger tw-px-4 tw-py-2 tw-text-sm">Ban</button>
-                                    <button class="btn btn-warning tw-px-4 tw-py-2 tw-text-sm">Disconnect</button>
+                                    @if (!$user->banned?->where('until_date', '>', now())->first())
+                                        <span>
+                                            <button class="btn btn-danger tw-px-4 tw-py-2 tw-text-sm" wire:ignore
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#banUserModal{{ $user->user_id }}">Ban</button>
+
+                                            <div class="modal fade" id="banUserModal{{ $user->user_id }}" tabindex="-1"
+                                                aria-modal="true" role="dialog" data-bs-backdrop='static'>
+                                                <div class="modal-dialog modal-dialog-centered mw-650px">
+                                                    <div class="modal-content">
+                                                        <form wire:submit="banUser({{ $user }})">
+                                                            <div class="modal-header">
+                                                                <h1 class="fw-bold tw-text-xl">Ban {{ $user->login_id }}
+                                                                </h1>
+                                                                <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                                                    data-bs-dismiss="modal">
+                                                                    {!! Mdi::mdi('close', '', 20, ['fill' => '#555']) !!}
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-body pt-10 pb-15 px-lg-17">
+                                                                @if (session()->has('success'))
+                                                                    <div class="alert alert-success">
+                                                                        {{ session('success') }}
+                                                                    </div>
+                                                                @endif
+                                                                @if (session()->has('warning'))
+                                                                    <div class="alert alert-warning">
+                                                                        {{ session('warning') }}
+                                                                    </div>
+                                                                @endif
+                                                                <div class="tw-flex tw-flex-col tw-space-y-3">
+                                                                    <ul class="tw-list-disc tw-mb-5 tw-italic">
+                                                                        <li>This user will not be able to login to the
+                                                                            game.
+                                                                        </li>
+                                                                        <li>This user will be disconnected in the game.
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                                <div>
+                                                                    <textarea wire:model="bannedReason" cols="30" rows="2" placeholder="Ban Reason" class="form-control"></textarea>
+                                                                </div>
+                                                                <div class="tw-mt-3 tw-w-[300px]">
+                                                                    <label>Banned Days</label>
+                                                                    <input type="number" wire:model="bannedDays"
+                                                                        class="form-control" placeholder="Days">
+                                                                </div>
+
+                                                                <div class="tw-flex tw-justify-end tw-mt-10">
+                                                                    <button class="btn btn-danger" type="submit">Ban
+                                                                        Now</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    @endif
+                                    <button class="btn btn-warning tw-px-4 tw-py-2 tw-text-sm"
+                                        x-on:click="disconnect({{ $user }})">Disconnect</button>
                                 </td>
 
 
@@ -97,28 +165,40 @@
 
 @push('scripts')
     <script>
+        function disconnect(user) {
+
+            Swal.fire({
+                title: `Are you sure you want to disconnect ${user.login_id} ?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                showLoaderOnConfirm: true,
+                preConfirm: (data) => {
+                    return @this.disconnectUser(user)
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log("result", result)
+                }
+            })
+        }
         $(document).ready(function() {
             $('.form-select').select2();
             $('.form-select').on('change', function(e) {
                 @this.set('category', e.target.value);
             });
+            console.log(Livewire)
 
-            Livewire.on('buy_response', response => {
-                if (response.success) {
-                    Swal.fire(
-                        'Success',
-                        response.message,
-                        'success'
-                    )
-                } else {
-                    Swal.fire(
-                        'Warning',
-                        response.message,
-                        'warning'
-                    )
-                }
-
+            Livewire.on('alert', response => {
+                $(`#banUserModal${response[0].user_id}`).modal('hide');
+                Swal.fire(
+                    response[0].type,
+                    response[0].message,
+                    response[0].type
+                )
             })
+
         });
     </script>
 @endpush

@@ -39,7 +39,10 @@
                                         <div class="card card-flush ">
                                             <div class="card-header pt-5">
                                                 <div class="card-title d-flex flex-column">
-                                                    <div class="d-flex align-items-center">
+                                                    <div class="tw-flex tw-items-center tw-space-x-2 ">
+                                                        <img class="tw-w-8"
+                                                            src="{{ asset("assets/images/Classhero/$character->ctype_id.gif") }}"
+                                                            alt="">
                                                         <span
                                                             class=" fw-bold text-dark me-2 lh-1 ls-n2 tw-text-xl">{{ $character->name }}</span>
                                                         <span class="badge badge-light-success fs-base">
@@ -202,37 +205,7 @@
                                     <!--begin::Tab panel-->
                                     <div id="TopupHistory" class="card-body p-0 tab-pane fade " role="tabpanel"
                                         aria-labelledby="kt_referrals_2019_tab">
-                                        <div class="table-responsive">
-                                            <!--begin::Table-->
-                                            <table class="table align-middle table-row-bordered table-row-solid gy-4 gs-9">
-                                                <!--begin::Thead-->
-                                                <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
-                                                    <tr>
-                                                        <th class="min-w-175px ps-9">Date</th>
-                                                        <th class="min-w-150px px-0">Order ID</th>
-                                                        <th class="min-w-350px">Details</th>
-                                                        <th class="min-w-125px">Amount</th>
-                                                        <th class="min-w-125px text-center">Invoice</th>
-                                                    </tr>
-                                                </thead>
-                                                <!--end::Thead-->
-
-                                                <!--begin::Tbody-->
-                                                <tbody class="fs-6 fw-semibold text-gray-600">
-                                                    <tr>
-                                                        <td class="ps-9">May 30, 2020</td>
-                                                        <td class="ps-0">523445943</td>
-                                                        <td>Seller Fee</td>
-                                                        <td class="text-danger">$-1.30</td>
-                                                        <td class="text-center"><button
-                                                                class="btn btn-light btn-sm btn-active-light-primary">Download</button>
-                                                        </td>
-                                                    </tr>
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        @livewire('topup-transaction-history', ['user' => $userData])
                                     </div>
 
                                 </div>

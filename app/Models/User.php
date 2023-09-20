@@ -89,4 +89,19 @@ class User extends Authenticatable
     public function topupTransactionsProcessed(){
         return $this->hasMany(TopupTransaction::class,"processed_by","user_id");
     }
+
+    public function banned(){
+        return $this->hasOne(BanUser::class,"user_id","user_id");
+    }
+
+    public function isBanned(){
+        return $this->banned()->where("until_date",">",now())->first();
+    }
+
+    public function bannedBy(){
+        return $this->hasOne(BanUser::class,"banned_by","user_id");
+    }
+
+
+
 }
