@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer("created_by")->nullable()->index();
             $table->integer("claimed_by")->nullable()->index();
             $table->dateTime("claimed_at")->nullable()->index();
+            $table->dateTime("expired_at")->nullable()->index();
             $table->timestamps();
         });
     }

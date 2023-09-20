@@ -43,6 +43,12 @@ class UserAccountInfo extends Component
                 'message'=>"Gift Code inactive"
             ];
         }
+        if($giftCode->expired_at < now()){
+            return [
+                'success'=>false,
+                'message'=>"Gift Code expired"
+            ];
+        }
 
         $giftCode->claimed_by = $this->user->user_id;
         $giftCode->claimed_at = now();
