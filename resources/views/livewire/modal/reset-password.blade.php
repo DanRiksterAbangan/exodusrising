@@ -20,21 +20,23 @@
         <div class="tw-flex tw-flex-col tw-space-y-3">
             <div class="form form-group">
                 <label for="">Old Password</label>
-                <input wire:model="old_password" type="password" class="form-control" placeholder="Old Password">
+                <input wire:model="old_password" autocomplete="false" type="password" class="form-control"
+                    placeholder="Old Password">
                 @error('old_password')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
             <div class="form form-group">
                 <label for="">New Password</label>
-                <input wire:model="password" type="password" class="form-control" placeholder="New Password">
+                <input wire:model="password" autocomplete="false" type="password" class="form-control"
+                    placeholder="New Password">
                 @error('password')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
             <div class="form form-group">
                 <label for="">Confirm Password</label>
-                <input wire:model="password_confirmation" type="password" class="form-control"
+                <input wire:model="password_confirmation" autocomplete="false" type="password" class="form-control"
                     placeholder="Confirm Password">
             </div>
 

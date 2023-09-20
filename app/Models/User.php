@@ -102,6 +102,14 @@ class User extends Authenticatable
         return $this->hasOne(BanUser::class,"banned_by","user_id");
     }
 
+    public function claimedGiftCodes(){
+        return $this->hasMany(GiftCode::class,"claimed_by","user_id");
+    }
+
+    public function createdGiftCodes(){
+        return $this->hasMany(GiftCode::class,"created_by","user_id");
+    }
+
 
 
 }

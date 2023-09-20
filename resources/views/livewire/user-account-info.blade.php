@@ -25,6 +25,10 @@
             <button class="btn btn-success btn-sm" wire:click="fix5101">
                 Fix 5101
             </button>
+
+            <button class="btn btn-warning btn-sm" x-on:click="claimGiftCode">
+                Claim Gift Code
+            </button>
         </div>
 
 
@@ -46,13 +50,54 @@
 
 @push('scripts')
     <script>
-        Livewire.on('alert', () => {
+        function claimGiftCode() {
             Swal.fire({
-                title: 'Success!',
-                text: '5101 fixed!',
-                icon: 'success',
-                confirmButtonText: 'OK'
+                title: `Claim Gift code`,
+                input: "text",
+                inputAttributes: {
+                    autocapitalize: "off",
+                    placeholder: "Enter gift code"
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Claim it!',
+                showLoaderOnConfirm: true,
+                preConfirm: async (data) => {
+                    const exist = await @this.checkGiftCode(data)
+                    if (exist) {
+                        const response = await @this.claimGiftCode(exist)
+                        if (response.success) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Gift code claimed!',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            })
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            })
+                        }
+                    } else {
+                        Swal.showValidationMessage(
+                            `Gift code ${data} does not exist`
+                        )
+                    }
+                },
+                allowOutsideClick: () => !Swal.isLoading()
             })
+        }
+        $(document).ready(function() {
+            Livewire.on('alert', () => {
+                Swal.fire({
+                    title: 'Success!',
+                    text: '5101 fixed!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                })
+            });
         });
     </script>
 @endpush

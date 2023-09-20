@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Models\Cart;
 use App\Models\Character;
+use App\Models\GiftCode;
 use App\Models\TopupTransaction;
 use App\Observers\CartObserver;
 use App\Observers\CharacterObserver;
+use App\Observers\GiftCodeObserver;
 use App\Observers\TopupTransactionObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -35,6 +37,7 @@ class EventServiceProvider extends ServiceProvider
     {
         Character::observe(CharacterObserver::class);
         TopupTransaction::observe(TopupTransactionObserver::class);
+        GiftCode::observe(GiftCodeObserver::class);
     }
 
     /**
