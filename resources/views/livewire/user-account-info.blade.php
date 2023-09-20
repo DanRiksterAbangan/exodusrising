@@ -62,29 +62,20 @@
                 confirmButtonText: 'Claim it!',
                 showLoaderOnConfirm: true,
                 preConfirm: async (data) => {
-                    const exist = await @this.checkGiftCode(data)
-                    if (exist) {
-                        const response = await @this.claimGiftCode(exist)
-                        if (response.success) {
-                            Swal.fire({
-                                title: 'Success!',
-                                text: 'Gift code claimed!',
-                                icon: 'success',
-                                confirmButtonText: 'OK'
-                            })
-                        } else {
-                            Swal.fire({
-                                title: 'Error!',
-                                text: response.message,
-                                icon: 'error',
-                                confirmButtonText: 'OK'
-                            })
-                        }
+                    const response = await @this.claimGiftCode(data)
+                    if (response.success) {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Gift code claimed!',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        })
                     } else {
                         Swal.showValidationMessage(
-                            `Gift code ${data} does not exist`
+                            `${response.message}`
                         )
                     }
+
                 },
                 allowOutsideClick: () => !Swal.isLoading()
             })

@@ -22,13 +22,9 @@ class UserAccountInfo extends Component
         $this->dispatch("alert",["message" => "Fixed 5101","type" => "success"]);
     }
 
-    public function checkGiftCode($gc){
-        return GiftCode::where("code",$gc)->first();
-
-    }
 
     public function claimGiftCode($gc){
-        $giftCode = GiftCode::where("code",$gc['code'])->first();
+        $giftCode = GiftCode::where("code",$gc)->first();
         if(!$giftCode){
             return [
                 'success'=>false,
