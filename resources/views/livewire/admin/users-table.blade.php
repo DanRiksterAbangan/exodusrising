@@ -54,7 +54,7 @@
                                 <td>
                                     @if ($user->banned?->where('until_date', '>', now())->first())
                                         <div class="badge badge-danger">
-                                            {{ $user->banned->where('until_date', '>', now())->first()->reason }}
+                                            {{ (new Carbon($user->banned->where('until_date', '>', now())->first()->until_date))->diffForHumans() }}
                                         </div>
                                     @endif
                                 </td>

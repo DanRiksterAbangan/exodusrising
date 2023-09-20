@@ -1,8 +1,6 @@
 <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-
     <div class="col-12 col-xxl-8 tw-pr-2">
         <div class="card card-flush pt-3 mb-5 mb-lg-10">
-
             <form class="card-body" wire:submit="buy">
                 <div class="row">
                     <div class="col-md-6">
@@ -29,13 +27,10 @@
                                 </span>
                             </label>
                         </div>
-
                         <button class="btn btn-primary tw-mt-4" type="submit">Submit</button>
                     </div>
                     <div class="col-md-6">
-                        <!--begin::Image input-->
                         <div class="image-input image-input-outline tw-relative">
-                            <!--begin::Preview existing avatar-->
                             <div class="image-input-wrapper w-325px h-250px tw-overflow-hidden">
                                 @if ($image)
                                     <img src="{{ $image->temporaryUrl() }}" height="100%">
