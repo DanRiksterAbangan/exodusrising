@@ -15,6 +15,9 @@
             </thead>
             <tbody>
                 @forelse  ($kills  as $kill)
+                    @if ($kill->killer == null || $kill->killed == null)
+                        @continue
+                    @endif
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
@@ -33,7 +36,7 @@
                         <td>
                             <div class="d-flex align-items-center">
                                 <div class="symbol symbol-circle symbol-50px me-3">
-                                    <img src="{{ asset('assets/images/Classhero/' . $kill->killer->ctype_id . '.gif') }}"
+                                    <img src="{{ asset('assets/images/Classhero/' . $kill->killed->ctype_id . '.gif') }}"
                                         class="" alt="" />
                                 </div>
                                 <div class="tw-font-semibold tw-text-gray-600">

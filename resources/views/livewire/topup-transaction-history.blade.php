@@ -52,7 +52,7 @@
                         </td>
                         <td class="text-success">
                             <span
-                                class="badge badge-secondary">{{ $transaction->processedBy?->login_id ? '[GM]' : '-' }}</span>
+                                class="badge badge-secondary">{{ $transaction->processedBy?->login_id ? $transaction->processedBy->name : '-' }}</span>
                         </td>
                         <td>
                             {{ $transaction->processed_date ? (new Carbon($transaction->processed_date))->format('Y-m-d H:m:s') : '-' }}

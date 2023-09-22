@@ -16,4 +16,13 @@ class LoginController extends Controller
         auth()->logout();
         return redirect()->route("login");
     }
+
+    public function passwordRequest(){
+        return view("pages.auth.password-request");
+    }
+
+    public function passwordReset(string $token){
+        return view("pages.auth.password-reset",compact("token"));
+    }
+
 }

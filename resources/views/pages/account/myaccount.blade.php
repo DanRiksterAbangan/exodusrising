@@ -220,50 +220,7 @@
                         <div class="col-12 col-xxl-6 tw-pl-2 tw-mb-5 tw-mt-0 lg:tw-mt-10">
                             <x-user-kills :$kills />
                         </div>
-
-                        <div class="col-md-12 md:-tw-mt-4">
-                            <div class="card tw-mt-4 ">
-                                <!--begin::Header-->
-                                <div class="card-header card-header-stretch">
-
-                                    <!--begin::Toolbar-->
-                                    <div class="card-toolbar m-0">
-                                        <!--begin::Tab nav-->
-                                        <ul class="nav nav-stretch fs-5 fw-semibold nav-line-tabs border-transparent"
-                                            role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <a id="kt_referrals_year_tab" class="nav-link text-active-gray-800 active"
-                                                    data-bs-toggle="tab" role="tab" href="#Transactions"
-                                                    aria-selected="true">
-                                                    Transactions
-                                                </a>
-                                            </li>
-
-                                            <li class="nav-item" role="presentation">
-                                                <a id="kt_referrals_2019_tab" class="nav-link text-active-gray-800 me-4"
-                                                    data-bs-toggle="tab" role="tab" href="#TopupHistory"
-                                                    aria-selected="false" tabindex="-1">
-                                                    Topup History </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div id="kt_referred_users_tab_content" class="tab-content">
-                                    <div id="Transactions" class="card-body p-0 tab-pane fade show active"
-                                        role="tabpanel" aria-labelledby="kt_referrals_year_tab">
-                                        @livewire('user-transaction-history', ['user' => $user])
-                                    </div>
-                                    <div id="TopupHistory" class="card-body p-0 tab-pane fade " role="tabpanel"
-                                        aria-labelledby="kt_referrals_2019_tab">
-                                        @livewire('topup-transaction-history', ['user' => $user])
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

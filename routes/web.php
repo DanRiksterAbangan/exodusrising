@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(["middleware" => "auth"], function () {
     Route::get("/", [AccountController::class, "redirect"])->name("redirect");
     Route::get("/myaccount",[AccountController::class,"index"])->name("account");
+    Route::get("/transations",[AccountController::class,"transactions"])->name("account.transactions");
+    Route::get("/topup/transctions",[AccountController::class,"topupTransactions"])->name("account.topup.transactions");
     Route::get("/itemmall",[ItemmallController::class,"index"])->name("itemmall");
     Route::get("/itemmall/cart",[ItemmallController::class,"cart"])->name("itemmall.cart");
 
@@ -44,4 +46,6 @@ Route::post('/logout', [LoginController::class,"logout"])->name("logout");
 Route::group(['middleware'=>'guest'],function(){
      Route::get('/login', [LoginController::class,"index"])->name("login");
      Route::get('/register', [RegisterController::class,"index"])->name("register");
+     Route::get('/forgot-password',[LoginController::class,"passwordRequest"])->name('password.request');
+     Route::get('/reset-password/{token}', [LoginController::class,"passwordReset"])->name('password.reset');
 });

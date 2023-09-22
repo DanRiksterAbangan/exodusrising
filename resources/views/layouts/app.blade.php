@@ -22,63 +22,30 @@
 
     @auth
         <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
-            <!--begin::Page-->
             <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
-
                 @livewire('header');
-
-                <!--begin::Wrapper-->
                 <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
-
                     @include('includes.sidebar')
-                    <!--begin::Main-->
                     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
-
                         @yield('section')
-
-                        <!--begin::Footer-->
                         <div id="kt_app_footer" class="app-footer">
-                            <!--begin::Footer container-->
                             <div
                                 class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
-                                <!--begin::Copyright-->
                                 <div class="text-dark order-2 order-md-1">
                                     <span class="text-muted fw-semibold me-1">2023&copy;</span>
                                     <a href="/" target="_blank" class="text-gray-800 text-hover-primary">Rohan</a>
                                 </div>
-                                <!--end::Copyright-->
-                                <!--begin::Menu-->
-                                <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
-                                    <li class="menu-item">
-                                        <a href="/" target="_blank" class="menu-link px-2">About</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="/" target="_blank" class="menu-link px-2">Support</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="{{ route('topup') }}" class="menu-link px-2">Purchase</a>
-                                    </li>
-                                </ul>
-                                <!--end::Menu-->
+
                             </div>
-                            <!--end::Footer container-->
                         </div>
-                        <!--end::Footer-->
                     </div>
-                    <!--end:::Main-->
                 </div>
-                <!--end::Wrapper-->
             </div>
-            <!--end::Page-->
         </div>
     @endauth
-
     @guest
         @yield('section')
     @endguest
-
-
-
 
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>

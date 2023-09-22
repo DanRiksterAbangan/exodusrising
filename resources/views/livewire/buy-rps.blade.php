@@ -58,6 +58,12 @@
                     </div>
                 @endif
 
+                @if (session()->has('warning'))
+                    <div class="alert alert-warning tw-mt-10">
+                        {{ session('warning') }}
+                    </div>
+                @endif
+
             </form>
         </div>
     </div>

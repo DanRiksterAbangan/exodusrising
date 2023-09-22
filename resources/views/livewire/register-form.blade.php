@@ -8,11 +8,26 @@
                 {{ session('message') }}
             </div>
         @endif
-        <div class="fv-row mb-3">
-            <input type="text" placeholder="Username" wire:model="username" name="username" autocomplete="off"
+
+        <div class="fv-row mb-8">
+            <input type="text" placeholder="name" wire:model="name" name="name" autocomplete="off"
                 class="form-control bg-transparent" />
+            @error('name')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="fv-row mb-8">
+            <input type="text" placeholder="email" wire:model="email" name="email" autocomplete="off"
+                class="form-control bg-transparent" />
+            @error('email')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="fv-row mb-3">
+            <input type="text" placeholder="Username  (Ingame Login ID)" wire:model="username" name="username"
+                autocomplete="off" class="form-control bg-transparent" />
             @error('username')
-                <span class="text-danger">{{ $username }}</span>
+                <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="fv-row mb-3">

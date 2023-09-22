@@ -14,9 +14,7 @@ class UserController extends Controller
 
 
     public function user(User $user){
-        $userData = Cache::remember("user-".$user->user_id,60,function() use ($user){
-            return $user->load(["mallItems","characters","kills"]);
-        });
+        $userData  = $user->load("mallItems","characters.conqueror","characters.characterAbility","kills.killer","kills.killed","killedBy.killer","killedBy.killed");
         $characters = $userData->characters;
         $kills = collect($userData->kills)->merge($userData->killedBy)->sortByDesc("date");
         $mallItems = $userData->mallItems;

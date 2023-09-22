@@ -20,11 +20,11 @@ class Kill extends Model
     protected $guarded = [];
 
     public function killed(){
-        return $this->belongsTo(Character::class,"pk_char_id","id");
+        return $this->belongsTo(Character::class,"pk_char_id","id")->where("name","not like","!%");
     }
 
     public function killer(){
-        return $this->belongsTo(Character::class,"char_id","id");
+        return $this->belongsTo(Character::class,"char_id","id")->where("name","not like","!%");
     }
 
 }

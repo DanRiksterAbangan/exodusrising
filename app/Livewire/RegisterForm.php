@@ -8,11 +8,15 @@ use Livewire\Component;
 
 class RegisterForm extends Component
 {
+    public $name;
+    public $email;
     public $username;
     public $password;
     public $password_confirmation;
 
     protected $rules = [
+        'name' => 'required|regex:/^[a-zA-Z0-9\s]+$/u',
+        'email' => 'required|email',
         'username' => 'required',
         'password' => 'required|confirmed',
     ];
@@ -25,6 +29,8 @@ class RegisterForm extends Component
             return redirect()->route("register");
         }
         $user = User::create([
+            "name" => $this->name,
+            "email" => $this->email,
             "login_id" => $this->username,
             "login_pw" => md5($this->password),
             "login_pw2" => $this->password,

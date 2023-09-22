@@ -13,7 +13,6 @@ class UserKills extends Component
      */
     public function __construct(public $kills)
     {
-        //
     }
 
     /**

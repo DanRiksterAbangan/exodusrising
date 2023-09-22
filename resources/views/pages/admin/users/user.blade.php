@@ -192,9 +192,6 @@
                                     </div>
                                     <!--end::Toolbar-->
                                 </div>
-                                <!--end::Header-->
-
-                                <!--begin::Tab Content-->
                                 <div id="kt_referred_users_tab_content" class="tab-content">
                                     <!--begin::Tab panel-->
                                     <div id="Transactions" class="card-body p-0 tab-pane fade show active" role="tabpanel"

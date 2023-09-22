@@ -3,8 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Cache;
-use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 

@@ -19,7 +19,16 @@ class AccountController extends Controller
         return view("pages.account.myaccount",compact('user','characters','kills'));
     }
 
+    public function transactions(){
+        return view("pages.account.transactions");
+    }
+
+    public function topupTransactions(){
+        return view("pages.account.topuptransactions");
+    }
+
     public function redirect(){
         return redirect()->route("account");
     }
+
 }

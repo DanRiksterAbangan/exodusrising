@@ -7,9 +7,20 @@
     <hr class="tw-border-gray-400">
     <div class="card-body pt-4 tw-relative">
 
-        <div class="tw-flex tw-items-center">
-            <span class="tw-text-lg tw-font-semibold tw-text-gray-500">
-                {{ $user->login_id }} <span class="badge badge-primary">{{ $user->user_id }}</span></span>
+        <div>
+            <div class="tw-flex tw-items-center">
+                <span class="tw-text-lg tw-font-semibold tw-text-gray-500">
+                    {{ $user->name }}</span>
+            </div>
+
+            <div class="tw-flex tw-items-center">
+                <span class="tw-text-lg tw-font-semibold tw-text-gray-500">
+                    {{ $user->email }}</span>
+            </div>
+            <div class="tw-flex tw-items-center">
+                <span class="tw-italic tw-text-base tw-text-gray-500">
+                    {{ $user->login_id }}#{{ $user->user_id }}</span>
+            </div>
         </div>
 
         <div class="tw-absolute tw-top-4 tw-right-4 tw-text-gray-500 tw-text-sm tw-italic">
