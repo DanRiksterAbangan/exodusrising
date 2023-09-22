@@ -9,14 +9,14 @@
             </div>
         @endif
 
-        <div class="fv-row mb-8">
+        <div class="fv-row mb-3">
             <input type="text" placeholder="name" wire:model="name" name="name" autocomplete="off"
                 class="form-control bg-transparent" />
             @error('name')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        <div class="fv-row mb-8">
+        <div class="fv-row mb-3">
             <input type="text" placeholder="email" wire:model="email" name="email" autocomplete="off"
                 class="form-control bg-transparent" />
             @error('email')

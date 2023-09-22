@@ -10,7 +10,7 @@
             </div>
         @endif
 
-        <div class="fv-row mb-8">
+        <div class="fv-row mb-3">
             <input type="text" placeholder="Username" wire:model="username" name="username" autocomplete="off"
                 class="form-control bg-transparent" />
         </div>
