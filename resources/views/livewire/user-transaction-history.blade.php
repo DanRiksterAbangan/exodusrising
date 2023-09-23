@@ -1,9 +1,10 @@
-<div>
-    <div class="table-responsive">
+<div id="kt_app_content_container" class="app-container  container-xxl tw-px-0">
+    <div class="table-responsive ">
         <div class="tw-flex tw-justify-start tw-p-5">
             <div class="d-flex align-items-center position-relative my-1">
                 <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1"
                             transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
                         <path
@@ -15,7 +16,7 @@
                     class="form-control form-control-solid  ps-14" placeholder="Search" />
             </div>
         </div>
-        <table class="table align-middle table-row-bordered table-row-solid gy-4 gs-9">
+        <table class="table align-middle table-row-bordered table-row-solid gy-4 gs-9 ">
             <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
                 <tr>
                     <th class="min-w-250px ps-9">Date</th>
@@ -62,3 +63,8 @@
     </div>
 
 </div>
+
+
+@push('scripts')
+    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+@endpush

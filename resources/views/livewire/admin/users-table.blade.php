@@ -79,7 +79,7 @@
                                                 aria-modal="true" role="dialog" data-bs-backdrop='static'>
                                                 <div class="modal-dialog modal-dialog-centered mw-650px">
                                                     <div class="modal-content">
-                                                        <form wire:submit="banUser({{ $user }})">
+                                                        <form wire:submit="banUser({{ $user->user_id }})">
                                                             <div class="modal-header">
                                                                 <h1 class="fw-bold tw-text-xl">Ban {{ $user->login_id }}
                                                                 </h1>
@@ -130,7 +130,7 @@
                                         </span>
                                     @endif
                                     <button class="btn btn-warning tw-px-4 tw-py-2 tw-text-sm"
-                                        x-on:click="disconnect({{ $user }})">Disconnect</button>
+                                        x-on:click="disconnect({{ $user->user_id }})">Disconnect</button>
                                 </td>
 
 

@@ -27,8 +27,14 @@ class AccountController extends Controller
         return view("pages.account.topuptransactions");
     }
 
+    public function giftcodes(){
+        return view("pages.account.giftcodes");
+    }
+
     public function redirect(){
         return redirect()->route("account");
     }
+
+
 
 }

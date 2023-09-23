@@ -6,7 +6,7 @@
                 <div class="app-container container-xxl d-flex flex-stack">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Topup History</h1>
+                            Redeemed Giftcodes</h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
                                 <a href="{{ route('account') }}" class="text-muted text-hover-primary">
@@ -16,7 +16,7 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                Topup History </li>
+                                Redeemed Giftcodes</li>
 
                         </ul>
                     </div>
@@ -27,7 +27,7 @@
                 <div class="app-container container-xxl">
                     <div class="card">
                         <div class="card-header border-0 pt-6">
-                            @livewire('topup-transaction-history', ['user' => auth()->user()])
+                            @livewire('user-giftcode-redeem-history')
                         </div>
                     </div>
                 </div>

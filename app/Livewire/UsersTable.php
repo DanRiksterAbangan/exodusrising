@@ -45,8 +45,8 @@ class UsersTable extends Component
     }
 
     // #[On('disconnect-user')]
-    public function disconnectUser($user){
-        $nuser = User::where("user_id", $user['user_id'])->first();
+    public function disconnectUser($userid){
+        $nuser = User::where("user_id", $userid)->first();
         if($nuser){
             $this->userDisconnect($nuser);
             $this->dispatch("alert",[
@@ -62,8 +62,8 @@ class UsersTable extends Component
 
     }
 
-    public function banUser($user){
-        $nuser = User::with("banned")->where("user_id", $user['user_id'])->first();
+    public function banUser($userid){
+        $nuser = User::with("banned")->where("user_id", $userid)->first();
         if($nuser){
 
             if($nuser->isBanned()){

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -16,14 +17,24 @@ class BuyRps extends Component
     public $successMessage = '';
     public $pendingTopup = [];
     protected $rules = [
-        'amount' => 'required|numeric|min:1|max:1000000',
+        'amount' => 'required|numeric|min:100|max:100000',
         'image' => 'required|image|max:1024',
     ];
 
-    public function buy()
+
+    #[Computed]
+    public function EquivalentRPS(){
+        return number_format(floatval($this->amount != "" ? $this->amount : 0 * 10));
+    }
+    public function buy() : void
     {
-        $this->validate();
         $user = auth()->user();
+        if($user->isBanned()){
+            session()->flash('warning', 'Your cannot perform this action. Account is prohibited.');
+            return;
+        }
+
+        $this->validate();
         $lock = Cache::lock("topup_".$user->user_id, 10);
         if ($lock->get()) {
             if($user->pendingTopupTransactions->count()){
@@ -34,7 +45,7 @@ class BuyRps extends Component
             $topup = $user->topupTransactions()->create([
                 'ref_id' => 'REF-' . time(),
                 'amount' => $this->amount,
-                'rps_amount' => $this->amount * 10,
+                'rps_amount' => $this->EquivalentRPS,
                 'image' => $this->image->store("/upload/topups/", "public"),
                 'notes' => 'RPS Purchase',
                 'status' => 'pending',

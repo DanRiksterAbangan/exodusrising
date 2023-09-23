@@ -52,7 +52,9 @@
                     <a class="menu-link" href="{{ route('account') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
-                                {!! Mdi::mdi('shield-account', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
+                                {!! Mdi::mdi('shield-account', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'account' ? '#fff' : '#fff5',
+                                ]) !!}
                             </span>
                         </span>
                         <span class="menu-title">My Account</span>
@@ -70,6 +72,20 @@
                             </span>
                         </span>
                         <span class="menu-title">Transaction History</span>
+                    </a>
+                </div>
+
+                <div
+                    class="menu-item  {{ Route::currentRouteName() == 'account.giftcodes' ? 'show' : '' }} menu-accordion">
+                    <a class="menu-link" href="{{ route('account.giftcodes') }}">
+                        <span class="menu-icon">
+                            <span class="svg-icon svg-icon-2">
+                                {!! Mdi::mdi('file-document-multiple', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'account.giftcodes' ? '#fff' : '#fff5',
+                                ]) !!}
+                            </span>
+                        </span>
+                        <span class="menu-title">Redeemed Giftcodes</span>
                     </a>
                 </div>
 
@@ -106,6 +122,17 @@
                         </a>
                     </div>
 
+                    <div class="menu-item {{ Route::currentRouteName() == 'admin.giftcodes' ? 'show' : '' }}">
+                        <a class="menu-link" href="{{ route('admin.giftcodes') }}">
+                            <span class="menu-icon tw-text-white">
+                                {!! Mdi::mdi('file-sign', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'admin.giftcodes' ? '#ffff' : '#fff5',
+                                ]) !!}
+                            </span>
+                            <span class="menu-title">Gift Codes</span>
+                        </a>
+                    </div>
+
                     <div class="menu-item {{ Route::currentRouteName() == 'admin.topups' ? 'show' : '' }}">
                         <a class="menu-link" href="{{ route('admin.topups') }}">
                             <span class="menu-icon tw-text-white">
@@ -116,6 +143,8 @@
                             <span class="menu-title">Topups</span>
                         </a>
                     </div>
+
+
 
                     <div class="menu-item {{ Route::currentRouteName() == 'admin.tracer' ? 'show' : '' }}">
                         <a class="menu-link" href="{{ route('admin.tracer') }}">

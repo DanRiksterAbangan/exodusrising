@@ -15,8 +15,8 @@
                             @enderror
                         </div>
                         <div class=" mb-4 fv-row tw-text-gray-600">
-                            <div>Equivalent RPS: <span
-                                    class="badge badge-success">{{ number_format($amount * 10) }}</span></div>
+                            <div>Equivalent RPS: <span class="badge badge-success">{{ $this->EquivalentRPS }}</span>
+                            </div>
                         </div>
                         <div class="d-flex flex-column mb-5 fv-row rounded-3 p-7 border border-dashed border-gray-300">
                             <label class="form-check form-check-custom form-check-solid">
