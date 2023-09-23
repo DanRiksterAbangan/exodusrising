@@ -169,6 +169,19 @@
                             <span class="menu-title">Item Tracer</span>
                         </a>
                     </div>
+
+
+
+                    <div class="menu-item {{ Route::currentRouteName() == 'admin.settings' ? 'show' : '' }}">
+                        <a class="menu-link" href="{{ route('admin.settings') }}">
+                            <span class="menu-icon tw-text-white">
+                                {!! Mdi::mdi('cog', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'admin.settings' ? '#ffff' : '#fff5',
+                                ]) !!}
+                            </span>
+                            <span class="menu-title">Admin Settings</span>
+                        </a>
+                    </div>
                 @endif
 
 

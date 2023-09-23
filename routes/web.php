@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemmallController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RohanAuthController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\TopupController;
 use App\Http\Controllers\TracerController;
 use App\Http\Controllers\UserController;
@@ -39,6 +40,7 @@ Route::group(["middleware" => "auth"], function () {
         Route::get("/tracer",[TracerController::class,"tracer"])->name("admin.tracer");
         Route::get("/topups",[TopupController::class,"topupList"])->name("admin.topups");
         Route::get("/giftcodes",[GiftCodeController::class,"giftcodes"])->name("admin.giftcodes");
+        Route::get("/settings",[SettingsController::class,"settings"])->name("admin.settings");
     });
 
 

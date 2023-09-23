@@ -1,6 +1,6 @@
 <?php
 use App\Settings\GeneralSettings;
-use App\Settings\RohanAuthSetting;
+use App\Settings\RohanAuthSettings;
 
 return [
 
@@ -10,7 +10,7 @@ return [
      */
     'settings' => [
         GeneralSettings::class,
-        RohanAuthSetting::class,
+        RohanAuthSettings::class,
     ],
 
     /*

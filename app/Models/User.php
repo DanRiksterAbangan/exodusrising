@@ -112,6 +112,14 @@ class User extends Authenticatable
         return $this->hasMany(GiftCode::class,"created_by","user_id");
     }
 
+    public function roles(){
+        return $this->hasMany(Role::class,"user_id","user_id");
+    }
+
+    public function isSuperAdmin(){
+        return $this->roles()->where("role","superadmin")->first();
+    }
+
 
 
 }
