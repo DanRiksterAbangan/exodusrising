@@ -85,7 +85,7 @@
                             <span class="badge badge-light-warning me-2">Pending</span>
                             <span class="tw-flex tw-items-center tw-space-x-1">
                                 <span class="fw-semibold text-gray-600">
-                                    {{ number_format($pendingTopup->amount) }}</span>
+                                    {{ number_format($pendingTopup->rps_amount) }}</span>
                                 <span class="badge badge-secondary">RPS</span>
                             </span>
                         </div>

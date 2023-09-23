@@ -33,6 +33,11 @@ class TopupsTable extends Component
 
         $user = auth()->user();
         $topup = TopupTransaction::find($id);
+        if($user->cannot("update", $topup)){
+            $this->dispatch("alert", ["type"=>"error", "message"=>"You are not allowed to approve this topup"]);
+            return;
+        }
+
         $lock = Cache::lock('topup-transaction-'.$id, 10);
         $lockCredits = Cache::lock("credits_". $topup->user_id, 10);
         if ($lock->get() && $lockCredits->get()) {
@@ -54,6 +59,11 @@ class TopupsTable extends Component
     public function rejectTopup($id){
         $user = auth()->user();
         $topup = TopupTransaction::find($id);
+        if($user->cannot("update", $topup)){
+            $this->dispatch("alert", ["type"=>"error", "message"=>"You are not allowed to reject this topup"]);
+            return;
+        }
+
         $lock = Cache::lock('topup-transaction-'.$id, 10);
         if ($lock->get()) {
             $topup->status = "rejected";

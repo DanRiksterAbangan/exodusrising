@@ -36,6 +36,10 @@ class GiftcodesTable extends Component
 
     public function deleteGiftCode($id){
         $user = auth()->user();
+        if($user->cannot("create", GiftCode::class)){
+            $this->dispatch("alert", ["type"=>"error", "message"=>"You are not allowed to delete gift codes"]);
+            return;
+        }
         $gc = GiftCode::where("id", $id)->first();
         if($gc && $gc->claimed_by != null){
             $this->dispatch("alert", ["type"=>"error", "message"=>"Gift code already claimed"]);

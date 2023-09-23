@@ -93,6 +93,33 @@ class UsersTable extends Component
             ]);
         }
     }
+    public function releaseUser($userid){
+        $nuser = User::where("user_id", $userid)->first();
+        if($nuser){
+
+            $banned = $nuser->isBanned();
+            if(!$banned){
+                $this->dispatch("alert",[
+                    "type" => "error",
+                    "message" => "User not banned"
+                ]);
+                return;
+            }
+            $banned->until_date = now();
+            $banned->save();
+            $this->dispatch("alert",[
+                "type" => "success",
+                "user_id" => $nuser->user_id,
+                "message" => "$nuser->login_id released successfully."
+            ]);
+
+        }else{
+            $this->dispatch("alert",[
+                "type" => "error",
+                "message" => "User not found"
+            ]);
+        }
+    }
 
     public function render()
     {

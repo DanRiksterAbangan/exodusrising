@@ -24,7 +24,7 @@ class BuyRps extends Component
 
     #[Computed]
     public function EquivalentRPS(){
-        return number_format(floatval($this->amount != "" ? $this->amount : 0 * 10));
+        return number_format(floatval(($this->amount != "" ? $this->amount : 0) * 10));
     }
     public function buy() : void
     {
@@ -45,7 +45,7 @@ class BuyRps extends Component
             $topup = $user->topupTransactions()->create([
                 'ref_id' => 'REF-' . time(),
                 'amount' => $this->amount,
-                'rps_amount' => $this->EquivalentRPS,
+                'rps_amount' => floatval(($this->amount != "" ? $this->amount : 0) * 10),
                 'image' => $this->image->store("/upload/topups/", "public"),
                 'notes' => 'RPS Purchase',
                 'status' => 'pending',

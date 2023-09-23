@@ -37,6 +37,7 @@
                             <th class="min-w-125px">CLAIMED BY</th>
                             <th class="min-w-125px">CREATED BY</th>
                             <th class="min-w-125px">CREATED DATE</th>
+                            <th class="min-w-125px">EXPIRED</th>
                             <th class="min-w-125px">ACTION</th>
                         </tr>
                     </thead>
@@ -87,6 +88,15 @@
                                 <td>
                                     <div class="badge badge-light fw-bold">{{ $giftcode->created_at }}</div>
 
+                                </td>
+                                <td>
+                                    @if (!$giftcode->claimedBy)
+                                        <div class="badge badge-light fw-bold">
+                                            {{ (new Carbon($giftcode->expired_at))->diffForHumans() }}
+                                        </div>
+                                    @else
+                                        <div class="badge badge-light fw-bold">-</div>
+                                    @endif
                                 </td>
                                 <td>
                                     <button>

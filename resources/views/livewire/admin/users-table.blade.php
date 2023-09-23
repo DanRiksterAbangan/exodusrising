@@ -52,7 +52,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    @if ($user->banned?->where('until_date', '>', now())->first())
+                                    @if ($user->isBanned())
                                         <div class="badge badge-danger">
                                             {{ (new Carbon($user->banned->where('until_date', '>', now())->first()->until_date))->diffForHumans() }}
                                         </div>
@@ -69,7 +69,7 @@
                                 <td>
                                     <a class="btn btn-primary tw-px-4 tw-py-2 tw-text-sm"
                                         href="{{ route('admin.user', ['user' => $user]) }}">View</a>
-                                    @if (!$user->banned?->where('until_date', '>', now())->first())
+                                    @if (!$user->isBanned())
                                         <span>
                                             <button class="btn btn-danger tw-px-4 tw-py-2 tw-text-sm" wire:ignore
                                                 data-bs-toggle="modal"
@@ -128,9 +128,13 @@
                                                 </div>
                                             </div>
                                         </span>
+                                    @else
+                                        <button class="btn btn-success tw-px-4 tw-py-2 tw-text-sm"
+                                            x-on:click="release({{ $user }})">Release From Ban</button>
                                     @endif
+
                                     <button class="btn btn-warning tw-px-4 tw-py-2 tw-text-sm"
-                                        x-on:click="disconnect({{ $user->user_id }})">Disconnect</button>
+                                        x-on:click="disconnect({{ $user }})">Disconnect</button>
                                 </td>
 
 
@@ -177,10 +181,20 @@
                     return @this.disconnectUser(user)
                 },
                 allowOutsideClick: () => !Swal.isLoading()
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    console.log("result", result)
-                }
+            })
+        }
+
+        function release(user) {
+            Swal.fire({
+                title: `Are you sure you want to release from ban ${user.login_id} ?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                showLoaderOnConfirm: true,
+                preConfirm: (data) => {
+                    return @this.releaseUser(user.user_id)
+                },
+                allowOutsideClick: () => !Swal.isLoading()
             })
         }
         $(document).ready(function() {

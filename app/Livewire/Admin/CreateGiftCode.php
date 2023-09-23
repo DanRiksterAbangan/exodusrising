@@ -23,9 +23,13 @@ class CreateGiftCode extends Component
 
     public function createGiftCode(){
 
-        $this->validate();
         $user = auth()->user();
+        if($user->cannot("create", GiftCode::class)){
+            $this->dispatch("alert", ["type"=>"error", "message"=>"You are not allowed to create gift codes"]);
+            return;
+        }
 
+        $this->validate();
         $user->createdGiftCodes()->create([
             "code"=> "GC-R".time(),
             "rps_amount"=>$this->gcamount,
