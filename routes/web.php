@@ -5,6 +5,7 @@ use App\Http\Controllers\GiftCodeController;
 use App\Http\Controllers\ItemmallController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RohanAuthController;
 use App\Http\Controllers\TopupController;
 use App\Http\Controllers\TracerController;
 use App\Http\Controllers\UserController;
@@ -52,3 +53,6 @@ Route::group(['middleware'=>'guest'],function(){
      Route::get('/forgot-password',[LoginController::class,"passwordRequest"])->name('password.request');
      Route::get('/reset-password/{token}', [LoginController::class,"passwordReset"])->name('password.reset');
 });
+
+
+

@@ -35,7 +35,9 @@
                     <a class="menu-link" href="{{ route('itemmall') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
-                                {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
+                                {!! Mdi::mdi('shopping', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'itemmall' ? '#fff' : '#fff5',
+                                ]) !!}
                             </span>
                         </span>
                         <span class="menu-title">Itemmall</span>
@@ -109,6 +111,17 @@
                         <div class="menu-content">
                             <span class="menu-heading fw-bold text-uppercase fs-7">Administration</span>
                         </div>
+                    </div>
+
+                    <div class="menu-item {{ Route::currentRouteName() == 'telescope' ? 'show' : '' }}">
+                        <a class="menu-link" href="{{ route('telescope') }}">
+                            <span class="menu-icon tw-text-white">
+                                {!! Mdi::mdi('telescope', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'telescope' ? '#ffff' : '#fff5',
+                                ]) !!}
+                            </span>
+                            <span class="menu-title">Telescope</span>
+                        </a>
                     </div>
 
                     <div class="menu-item {{ Route::currentRouteName() == 'admin.users' ? 'show' : '' }}">

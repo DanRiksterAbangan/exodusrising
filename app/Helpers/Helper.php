@@ -1,11 +1,19 @@
 <?php
 use App\Settings\GeneralSettings;
+use App\Settings\RohanAuthSettings;
 
 
 function settings(){
     $settings = app(GeneralSettings::class);
     return $settings;
 }
+
+function rohanAuthSettings(){
+    $settings = app(RohanAuthSettings::class);
+    return $settings;
+}
+
+
 
 
 function characterClasses(){
