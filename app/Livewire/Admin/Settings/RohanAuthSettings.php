@@ -12,6 +12,8 @@ class RohanAuthSettings extends Component
     public $nation;
     public $validateNation;
     public $serverList;
+    public $maintenance;
+    public $allowedOnMaintenance;
 
 
     public $originalExeVersion;
@@ -19,6 +21,9 @@ class RohanAuthSettings extends Component
     public $originalNation;
     public $originalValidateNation;
     public $originalServerList;
+
+    public $originalMaintenance;
+    public $originalAllowedOnMaintenance;
 
 
     public function __construct(){
@@ -32,11 +37,15 @@ class RohanAuthSettings extends Component
         $this->nation = $settings->nation;
         $this->validateNation = $settings->restrict_nation;
         $this->serverList = $settings->server_list;
+        $this->maintenance = $settings->maintenance;
+        $this->allowedOnMaintenance = implode(',',$settings->allowed_on_maintenance);
         $this->originalExeVersion = $this->exeVersion;
         $this->originalValidateExeVersion = $this->validateExeVersion;
         $this->originalNation = $this->nation;
         $this->originalValidateNation = $this->validateNation;
         $this->originalServerList = $this->serverList;
+        $this->originalMaintenance = $this->maintenance;
+        $this->originalAllowedOnMaintenance = $this->allowedOnMaintenance;
     }
 
     public function saveServer($key){
@@ -73,11 +82,15 @@ class RohanAuthSettings extends Component
         $settings->restrict_exe_version = $this->validateExeVersion;
         $settings->nation = $this->nation;
         $settings->restrict_nation = $this->validateNation;
+        $settings->maintenance = $this->maintenance;
+        $settings->allowed_on_maintenance = explode(',',$this->allowedOnMaintenance);
         $settings->save();
         $this->originalExeVersion = $this->exeVersion;
         $this->originalValidateExeVersion = $this->validateExeVersion;
         $this->originalNation = $this->nation;
         $this->originalValidateNation = $this->validateNation;
+        $this->originalMaintenance = $this->maintenance;
+        $this->originalAllowedOnMaintenance = $this->allowedOnMaintenance;
         $this->dispatch('alert',['type'=>'success','message'=>'Rohan Auth Settings saved!']);
     }
     public function toggle($name,$value){

@@ -7,7 +7,9 @@
             $exeVersion != $originalExeVersion ||
                 $nation != $originalNation ||
                 $originalValidateExeVersion != $validateExeVersion ||
-                $originalValidateNation != $validateNation)
+                $originalValidateNation != $validateNation ||
+                $originalMaintenance != $maintenance ||
+                $originalAllowedOnMaintenance != $allowedOnMaintenance)
             <div>
                 <button wire:click="save" class="btn btn-primary">Save</button>
             </div>
@@ -49,6 +51,25 @@
                     <div class="form-check form-check-sm form-check-custom form-check-solid">
                         <input class="form-check-input" type="checkbox" wire:model.live.debounce.200ms="validateNation">
                     </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row tw-mb-4">
+            <div class="tw-mb-2 col-md-12 col-12">
+                <label>Maintenance</label>
+                <div class="tw-mt-4">
+                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                        <input class="form-check-input" type="checkbox" wire:model.live.debounce.200ms="maintenance">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tw-mb-2 col-md-12 col-12">
+                <label>Allowed GMS</label>
+                <div class="tw-mt-4">
+                    <textarea class="form-control" type="text" wire:model.live.debounce.200ms="allowedOnMaintenance"></textarea>
                 </div>
             </div>
         </div>

@@ -19,6 +19,14 @@ class RohanAuthController extends Controller
             $id = request()->input("id");
             $passwd = request()->input("passwd");
             $ip = request()->ip();
+
+            $settings = rohanAuthSettings();
+            if($settings->maintenance){
+                if(!in_array($id, $settings->allowed_on_maintenance)){
+                    return response(-20)->header('Content-Type', 'text/plain');
+                }
+            }
+
             if($id == null || $passwd == null){
                 return response(-1)->header('Content-Type', 'text/plain');
             }

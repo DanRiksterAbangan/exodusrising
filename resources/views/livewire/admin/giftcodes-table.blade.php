@@ -56,7 +56,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    @if ($giftcode->status == 'active')
+                                    @if ($giftcode->status == 'active' && $giftcode->expired_at > now())
                                         <div class="badge badge-success">
                                             {{ $giftcode->status }}
                                         </div>
@@ -66,7 +66,7 @@
                                         </div>
                                     @else
                                         <div class="badge badge-danger">
-                                            {{ $giftcode->status }}
+                                            Expired
                                         </div>
                                     @endif
 

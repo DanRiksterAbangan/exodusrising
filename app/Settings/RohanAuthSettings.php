@@ -11,6 +11,9 @@ class RohanAuthSettings extends Settings
     public bool $restrict_nation;
     public string $nation;
 
+    public bool $maintenance;
+    public array $allowed_on_maintenance;
+
     public array $server_list;
 
 
