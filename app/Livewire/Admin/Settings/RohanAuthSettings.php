@@ -21,6 +21,10 @@ class RohanAuthSettings extends Component
     public $originalServerList;
 
 
+    public function __construct(){
+       auth()->user()->isSuperAdmin() ?? abort(403);
+    }
+
     public function mount(){
         $settings = rohanAuthSettings();
         $this->exeVersion = $settings->exe_version;
@@ -35,12 +39,35 @@ class RohanAuthSettings extends Component
         $this->originalServerList = $this->serverList;
     }
 
+    public function saveServer($key){
+        $settings = rohanAuthSettings();
+        $settings->server_list = $this->serverList;
+        $settings->save();
+        $this->originalServerList = $this->serverList;
+        $this->dispatch('alert',['type'=>'success','message'=>'Server List saved!',"modal"=>'updateServermodal'.$key]);
+    }
+    public function removeServer($key){
+        unset($this->serverList[$key]);
+        $settings = rohanAuthSettings();
+        $settings->server_list = $this->serverList;
+        $settings->save();
+        $this->originalServerList = $this->serverList;
+    }
+    public function addServer(){
+        $this->serverList[] = ['name'=>'Rohan Online','ip'=>'127.0.0.1','status'=>'Online','message'=>'','show'=>false];
+        $settings = rohanAuthSettings();
+        $settings->server_list = $this->serverList;
+        $settings->save();
+        $this->originalServerList = $this->serverList;
+    }
+    public function toggleServer($key){
+        $this->serverList[$key]['show'] = !$this->serverList[$key]['show'];
+        $settings = rohanAuthSettings();
+        $settings->server_list = $this->serverList;
+        $settings->save();
+        $this->originalServerList = $this->serverList;
+    }
     public function save(){
-        $user = auth()->user();
-        if(!$user->isSuperAdmin()){
-            $this->dispatch('alert',['type'=>'error','message'=>'You are not authorized to perform this action!']);
-            return;
-        }
         $settings = rohanAuthSettings();
         $settings->exe_version = $this->exeVersion;
         $settings->restrict_exe_version = $this->validateExeVersion;

@@ -12,6 +12,10 @@ class GeneralSettings extends Component
     public $originalGenderCost;
     public $originalNameCost;
 
+    public function __construct(){
+        auth()->user()->isSuperAdmin() ?? abort(403);
+     }
+
     public function mount(){
         $settings = settings();
         $this->changeGenderCost = $settings->change_gender_cost;
@@ -22,11 +26,6 @@ class GeneralSettings extends Component
     }
 
     public function save(){
-        $user = auth()->user();
-        if(!$user->isSuperAdmin()){
-            $this->dispatch('alert',['type'=>'error','message'=>'You are not authorized to perform this action!']);
-            return;
-        }
         $settings = settings();
         $settings->change_gender_cost = $this->changeGenderCost;
         $settings->change_name_cost = $this->changeNameCost;

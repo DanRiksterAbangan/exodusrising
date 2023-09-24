@@ -3,9 +3,7 @@
         <div class="card-title d-flex flex-column">
             General Settings
         </div>
-        @if (
-            ($originalGenderCost != $changeGenderCost || $originalNameCost != $changeNameCost) &&
-                auth()->user()->isSuperAdmin())
+        @if ($originalGenderCost != $changeGenderCost || $originalNameCost != $changeNameCost)
             <div class="tw-mt-3">
                 <button wire:click="save" class="btn btn-primary">Save</button>
             </div>
@@ -42,7 +40,9 @@
                     response[0].message,
                     response[0].type
                 )
-
+                if (response[0].modal) {
+                    $('#' + response[0].modal).modal('hide');
+                }
             })
 
         });

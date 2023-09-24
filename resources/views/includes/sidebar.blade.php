@@ -113,16 +113,7 @@
                         </div>
                     </div>
 
-                    <div class="menu-item {{ Route::currentRouteName() == 'telescope' ? 'show' : '' }}">
-                        <a class="menu-link" href="{{ route('telescope') }}">
-                            <span class="menu-icon tw-text-white">
-                                {!! Mdi::mdi('telescope', 'tw-text-white', 20, [
-                                    'fill' => Route::currentRouteName() == 'telescope' ? '#ffff' : '#fff5',
-                                ]) !!}
-                            </span>
-                            <span class="menu-title">Telescope</span>
-                        </a>
-                    </div>
+
 
                     <div class="menu-item {{ Route::currentRouteName() == 'admin.users' ? 'show' : '' }}">
                         <a class="menu-link" href="{{ route('admin.users') }}">
@@ -171,17 +162,28 @@
                     </div>
 
 
-
-                    <div class="menu-item {{ Route::currentRouteName() == 'admin.settings' ? 'show' : '' }}">
-                        <a class="menu-link" href="{{ route('admin.settings') }}">
-                            <span class="menu-icon tw-text-white">
-                                {!! Mdi::mdi('cog', 'tw-text-white', 20, [
-                                    'fill' => Route::currentRouteName() == 'admin.settings' ? '#ffff' : '#fff5',
-                                ]) !!}
-                            </span>
-                            <span class="menu-title">Admin Settings</span>
-                        </a>
-                    </div>
+                    @if (auth()->user()->isSuperAdmin())
+                        <div class="menu-item {{ Route::currentRouteName() == 'telescope' ? 'show' : '' }}">
+                            <a class="menu-link" href="{{ route('telescope') }}">
+                                <span class="menu-icon tw-text-white">
+                                    {!! Mdi::mdi('telescope', 'tw-text-white', 20, [
+                                        'fill' => Route::currentRouteName() == 'telescope' ? '#ffff' : '#fff5',
+                                    ]) !!}
+                                </span>
+                                <span class="menu-title">Telescope</span>
+                            </a>
+                        </div>
+                        <div class="menu-item {{ Route::currentRouteName() == 'admin.settings' ? 'show' : '' }}">
+                            <a class="menu-link" href="{{ route('admin.settings') }}">
+                                <span class="menu-icon tw-text-white">
+                                    {!! Mdi::mdi('cog', 'tw-text-white', 20, [
+                                        'fill' => Route::currentRouteName() == 'admin.settings' ? '#ffff' : '#fff5',
+                                    ]) !!}
+                                </span>
+                                <span class="menu-title">Admin Settings</span>
+                            </a>
+                        </div>
+                    @endif
                 @endif
 
 
