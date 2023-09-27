@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\SuperAdmin;
 use Laravel\Telescope\Http\Middleware\Authorize;
 use Laravel\Telescope\Watchers;
 
@@ -79,7 +80,7 @@ return [
     'middleware' => [
         'web',
         Authorize::class,
-        AdminMiddleware::class
+        SuperAdmin::class,
     ],
 
     /*

@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\SampleEvent;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\GiftCodeController;
 use App\Http\Controllers\ItemmallController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\TopupController;
 use App\Http\Controllers\TracerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,14 +35,18 @@ Route::group(["middleware" => "auth"], function () {
 
     Route::get("/topup",[TopupController::class,"topup"])->name("topup");
 
-    Route::group(["prefix"=>"admin","middleware"=>"admin"],function(){
+Route::group(["prefix"=>"admin","middleware"=>"admin"],function(){
         Route::get("/users",[UserController::class,"users"])->name("admin.users");
         Route::get("/users/{user}",[UserController::class,"user"])->name("admin.user");
         Route::get("/itemmall/additem",[ItemmallController::class,"addItemView"])->name("itemmall.additem");
         Route::get("/tracer",[TracerController::class,"tracer"])->name("admin.tracer");
         Route::get("/topups",[TopupController::class,"topupList"])->name("admin.topups");
         Route::get("/giftcodes",[GiftCodeController::class,"giftcodes"])->name("admin.giftcodes");
-        Route::get("/settings",[SettingsController::class,"settings"])->name("admin.settings");
+
+        Route::group(["middleware" => "super-admin"], function () {
+            Route::get("/settings",[SettingsController::class,"settings"])->name("admin.settings");
+            Route::get("/user/login/manager",[UserLoginController::class,"manager"])->name("admin.user.login.manager");
+        });
     });
 
 
@@ -55,6 +61,3 @@ Route::group(['middleware'=>'guest'],function(){
      Route::get('/forgot-password',[LoginController::class,"passwordRequest"])->name('password.request');
      Route::get('/reset-password/{token}', [LoginController::class,"passwordReset"])->name('password.reset');
 });
-
-
-

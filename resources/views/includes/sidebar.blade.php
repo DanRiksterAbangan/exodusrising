@@ -183,6 +183,19 @@
                                 <span class="menu-title">Admin Settings</span>
                             </a>
                         </div>
+
+
+                        <div
+                            class="menu-item {{ Route::currentRouteName() == 'admin.user.login.manager' ? 'show' : '' }}">
+                            <a class="menu-link" href="{{ route('admin.user.login.manager') }}">
+                                <span class="menu-icon tw-text-white">
+                                    {!! Mdi::mdi('cog', 'tw-text-white', 20, [
+                                        'fill' => Route::currentRouteName() == 'admin.user.login.manager' ? '#ffff' : '#fff5',
+                                    ]) !!}
+                                </span>
+                                <span class="menu-title">User Login Control</span>
+                            </a>
+                        </div>
                     @endif
                 @endif
 
