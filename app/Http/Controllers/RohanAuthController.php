@@ -151,10 +151,42 @@ class RohanAuthController extends Controller
             $serv = null;
             foreach (rohanAuthSettings()->server_list as $server) {
                 if ($server["show"]) {
-                    $serv .= $server["name"] . "|" . $server["ip"] . "|22100|3|3|1|1|0|0|" . $server["message"] . "|";
+                    $serv .= $server["name"] . "|" . $server["ip"] . "|22102|3|3|1|1|0|0|" . $server["message"] . "|";
                 }
             }
             return response($serv, 200)->header('Content-Type', 'text/plain');
+        }
+    }
+
+    public function loginremove($type){
+        if (in_array($type, ["php", "asp"])) {
+
+            $id = request()->input("id");
+            $password = request()->input("passwd");
+            if ($id == null || $password == null) {
+                return response(-1, 200)->header('Content-Type', 'text/plain');
+            }
+            $password = md5($password);
+            $user = User::where("login_id", $id)->first();
+            if (!$user) {
+                return response(-2, 200)->header('Content-Type', 'text/plain');
+            }
+            if ($user->isBanned()) {
+                return response(-4, 200)->header('Content-Type', 'text/plain');
+            }
+            if($user->login_pw != $password){
+                return response(-1, 200)->header('Content-Type', 'text/plain');
+            }
+            if($user->login_pw == $password){
+                $user->session_id = '';
+                $user->save();
+                $user->disconnect()->create([
+                    "server_id" => 1,
+                    "char_id" => 0
+                ]);
+            }
+
+            return response(0, 200)->header('Content-Type', 'text/plain');
         }
     }
 }

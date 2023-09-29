@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('player_connections', function (Blueprint $table) {
             $table->id();
             $table->string("machine_id")->nullable()->index();
+            $table->string("pcode")->nullable()->index();
             $table->string("login_id")->nullable()->index();
             $table->string("character_name")->nullable()->index();
             $table->string("remote_address")->nullable()->index();

@@ -28,6 +28,7 @@
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
 
                             <th class="min-w-125px">MACHINE ID</th>
+                            <th class="min-w-125px">PCODE</th>
                             <th class="min-w-125px">LOGIN ID</th>
                             <th class="min-w-125px">CHARACTER NAME</th>
                             <th class="min-w-125px">STATUS</th>
@@ -43,6 +44,9 @@
                                         <a href="#"
                                             class="text-gray-800 text-hover-primary mb-1 tw-text-sm">{{ $userLogin->machine_id }}</a>
                                     </div>
+                                </td>
+                                <td>
+                                    <span>{{ $userLogin->pcode }}</span>
                                 </td>
                                 <td>
                                     <span>{{ $userLogin->login_id }}</span>
