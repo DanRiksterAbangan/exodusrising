@@ -2,6 +2,7 @@
 
 use App\Events\SampleEvent;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\GatewayController;
 use App\Http\Controllers\GiftCodeController;
 use App\Http\Controllers\ItemmallController;
 use App\Http\Controllers\LoginController;
@@ -46,6 +47,7 @@ Route::group(["prefix"=>"admin","middleware"=>"admin"],function(){
         Route::group(["middleware" => "super-admin"], function () {
             Route::get("/settings",[SettingsController::class,"settings"])->name("admin.settings");
             Route::get("/user/login/manager",[UserLoginController::class,"manager"])->name("admin.user.login.manager");
+            Route::get("/gateways",[GatewayController::class,'gateways'])->name("admin.gateways");
         });
     });
 

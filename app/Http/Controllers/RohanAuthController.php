@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gateway;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -149,9 +150,10 @@ class RohanAuthController extends Controller
     public function serverlist($type){
         if (in_array($type, ["php", "asp"])) {
             $serv = null;
+            $gateways = Gateway::where("status","online")->whereColumn("max_players",">","current_players")->first();
             foreach (rohanAuthSettings()->server_list as $server) {
                 if ($server["show"]) {
-                    $serv .= $server["name"] . "|" . $server["ip"] . "|22102|3|3|1|1|0|0|" . $server["message"] . "|";
+                    $serv .= $server["name"] . "|" . $server["ip"] . "|".$gateways->port."|3|3|1|1|0|0|" . $server["message"] . "|";
                 }
             }
             return response($serv, 200)->header('Content-Type', 'text/plain');

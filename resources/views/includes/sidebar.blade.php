@@ -196,6 +196,19 @@
                                 <span class="menu-title">User Login Control</span>
                             </a>
                         </div>
+
+
+                        <div
+                            class="menu-item {{ Route::currentRouteName() == 'admin.gateways' ? 'show' : '' }}">
+                            <a class="menu-link" href="{{ route('admin.gateways') }}">
+                                <span class="menu-icon tw-text-white">
+                                    {!! Mdi::mdi('cog', 'tw-text-white', 20, [
+                                        'fill' => Route::currentRouteName() == 'admin.gateways' ? '#ffff' : '#fff5',
+                                    ]) !!}
+                                </span>
+                                <span class="menu-title">Gateway Control</span>
+                            </a>
+                        </div>
                     @endif
                 @endif
 

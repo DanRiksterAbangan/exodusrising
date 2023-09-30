@@ -17,6 +17,10 @@ return new class extends Migration
             $table->integer("port");
             $table->integer("max_players");
             $table->integer("current_players");
+            $table->string("status")->index()->default("offline");
+            $table->string("version")->index()->default("1.0");
+            $table->boolean("setting_update")->index()->default(false);
+            $table->boolean("shutdown_signal")->index()->default(false);
             $table->timestamps();
         });
     }
