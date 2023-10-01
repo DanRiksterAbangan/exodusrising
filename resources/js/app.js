@@ -4,8 +4,10 @@ import './bootstrap';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 import io from "socket.io-client";
-window.io = io;
+import Tagify from '@yaireo/tagify'
 
+window.Tagify = Tagify;
+window.io = io;
 window.Pusher = Pusher;
 
 window.Echo = new Echo({
