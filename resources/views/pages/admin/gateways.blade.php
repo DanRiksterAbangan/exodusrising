@@ -17,10 +17,10 @@
                     <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                         <div class="col-12 col-xxl-12 tw-pr-2">
                             <div class="row">
-                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-6 tw-mb-4">
+                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-4 tw-mb-4">
                                     @livewire('gateway-list')
                                 </div>
-                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-6 tw-mb-4">
+                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-8 tw-mb-4">
                                     @livewire('gateway-settings')
                                 </div>
                             </div>

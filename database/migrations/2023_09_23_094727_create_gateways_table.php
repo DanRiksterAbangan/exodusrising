@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer("current_players");
             $table->string("status")->index()->default("offline");
             $table->string("version")->index()->default("1.0");
-            $table->boolean("setting_update")->index()->default(false);
+            $table->integer("setting_update")->index()->default(0);
             $table->boolean("shutdown_signal")->index()->default(false);
             $table->timestamps();
         });
