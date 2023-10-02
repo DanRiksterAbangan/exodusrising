@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        @if ($user->session_date)
+        @if ($user->session_date > new Carbon('2023-10-01'))
             <div class="tw-absolute tw-top-4 tw-right-4 tw-text-gray-500 tw-text-sm tw-italic">
                 Last login: {{ (new Carbon($user->session_date))->diffForHumans() }}
             </div>
