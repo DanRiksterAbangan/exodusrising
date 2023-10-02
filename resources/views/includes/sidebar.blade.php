@@ -198,8 +198,7 @@
                         </div>
 
 
-                        <div
-                            class="menu-item {{ Route::currentRouteName() == 'admin.gateways' ? 'show' : '' }}">
+                        <div class="menu-item {{ Route::currentRouteName() == 'admin.gateways' ? 'show' : '' }}">
                             <a class="menu-link" href="{{ route('admin.gateways') }}">
                                 <span class="menu-icon tw-text-white">
                                     {!! Mdi::mdi('cog', 'tw-text-white', 20, [
@@ -231,30 +230,6 @@
                         <span class="menu-title">Buy RPS</span>
                     </a>
                 </div>
-
-                <div class="menu-item pt-5">
-                    <div class="menu-content">
-                        <span class="menu-heading fw-bold text-uppercase fs-7">Games</span>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link" href="{{ route('itemmall') }}">
-                        <span class="menu-icon">
-                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
-                        </span>
-                        <span class="menu-title">Fix 5101</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link" href="{{ route('itemmall') }}">
-                        <span class="menu-icon">
-                            {!! Mdi::mdi('shopping', 'tw-text-white', 20, ['fill' => '#fff5']) !!}
-                        </span>
-                        <span class="menu-title">Transactions</span>
-                    </a>
-                </div>
-
-
 
             </div>
         </div>
