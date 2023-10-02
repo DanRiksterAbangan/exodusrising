@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Livewire\Gatewaysettings;
+use App\Enums\GatewayMessageType;
 use App\Enums\GatewayUpdateType;
 use App\Models\Gateway;
 use App\Models\GatewayMessage;
