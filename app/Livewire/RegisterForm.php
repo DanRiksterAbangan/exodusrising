@@ -36,7 +36,7 @@ class RegisterForm extends Component
             "login_pw2" => $this->password,
         ]);
         Auth::login($user);
-        return redirect()->route("home");
+        return redirect()->route("account");
     }
 
     public function render()
