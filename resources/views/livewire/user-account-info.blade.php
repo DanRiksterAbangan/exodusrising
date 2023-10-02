@@ -23,9 +23,11 @@
             </div>
         </div>
 
-        <div class="tw-absolute tw-top-4 tw-right-4 tw-text-gray-500 tw-text-sm tw-italic">
-            Last login: {{ (new Carbon($user->session_date))->diffForHumans() }}
-        </div>
+        @if ($user->session_date)
+            <div class="tw-absolute tw-top-4 tw-right-4 tw-text-gray-500 tw-text-sm tw-italic">
+                Last login: {{ (new Carbon($user->session_date))->diffForHumans() }}
+            </div>
+        @endif
 
         <div class="tw-mt-10">
             <button class="btn btn-primary btn-sm" wire:ignore data-bs-toggle="modal"
