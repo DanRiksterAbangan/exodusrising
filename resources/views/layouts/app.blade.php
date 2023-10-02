@@ -34,6 +34,7 @@
                                 <div class="text-dark order-2 order-md-1">
                                     <span class="text-muted fw-semibold me-1">{{ Carbon::now()->format('Y') }}&copy;</span>
                                     <a href="/" target="_blank" class="text-gray-800 text-hover-primary">Global Rohan
+                                        S2
                                     </a>
                                 </div>
 
