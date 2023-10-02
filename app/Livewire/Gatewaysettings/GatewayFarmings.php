@@ -10,15 +10,15 @@ use Livewire\Component;
 class GatewayFarmings extends Component
 {
     public $farming;
+
     public function mount(){
         $farming = GatewayFarming::first();
-        if($farming){
-            $this->farming = $farming->toArray();
+        if($farming && $farming->id){
+            $this->farming = collect($farming)->toArray();
         }else{
-            $this->farming = GatewayFarming::create([])->toArray();
+            $this->farming = GatewayFarming::create()->refresh()->toArray();
         }
     }
-
     public function saveFarming(){
         $farming = GatewayFarming::where("id", $this->farming["id"])->first();
         $farming->update($this->farming);
@@ -33,6 +33,8 @@ class GatewayFarmings extends Component
     }
     public function render()
     {
+
+
         return view('livewire.gatewaysettings.gateway-farmings');
     }
 }

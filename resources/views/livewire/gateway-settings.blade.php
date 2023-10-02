@@ -54,6 +54,11 @@
                 @livewire('gatewaysettings.gateway-farmings')
             </div>
 
+            <div class="tab-pane" id="gateway_forging" role="tabpanel">
+                {{-- <div class="separator separator-dashed my-6"></div> --}}
+                @livewire('gatewaysettings.gateway-forgings')
+            </div>
+
 
         </div>
     </div>

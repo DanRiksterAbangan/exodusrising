@@ -62,7 +62,7 @@
         }
 
         document.addEventListener('livewire:initialized', () => {
-            tagify.addTags(JSON.parse(@this.farming.autoloot_talisman))
+            tagify.addTags(JSON.parse(@this.farming.autoloot_talisman ? @this.farming.autoloot_talisman : "[]"))
         })
     </script>
 @endpush
