@@ -36,6 +36,7 @@
                             <th class="min-w-125px">STATUS</th>
                             <th class="min-w-125px">CLAIMED BY</th>
                             <th class="min-w-125px">CREATED BY</th>
+                            <th class="min-w-125px">DESCRIPTION</th>
                             <th class="min-w-125px">CREATED DATE</th>
                             <th class="min-w-125px">EXPIRED</th>
                             <th class="min-w-125px">ACTION</th>
@@ -72,9 +73,6 @@
 
                                 </td>
                                 <td>
-                                    <div class="badge badge-light fw-bold">{{ $giftcode->createdBy?->name }}</div>
-                                </td>
-                                <td>
                                     @if ($giftcode->claimedBy)
                                         <div class="badge badge-success">
                                             {{ $giftcode->claimedBy?->name }}
@@ -85,6 +83,14 @@
                                         </div>
                                     @endif
                                 </td>
+                                <td>
+                                    <div class="badge badge-light fw-bold">{{ $giftcode->createdBy?->name }}</div>
+                                </td>
+
+                                <td>
+                                    <div class="tw-text-sm">{{ $giftcode->description }}</div>
+                                </td>
+
                                 <td>
                                     <div class="badge badge-light fw-bold">{{ $giftcode->created_at }}</div>
 
