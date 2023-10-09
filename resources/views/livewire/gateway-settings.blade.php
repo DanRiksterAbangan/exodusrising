@@ -31,9 +31,9 @@
             </li>
 
             <li class="nav-item" role="presentation">
-                <a class="nav-link" data-bs-toggle="tab" href="#kt_layout_builder_toolbar" role="tab"
+                <a class="nav-link" data-bs-toggle="tab" href="#gateway_firecracker_rewards" role="tab"
                     aria-selected="false" tabindex="-1">
-                    Toolbar </a>
+                    Firecracker Rewards </a>
             </li>
         </ul>
     </div>
@@ -57,6 +57,10 @@
             <div class="tab-pane" id="gateway_forging" role="tabpanel">
                 {{-- <div class="separator separator-dashed my-6"></div> --}}
                 @livewire('gatewaysettings.gateway-forgings')
+            </div>
+            <div class="tab-pane" id="gateway_firecracker_rewards" role="tabpanel">
+                {{-- <div class="separator separator-dashed my-6"></div> --}}
+                @livewire('gatewaysettings.gateway-firecracker-reward')
             </div>
 
 
