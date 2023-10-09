@@ -105,57 +105,70 @@
 
         function onChangeRareWeap(e) {
             if (e.target.value) {
-                console.log(JSON.parse(e.target.value).map(x => x.value))
-                @this.set("rareweapons", JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
+                console.log(JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
+                @this.rareweapons = JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
 
         function onChangeUniqueWeap(e) {
             if (e.target.value) {
-                @this.set("uniqueweapons", JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
+                @this.uniqueweapons = JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
 
         function onChangeAncientWeap(e) {
             if (e.target.value) {
-                @this.set("ancientweapons", JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
+                @this.ancientweapons =  JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
 
         function onChangeRareShield(e) {
             if (e.target.value) {
-                @this.set("rareshields", JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
+                @this.rareshields = JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
 
         function onChangeUniqueShield(e) {
             if (e.target.value) {
-                @this.set("uniqueshields", JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
+                @this.uniqueshields =  JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
 
         function onChangeAncientShield(e) {
             if (e.target.value) {
-                @this.set("ancientshields", JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
+                @this.ancientshields = JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
 
         function onChangeRareArmor(e) {
             if (e.target.value) {
-                @this.set("rarearmors", JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
+                @this.rarearmors =  JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
 
         function onChangeUniqueArmor(e) {
             if (e.target.value) {
-                @this.set("uniquearmors", JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
+                @this.uniquearmors = JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
 
         function onChangeAncientArmor(e) {
             if (e.target.value) {
-                @this.set("ancientarmors", JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
+                @this.ancientarmors = JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
+
+
+        document.addEventListener('livewire:initialized', () => {
+            rareweaptagify.addTags(JSON.parse(@this.rareweapons ? @this.rareweapons : "{}"))
+            uniqueweaptagify.addTags(JSON.parse(@this.uniqueweapons ? @this.uniqueweapons : "{}"))
+            ancientweaptagify.addTags(JSON.parse(@this.ancientweapons ? @this.ancientweapons : "{}"))
+            rareshieldtagify.addTags(JSON.parse(@this.rareshields ? @this.rareshields : "{}"))
+            uniqueshieldtagify.addTags(JSON.parse(@this.uniqueshields ? @this.uniqueshields : "{}"))
+            ancientshieldtagify.addTags(JSON.parse(@this.ancientshields ? @this.ancientshields : "{}"))
+            rarearmortagify.addTags(JSON.parse(@this.rarearmors ? @this.rarearmors : "{}"))
+            uniquearmortagify.addTags(JSON.parse(@this.uniquearmors ? @this.uniquearmors : "{}"))
+            ancientarmortagify.addTags(JSON.parse(@this.ancientarmors ? @this.ancientarmors : "{}"))
+        })
     </script>
 @endpush

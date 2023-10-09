@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Gatewaysettings;
 
+use App\Enums\GatewayUpdateType;
+use App\Models\Gateway;
 use App\Models\GatewayFirecracker;
 use Livewire\Component;
 
@@ -21,9 +23,17 @@ class GatewayFirecrackerReward extends Component
             'stats' => $this->stats,
             'description' => $this->description
         ]);
+        $this->sendUpdateToGateway();
     }
     public function remove($id){
         GatewayFirecracker::find($id)->delete();
+        $this->sendUpdateToGateway();
+    }
+
+    public function sendUpdateToGateway(){
+        Gateway::where("status","online")->update([
+            'setting_update' => GatewayUpdateType::UpdateFirecracker,
+        ]);
     }
     public function render()
     {
