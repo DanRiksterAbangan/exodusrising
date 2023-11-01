@@ -1,12 +1,12 @@
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer-name="app-sidebar"
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px"
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
-    <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
-        <a href="index.html">
-            <img alt="Logo" src="{{ asset('assets/media/logos/default-dark.svg') }}"
-                class="h-30px app-sidebar-logo-default" />
+    <div class="app-sidebar-logo px-6 tw-bg-slate-900" id="kt_app_sidebar_logo">
+        <a href="/" >
+            <img alt="Logo" src="{{ asset('assets/media/logos/main.png') }}"
+                class="h-90px" />
         </a>
-        <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-sm h-30px w-30px rotate"
+        <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-sm h-30px w-30px rotate "
             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
             data-kt-toggle-name="app-sidebar-minimize">
             <span class="svg-icon svg-icon-2 rotate-180">
@@ -22,7 +22,7 @@
             </span>
         </div>
     </div>
-    <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
+    <div class="app-sidebar-menu overflow-hidden flex-column-fluid tw-bg-slate-900">
         <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5"
             data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto"
             data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer"
