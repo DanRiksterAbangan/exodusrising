@@ -85,6 +85,23 @@ class CartTable extends Component
         }
     }
 
+    public function decrement($item){
+        $cart = Cart::where("id",$item)->first();
+        if ($cart) {
+            if ($cart->stack > 1) {
+                $cart->decrement("stack");
+                $this->itemsData();
+            }
+        }
+    }
+    public function increment($item){
+        $cart = Cart::where("id",$item)->first();
+        if ($cart) {
+            $cart->increment("stack");
+            $this->itemsData();
+        }
+    }
+
     public function buyItems(){
         $user = auth()->user();
         $lock = Cache::lock('credits_'.$user->user_Id, 10);

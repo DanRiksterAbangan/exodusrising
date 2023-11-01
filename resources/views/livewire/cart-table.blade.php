@@ -21,8 +21,8 @@
                 </div>
             </div>
             <div class="card-body py-4">
-                <table class="table align-middle table-row-dashed fs-6 gy-5">
-                    <thead>
+                <table  class="table align-middle table-row-bordered table-row-solid gy-4 gs-9 ">
+                    <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                             <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1"
                                 style="width: 29.8906px;">
@@ -68,7 +68,21 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="badge badge-light fw-bold">{{ $item->stack }}</div>
+                                    <div   class="position-relative w-md-200px tw-flex"  >
+                                        <!--begin::Decrease control-->
+                                        <button wire:click.throttle.100ms="decrement({{$item->id}})" type="button" class="btn" data-kt-dialer-control="decrease">
+                                            {!! Mdi::mdi("minus",'',20,['fill'=>'#555']) !!}               </button>
+                                        <!--end::Decrease control-->
+
+                                        <!--begin::Input control-->
+                                        <input type="text" class="form-control text-center tw-m-0" data-kt-dialer-control="input" placeholder="Amount"  readonly="" value="{{$item->stack}}" wfd-id="id21">
+                                        <!--end::Input control-->
+
+                                        <!--begin::Increase control-->
+                                        <button wire:click.throttle.100ms="increment({{$item->id}})" type="button" class="btn" data-kt-dialer-control="increase">
+                                            {!! Mdi::mdi("plus",'',20,['fill'=>'#555']) !!}                     </button>
+                                        <!--end::Increase control-->
+                                    </div>
                                 </td>
                                 <td>
                                     <div class="badge badge-success">
@@ -121,11 +135,7 @@
                     </tbody>
                 </table>
             </div>
-
-
-
         </div>
-
     </div>
 
 
@@ -185,6 +195,8 @@
 </div>
 
 @push('scripts')
+<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+
     <script>
         $(document).ready(function() {
 
@@ -205,6 +217,18 @@
                 }
 
             })
+
+
+            var dialerElement = document.querySelector("#dialerStackChange");
+
+            // Create dialer object and initialize a new instance
+            var dialerObject = new KTDialer(dialerElement, {
+                min: 1000,
+                max: 50000,
+                step: 1000,
+                prefix: "$",
+                decimals: 2
+            });
 
         });
     </script>
