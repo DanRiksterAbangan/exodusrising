@@ -41,7 +41,7 @@ class PasswordReset extends Component
         );
        return $status === Password::PASSWORD_RESET
         ? $this->dispatch("alert",["type"=>"success","message"=>"Password reset successfully"])
-        : $this->dispatch("alert",["type"=>"warning","message"=>"Password reset failed"]);
+        : $this->dispatch("alert",["type"=>"warning","message"=> __($status)]);
     }
     public function render()
     {

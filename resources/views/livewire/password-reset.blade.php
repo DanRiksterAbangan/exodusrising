@@ -52,20 +52,11 @@
     <script>
        $(document).ready(function(){
         Livewire.on('alert', function(response) {
-            if (response[0] && response[0].success) {
-                    $("#checkout-items-modal").modal('hide');
-                    Swal.fire(
-                        'Success',
-                        response[0].message,
-                        'success'
-                    )
-                } else {
-                    Swal.fire(
-                        'Warning',
-                        response[0] && response[0].message || "Please try again later",
-                        'warning'
-                    )
-                }
+            Swal.fire(
+                    response[0].type,
+                    response[0].message,
+                    response[0].type
+                )
         })
        });
     </script>
