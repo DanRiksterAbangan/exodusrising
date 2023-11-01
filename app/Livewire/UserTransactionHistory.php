@@ -21,9 +21,6 @@ class UserTransactionHistory extends Component
         $this->user = $user ? $user : auth()->user();
         $this->transactionData();
     }
-    public function searchData(){
-        $this->transactionData();
-    }
 
     public function transactionData(){
         $this->transactions = $this->user->transactions()->with("item")->where(function ($q) {

@@ -12,7 +12,7 @@
                             fill="currentColor" />
                     </svg>
                 </span>
-                <input wire:model="search" type="text" wire:keydown.enter="searchData"
+                <input wire:model.live.debounce.500ms="search" type="text"
                     class="form-control form-control-solid  ps-14" placeholder="Search" />
             </div>
         </div>
@@ -47,7 +47,7 @@
                         </td>
                         <td x-data="{}">
                             <button class="tw-p-2 tw-rounded-lg hover:tw-bg-gray-100"
-                                x-on:click="viewReceipt('{{ asset("storage/$transaction->image") }}')">
+                                x-on:click="viewReceipt('{{ route("topup.image",$transaction->image) }}')">
                                 {!! Mdi::mdi('receipt-text-outline', '', 20, ['fill' => '#555']) !!}
                             </button>
                         </td>

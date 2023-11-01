@@ -18,10 +18,6 @@ class UserGiftcodeRedeemHistory extends Component
     public function mount(){
         $this->giftcodeData();
     }
-    public function searchData(){
-        $this->giftcodeData();
-    }
-
     public function giftcodeData(){
         $this->giftcodes = auth()->user()->claimedGiftCodes()->with("claimedBy","createdBy")->where(function ($q) {
             $q->where("code", "like", "%" . $this->search . "%");

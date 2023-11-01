@@ -34,6 +34,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/itemmall",[ItemmallController::class,"index"])->name("itemmall");
     Route::get("/itemmall/cart",[ItemmallController::class,"cart"])->name("itemmall.cart");
 
+    Route::get("/upload/topups/{image}",[TopupController::class,"topupImage"])->name("topup.image");
     Route::get("/topup",[TopupController::class,"topup"])->name("topup");
 
 Route::group(["prefix"=>"admin","middleware"=>"admin"],function(){
@@ -49,6 +50,7 @@ Route::group(["prefix"=>"admin","middleware"=>"admin"],function(){
             Route::get("/user/login/manager",[UserLoginController::class,"manager"])->name("admin.user.login.manager");
             Route::get("/gateways",[GatewayController::class,'gateways'])->name("admin.gateways");
         });
+
     });
 
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Symfony\Component\Uid\Ulid;
 
 class BuyRps extends Component
 {
@@ -42,11 +43,17 @@ class BuyRps extends Component
                 $lock->release();
                 return;
             }
+            //hash file name to prevent duplicate
+            $filename = Ulid::generate()."_".time();
+            $fileExtension = $this->image->getClientOriginalExtension();
+            $this->image->storeAs("/upload/topups", $filename.".".$fileExtension, "local");
+
+
             $topup = $user->topupTransactions()->create([
                 'ref_id' => 'REF-' . time(),
                 'amount' => $this->amount,
                 'rps_amount' => floatval(($this->amount != "" ? $this->amount : 0) * 10),
-                'image' => $this->image->store("/upload/topups/", "public"),
+                'image' => $filename.".".$fileExtension,
                 'notes' => 'RPS Purchase',
                 'status' => 'pending',
             ]);

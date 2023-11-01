@@ -64,7 +64,7 @@
 
                                 <td x-data="{}">
                                     <button class="tw-p-2 tw-rounded-lg hover:tw-bg-gray-100"
-                                        x-on:click="viewReceipt('{{ asset("storage/$topup->image") }}')">
+                                        x-on:click="viewReceipt('{{ route("topup.image",$topup->image) }}')">
                                         {!! Mdi::mdi('receipt-text-outline', '', 20, ['fill' => '#555']) !!}
                                     </button>
                                 </td>

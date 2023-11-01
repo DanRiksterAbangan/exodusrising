@@ -12,7 +12,7 @@
                             fill="currentColor" />
                     </svg>
                 </span>
-                <input wire:model="search" type="text" wire:keydown.enter="searchData"
+                <input wire:model.live.debounce.500ms="search" type="text"
                     class="form-control form-control-solid  ps-14" placeholder="Search" />
             </div>
         </div>

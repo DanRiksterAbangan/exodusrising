@@ -1,8 +1,10 @@
 import './bootstrap';
 
 
+import Clipboard from "@ryangjchandler/alpine-clipboard"
 
 import Tagify from '@yaireo/tagify'
+Alpine.plugin(Clipboard)
 
 window.Tagify = Tagify;
 // window.io = io;

@@ -46,9 +46,9 @@
                         @forelse($giftcodes as $giftcode)
                             <tr>
                                 <td class="d-flex align-items-center">
-                                    <div class="d-flex flex-column">
+                                    <div class="d-flex flex-column" x-data="{}">
                                         <a href="#"
-                                            class="text-gray-800 text-hover-primary mb-1">{{ $giftcode->code }}</a>
+                                            class="text-gray-800 text-hover-primary mb-1"  x-clipboard="'{{$giftcode->code }}'">{{ $giftcode->code }}</a>
                                     </div>
                                 </td>
                                 <td>
