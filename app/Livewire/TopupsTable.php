@@ -45,6 +45,9 @@ class TopupsTable extends Component
             $topup->rps_amount = $amount;
             $topup->processed_by = $user->user_id;
             $topup->processed_date = now();
+            $topup->before_rps = $topup->user->Point;
+            $topup->user->increment("Point", $amount);
+            $topup->after_rps = $topup->user->Point;
             $topup->save();
             $lock->release();
             $lockCredits->release();

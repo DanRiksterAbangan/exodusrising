@@ -29,6 +29,7 @@
                             <th class="min-w-125px">Ref #</th>
                             <th class="min-w-125px">Username</th>
                             <th class="min-w-125px">Amount (RPS)</th>
+                            <th class="min-w-125px">Streamer Code</th>
                             <th class="min-w-125px">Status</th>
                             <th class="min-w-125px">Receipt</th>
                             <th class="min-w-125px">Processed By</th>
@@ -51,6 +52,19 @@
                                 <td>
                                     {{ number_format($topup->amount) }} <span
                                         class="badge badge-secondary">({{ number_format($topup->rps_amount) }})</span>
+                                </td>
+                                <td>
+                                    @if ($topup->streamer_code)
+                                    <div class="badge badge-success tw-cursor-pointer"
+                                        x-clipboard="'{{ $topup->streamer_code }}'">
+                                        {{ $topup->streamer_code }}
+                                    </div>
+                                    @else
+                                    <div class="badge badge-secondary tw-cursor-pointer">
+                                        -
+                                    </div>
+                                    @endif
+
                                 </td>
                                 <td>
                                     @if ($topup->status == 'pending')
@@ -131,9 +145,13 @@
         }
 
         function confirmApprove(data) {
+            let html = `<div>REF ID: ${data.ref_id}</div><div class="alert alert-primary tw-my-3 tw-relative">${data.rps_amount} RPS</div><div>USER: <span class="badge badge-primary">${data.user.login_id}</span></div>`;
+            if(data.streamer_code){
+                html = `<div>REF ID: ${data.ref_id}</div><div class='badge badge-success'>Streamer Code: <strong>${data.streamer_code}</strong> </div> <div class="alert alert-primary tw-my-3 tw-relative">${data.rps_amount} RPS</div><div>USER: <span class="badge badge-primary">${data.user.login_id}</span></div>`;
+            }
             Swal.fire({
                 title: 'Are you sure you wan to approve this topup?',
-                html: `<div>REF ID: ${data.ref_id}</div><div class="alert alert-primary tw-my-3 tw-relative">${data.rps_amount} RPS</div><div>USER: <span class="badge badge-primary">${data.user.login_id}</span></div>`,
+                html,
                 showCancelButton: true,
                 confirmButtonText: 'Yes, approve it!',
                 input: "number",

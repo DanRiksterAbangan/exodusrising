@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Streamer;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Computed;
@@ -21,12 +22,26 @@ class BuyRps extends Component
     protected $rules = [
         'amount' => 'required|numeric|min:100|max:100000',
         'image' => 'required|image|max:1024',
+        'streamerCode' => 'string|exists:streamers,code',
+    ];
+
+    protected $messages = [
+        'streamerCode.exists' => 'Streamer code not found.',
     ];
 
 
     #[Computed]
     public function EquivalentRPS(){
-        return number_format(floatval(($this->amount != "" ? $this->amount : 0) * 10));
+        return number_format(floatval(($this->amount != "" ? $this->amount : 0) * 10)* ($this->streamerCodeData ? (floatval($this->streamerCodeData->code_percentage) + 100) / 100 : 1)) ;
+    }
+
+
+    public function updatedStreamerCode(){
+        $this->streamerCodeData = null;
+        $this->validate([
+            'streamerCode' => 'string|exists:streamers,code',
+        ]);
+        $this->streamerCodeData = Streamer::with("user")->where("code", $this->streamerCode)->first();
     }
     public function buy() : void
     {
@@ -53,11 +68,14 @@ class BuyRps extends Component
             $topup = $user->topupTransactions()->create([
                 'ref_id' => 'REF-' . time(),
                 'amount' => $this->amount,
-                'rps_amount' => floatval(($this->amount != "" ? $this->amount : 0) * 10),
+                'rps_amount' => floatval(($this->amount != "" ? $this->amount : 0) * 10)* ($this->streamerCodeData ? (floatval($this->streamerCodeData->code_percentage) + 100) / 100 : 1),
                 'image' => $filename.".".$fileExtension,
                 'notes' => 'RPS Purchase',
                 'status' => 'pending',
+                'before_rps' => $user->Point,
+                'streamer_code' => $this->streamerCodeData ? $this->streamerCodeData->code : null,
             ]);
+
             $this->reset();
             $lock->release();
             // session()->flash('success', 'Topup submitted successfully.');

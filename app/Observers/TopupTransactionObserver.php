@@ -20,11 +20,7 @@ class TopupTransactionObserver
      */
     public function updated(TopupTransaction $topupTransaction): void
     {
-            if($topupTransaction->status == "approved"){
-                $topupTransaction->before_rps = $topupTransaction->user->Point;
-                $topupTransaction->user->increment("Point", $topupTransaction->rps_amount);
-                $topupTransaction->after_rps = $topupTransaction->user->Point;
-            }
+
     }
 
     /**
