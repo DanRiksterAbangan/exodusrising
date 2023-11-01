@@ -14,7 +14,8 @@ class BuyRps extends Component
     use WithFileUploads;
     public $amount;
     public $image;
-
+    public $streamerCode;
+    public $streamerCodeData;
     public $successMessage = '';
     public $pendingTopup = [];
     protected $rules = [

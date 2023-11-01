@@ -19,7 +19,7 @@
                             placeholder="Search" />
                     </div>
                     <div>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createGiftCodes">Create
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createGiftCodes">Create
                             Giftcode</button>
 
                     </div>

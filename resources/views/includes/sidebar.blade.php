@@ -126,6 +126,18 @@
                         </a>
                     </div>
 
+                    <div class="menu-item {{ Route::currentRouteName() == 'admin.streamers' ? 'show' : '' }}">
+                        <a class="menu-link" href="{{ route('admin.streamers') }}">
+                            <span class="menu-icon tw-text-white">
+                                {!! Mdi::mdi('account-group', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'admin.streamers' ? '#ffff' : '#fff5',
+                                ]) !!}
+                            </span>
+                            <span class="menu-title">Streamers</span>
+                        </a>
+                    </div>
+
+
                     <div class="menu-item {{ Route::currentRouteName() == 'admin.giftcodes' ? 'show' : '' }}">
                         <a class="menu-link" href="{{ route('admin.giftcodes') }}">
                             <span class="menu-icon tw-text-white">

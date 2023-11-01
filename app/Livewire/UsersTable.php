@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Streamer;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,8 +14,11 @@ class UsersTable extends Component
     public $search = "";
     public $limit = 50;
 
+    //banned
     public $bannedDays = 1;
     public $bannedReason = "Bad behavior";
+
+
     private $users = [];
 
     protected $queryString = ['search' => ['except'=>''],'limit','page' => ['except' => 1]];
@@ -27,6 +31,16 @@ class UsersTable extends Component
         $this->userData();
     }
 
+    public function updatedStreamerName(){
+        $this->validate([
+            "streamerName" => "required|unique:streamers,name"
+        ]);
+    }
+    public function updatedStreamerCode(){
+        $this->validate([
+            "streamerCode" => "required|unique:streamers,code"
+        ]);
+    }
 
     public function userDisconnect($user){
         $user->disconnect()->create([
@@ -35,7 +49,7 @@ class UsersTable extends Component
         ]);
     }
     public function userData(){
-        $this->users = User::with("characters","banned")->where(function ($q) {
+        $this->users = User::with('streamer',"characters","banned")->where(function ($q) {
                 $q->where("user_id", "like", "%" . $this->search . "%")
                     ->orWhere("Point", "like", "%$this->search%")
                     ->orWhere("login_id", "like", "%" . $this->search . "%")
@@ -61,6 +75,7 @@ class UsersTable extends Component
         }
 
     }
+
 
     public function banUser($userid){
         $nuser = User::with("banned")->where("user_id", $userid)->first();

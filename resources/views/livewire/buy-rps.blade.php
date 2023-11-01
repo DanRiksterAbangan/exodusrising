@@ -8,16 +8,28 @@
                             <div class="fs-5 fw-bold form-label mb-3">
                                 Amount
                             </div>
-                            <input wire:model.live.debounce.100="amount" type="number"
-                                class="form-control form-control-solid rounded-3" placeholder="Topup Amount">
+                            <div class="tw-flex tw-gap-2">
+                                <input wire:loading.attr="disabled" wire:model.live.debounce.100="amount" type="number"
+                                class="form-control form-control-solid rounded-3 tw-col-span-3" placeholder="Topup Amount">
+                                <div>
+                                    <input wire:loading.attr="disabled" wire:model.live.debounce.200="streamerCode" type="text" class="form-control form-control-solid rounded-3" placeholder="Streamer code">
+                                </div>
+                            </div>
                             @error('amount')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+                        @if($streamerCodeData)
+                        <div class="tw-bg-green-100 tw-p-5 tw-rounded-lg">
+                            CODE: {{ $streamerCodeData->code }} <br>
+                        </div>
+                        @endif
                         <div class=" mb-4 fv-row tw-text-gray-600">
                             <div>Equivalent RPS: <span class="badge badge-success">{{ $this->EquivalentRPS }}</span>
                             </div>
                         </div>
+
+
                         <div class="d-flex flex-column mb-5 fv-row rounded-3 p-7 border border-dashed border-gray-300">
                             <label class="form-check form-check-custom form-check-solid">
                                 <span class="form-check-label text-gray-600">
@@ -27,7 +39,7 @@
                                 </span>
                             </label>
                         </div>
-                        <button class="btn btn-primary tw-mt-4" type="submit">Submit</button>
+                        <button class="btn btn-primary tw-my-4" type="submit" wire:loading.attr="disabled">Submit</button>
                     </div>
                     <div class="col-md-6">
                         <div class="image-input image-input-outline tw-relative">

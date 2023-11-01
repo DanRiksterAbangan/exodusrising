@@ -120,6 +120,15 @@ class User extends Authenticatable
         return $this->roles()->where("role","superadmin")->first();
     }
 
+    public function isStreamer(){
+        return $this->roles()->where("role","streamer")->first();
+    }
+
+    public function streamer(){
+        return $this->hasOne(Streamer::class,"user_id","user_id");
+    }
+
+
 
 
 }

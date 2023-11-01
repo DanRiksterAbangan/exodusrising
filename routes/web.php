@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RohanAuthController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\StreamerController;
 use App\Http\Controllers\TopupController;
 use App\Http\Controllers\TracerController;
 use App\Http\Controllers\UserController;
@@ -39,6 +40,7 @@ Route::group(["middleware" => "auth"], function () {
 
 Route::group(["prefix"=>"admin","middleware"=>"admin"],function(){
         Route::get("/users",[UserController::class,"users"])->name("admin.users");
+        Route::get("/streamers",[StreamerController::class,"streamers"])->name("admin.streamers");
         Route::get("/users/{user}",[UserController::class,"user"])->name("admin.user");
         Route::get("/itemmall/additem",[ItemmallController::class,"addItemView"])->name("itemmall.additem");
         Route::get("/tracer",[TracerController::class,"tracer"])->name("admin.tracer");
