@@ -10,17 +10,10 @@
             <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10">
                 <div class="d-flex flex-center flex-column flex-lg-row-fluid">
                     <div class="w-lg-500px p-10">
-                        {{ $token }}
+                        @livewire('password-reset')
                     </div>
                 </div>
-                <div class="d-flex flex-center flex-wrap px-5">
-                    <div class="d-flex fw-semibold text-primary fs-base">
-                        <a href="https://keenthemes.com/" class="px-5" target="_blank">Terms</a>
-                        <a href="https://devs.keenthemes.com/" class="px-5" target="_blank">Plans</a>
-                        <a href="https://themes.getbootstrap.com/product/keen-the-ultimate-bootstrap-admin-theme/"
-                            class="px-5" target="_blank">Contact Us</a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

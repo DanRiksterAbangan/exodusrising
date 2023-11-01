@@ -11,7 +11,7 @@
         @endif
 
         <div class="fv-row mb-8">
-            <input type="text" placeholder="email" wire:model="email" name="email" autocomplete="off"
+            <input type="email" placeholder="Email" wire:model="email" name="email" autocomplete="off"
                 class="form-control bg-transparent" />
             @error('email')
                 <span class="text-danger">{{ $message }}</span>
