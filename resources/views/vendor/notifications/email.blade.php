@@ -40,7 +40,7 @@
 {{ $salutation }}
 @else
 @lang('Regards'),<br>
-Global Rohan
+Global Rohan 2
 @endif
 
 {{-- Subcopy --}}

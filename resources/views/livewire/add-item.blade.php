@@ -122,7 +122,7 @@
                      <!--begin::Col-->
                      <div class="col-lg-8 fv-row">
                          <textarea type="text" wire:model.live="description" class="form-control form-control-lg form-control-solid"
-                             placeholder="Item Description" value="Keenthemes"></textarea>
+                             placeholder="Item Description" value=""></textarea>
                          @error('description')
                              <span class="text-danger">{{ $message }}</span>
                          @enderror

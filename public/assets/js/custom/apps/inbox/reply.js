@@ -114,7 +114,7 @@ var KTAppInboxReply = function () {
         });
     }
 
-    // Init tagify 
+    // Init tagify
     const initTagify = (el) => {
         var inputElm = el;
 
@@ -222,7 +222,7 @@ var KTAppInboxReply = function () {
         }
     }
 
-    // Init quill editor 
+    // Init quill editor
     const initQuill = (el) => {
         var quill = new Quill('#kt_inbox_form_editor', {
             modules: {
@@ -260,14 +260,7 @@ var KTAppInboxReply = function () {
         var previewTemplate = previewNode.parentNode.innerHTML;
         previewNode.parentNode.removeChild(previewNode);
 
-        var myDropzone = new Dropzone(id, { // Make the whole body a dropzone
-            url: "https://preview.keenthemes.com/api/dropzone/void.php", // Set the url for your upload script location
-            parallelUploads: 20,
-            maxFilesize: 1, // Max filesize in MB
-            previewTemplate: previewTemplate,
-            previewsContainer: id + " .dropzone-items", // Define the container to display the previews
-            clickable: uploadButton // Define the element that should be used as click trigger to select files.
-        });
+
 
 
         myDropzone.on("addedfile", function (file) {

@@ -13,14 +13,7 @@
                         @livewire('login-form')
                     </div>
                 </div>
-                <div class="d-flex flex-center flex-wrap px-5">
-                    <div class="d-flex fw-semibold text-primary fs-base">
-                        <a href="https://keenthemes.com/" class="px-5" target="_blank">Terms</a>
-                        <a href="https://devs.keenthemes.com/" class="px-5" target="_blank">Plans</a>
-                        <a href="https://themes.getbootstrap.com/product/keen-the-ultimate-bootstrap-admin-theme/"
-                            class="px-5" target="_blank">Contact Us</a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

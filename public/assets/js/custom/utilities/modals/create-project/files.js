@@ -11,21 +11,7 @@ var KTModalCreateProjectFiles = function () {
 	// Private functions
 	var initForm = function() {
 		// Project logo
-		// For more info about Dropzone plugin visit:  https://www.dropzonejs.com/#usage
-		var myDropzone = new Dropzone("#kt_modal_create_project_files_upload", { 
-			url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
-            paramName: "file", // The name that will be used to transfer the file
-            maxFiles: 10,
-            maxFilesize: 10, // MB
-            addRemoveLinks: true,
-            accept: function(file, done) {
-                if (file.name == "justinbieber.jpg") {
-                    done("Naha, you don't.");
-                } else {
-                    done();
-                }
-            }
-		});  
+
 	}
 
 	var handleForm = function() {
@@ -33,7 +19,7 @@ var KTModalCreateProjectFiles = function () {
 			// Prevent default button action
 			e.preventDefault();
 
-			// Disable button to avoid multiple click 
+			// Disable button to avoid multiple click
 			nextButton.disabled = true;
 
 			// Show loading indication
@@ -46,10 +32,10 @@ var KTModalCreateProjectFiles = function () {
 
 				// Enable button
 				nextButton.disabled = false;
-				
+
 				// Go to next step
 				stepper.goNext();
-			}, 1500); 		
+			}, 1500);
 		});
 
 		previousButton.addEventListener('click', function () {

@@ -85,7 +85,7 @@ var KTCreateCampaign = function () {
 			// Prevent default button action
 			e.preventDefault();
 
-			// Disable button to avoid multiple click 
+			// Disable button to avoid multiple click
 			formSubmitButton.disabled = true;
 
 			// Show loading indication
@@ -221,21 +221,7 @@ var KTCreateCampaign = function () {
 			mode: "range"
 		});
 
-		// Init dropzone
-		var myDropzone = new Dropzone("#kt_modal_create_campaign_files_upload", {
-			url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
-			paramName: "file", // The name that will be used to transfer the file
-			maxFiles: 10,
-			maxFilesize: 10, // MB
-			addRemoveLinks: true,
-			accept: function(file, done) {
-				if (file.name == "wow.jpg") {
-					done("Naha, you don't.");
-				} else {
-					done();
-				}
-			}
-		});
+
 
 		// Handle campaign duration options
 		const allDuration = document.querySelector('#kt_modal_create_campaign_duration_all');
