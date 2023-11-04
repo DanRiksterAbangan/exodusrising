@@ -51,7 +51,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="badge badge-light fw-bold">{{ $streamer->user->login_id }}</div>
+                                    <div class="badge badge-light fw-bold">{{ $streamer->user?->login_id }}</div>
                                 </td>
                                 <td>
                                     <div  class="badge badge-light fw-bold">

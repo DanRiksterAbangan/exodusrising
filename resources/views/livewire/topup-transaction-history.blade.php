@@ -18,7 +18,7 @@
         </div>
         <table class="table align-middle table-row-bordered table-row-solid gy-4 gs-9">
             <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
-                <tr>
+                <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                     <th class="min-w-250px ps-9">Date</th>
                     <th class="min-w-150px px-0">Ref #</th>
                     <th class="min-w-150px px-0">Amount (RPS)</th>
