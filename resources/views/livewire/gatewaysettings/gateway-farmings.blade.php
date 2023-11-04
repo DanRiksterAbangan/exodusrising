@@ -45,6 +45,44 @@
         </div>
     </div>
 
+   <div class="tw-grid tw-gird-cols-2 sm:tw-grid-cols-4 tw-my-2 tw-gap-2">
+    <div>
+        <label for="">Min Armor</label>
+        <input type="text" class="form-control" placeholder="Min Armor" wire:model="farming.min_armor">
+    </div>
+    <div>
+        <label for="">Max Armor</label>
+        <input type="text" class="form-control" placeholder="Max Armor" wire:model="farming.max_armor">
+    </div>
+
+    <div>
+        <label for="">Min Weapon</label>
+        <input type="text" class="form-control" placeholder="Min Weapon" wire:model="farming.min_weapon">
+    </div>
+    <div>
+        <label for="">Max Weapon</label>
+        <input type="text" class="form-control" placeholder="Max Weapon" wire:model="farming.max_weapon">
+    </div>
+
+    <div>
+        <label for="">Min Weapon %</label>
+        <input type="text" class="form-control" placeholder="Min Weapon %" wire:model="farming.min_weapon_percent">
+    </div>
+    <div>
+        <label for="">Max Weapon %</label>
+        <input type="text" class="form-control" placeholder="Max Weapon %" wire:model="farming.max_weapon_percent">
+    </div>
+
+    <div>
+        <label for="">Min Acce</label>
+        <input type="text" class="form-control" placeholder="Min Acce" wire:model="farming.min_acce">
+    </div>
+    <div>
+        <label for="">Max Acce</label>
+        <input type="text" class="form-control" placeholder="Max Acce" wire:model="farming.max_acce">
+    </div>
+   </div>
+
     <div class="tw-my-4">
         <button class="btn btn-primary btn-sm" wire:click="saveFarming">Save Farming</button>
     </div>

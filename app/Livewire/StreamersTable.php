@@ -17,7 +17,7 @@ class StreamersTable extends Component
     public function getData(){
         $this->streamers = Streamer::with([
             "user"
-            ])->withSum('topups', 'amount')->where(function ($q) {
+            ])->withSum('claimableTopups', 'amount')->where(function ($q) {
             $q->where("name", "like", "%" . $this->search . "%")
                 ->orWhere("code", "like", "%$this->search%");
         })->latest("id")->paginate($this->limit);

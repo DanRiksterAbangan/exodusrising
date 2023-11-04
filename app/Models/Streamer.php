@@ -24,5 +24,9 @@ class Streamer extends Model
         return $this->hasMany(TopupTransaction::class, "streamer_code", "code");
     }
 
+    public function claimableTopups(){
+        return $this->topups()->where("claimed_by_streamer", false);
+    }
+
 
 }
