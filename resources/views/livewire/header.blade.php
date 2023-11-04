@@ -14,12 +14,12 @@
                 </span>
             </div>
         </div>
-        <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+        {{-- <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <a href="index.html" class="d-lg-none">
                 <img alt="Logo" src="assets/media/logos/default-small.svg" class="theme-light-show h-30px" />
                 <img alt="Logo" src="assets/media/logos/default-small-dark.svg" class="theme-dark-show h-30px" />
             </a>
-        </div>
+        </div> --}}
         <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
             <div class="app-header-menu app-header-mobile-drawer align-items-stretch">
                 <div
