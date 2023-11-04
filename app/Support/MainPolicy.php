@@ -11,10 +11,11 @@ class MainPolicy extends Basic
     public function configure()
     {
         parent::configure();
-
-        $this->addDirective(Directive::SCRIPT, 'self');
-        $this->addDirective(Directive::STYLE, 'self');
-        $this->addDirective(Directive::STYLE,'fonts.googleapis.com');
+        $this->addDirective(Directive::DEFAULT,'*.googleapis.com');
+        if (app()->environment('local')) {
+            $this->addDirective(Directive::SCRIPT, '127.0.0.1:5173');
+            $this->addDirective(Directive::STYLE, '127.0.0.1:5173');
+        }
         $this->addNonceForDirective(Directive::SCRIPT);
         $this->addNonceForDirective(Directive::STYLE);
 
