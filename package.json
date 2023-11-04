@@ -20,6 +20,8 @@
         "@ryangjchandler/alpine-clipboard": "^2.3.0",
         "@yaireo/tagify": "^4.17.9",
         "alpinejs": "^3.13.0",
+        "moment": "^2.29.4",
+        "numeral": "^2.0.6",
         "particles.js": "^2.0.0",
         "socket.io-client": "^2.3.0"
     }

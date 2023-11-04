@@ -30,6 +30,19 @@ class StreamersTable extends Component
             'message' => 'Streamer deleted successfully.'
         ]);
     }
+    public function payoutStreamer($id){
+        $streamer = Streamer::with('claimableTopups')->where("id", $id)->first();
+        if($streamer){
+            $commissionAmount = $streamer->claimableTopups->sum("amount")  * ($streamer->code_percentage / 100);
+            $streamer->claimableTopups()->update([
+                "claimed_by_streamer" => true
+            ]);
+            $this->dispatch('alert',[
+                'type' => 'success',
+                'message' => "Streamer payout successfully with amount ₱ ".number_format($commissionAmount,2)."."
+            ]);
+        }
+    }
 
     public function render()
     {

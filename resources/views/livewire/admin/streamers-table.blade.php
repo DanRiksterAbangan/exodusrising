@@ -64,7 +64,7 @@
                                     <div class="badge badge-light fw-bold">{{ $streamer->code_percentage }}</div>
                                 </td>
                                 <td>
-                                    <div class="badge badge-light fw-bold">{{ $streamer->topups_sum_amount * ($streamer->code_percentage / 100) }}</div>
+                                    <div class="badge badge-light fw-bold">{{ number_format($streamer->claimable_topups_sum_amount * ($streamer->code_percentage / 100),2) }}</div>
                                 </td>
                                 <td>
                                     @if ($streamer->is_active)
@@ -75,7 +75,7 @@
                                 </td>
 
                                 <td>
-                                    @if(($streamer->topups_sum_amount * ($streamer->code_percentage / 100)) > 0)
+                                    @if(($streamer->claimable_topups_sum_amount * ($streamer->code_percentage / 100)) > 0)
                                     <button class="btn btn-primary btn-sm tw-px-4 tw-py-2 tw-text-sm"
                                         x-on:click="payout({{ $streamer }})">Payout</button>
                                     @endif
@@ -140,13 +140,13 @@
 
         function payout(streamer){
             Swal.fire({
-                title: `Are you sure you want to Payout ${streamer.name} as streamer with amount (${streamer.topups_sum_amount * (streamer.code_percentage / 100)})?`,
+                title: `Are you sure you want to Payout ${streamer.name} as streamer with amount <strong>₱ ${window.numeral(streamer.claimable_topups_sum_amount * (streamer.code_percentage / 100)).format("0,0.00")}</strong>?`,
                 icon: 'info',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
                 showLoaderOnConfirm: true,
                 preConfirm: (data) => {
-                    return @this.removeAsStreamer(streamer)
+                    return @this.payoutStreamer(streamer)
                 },
                 allowOutsideClick: () => !Swal.isLoading(),
 

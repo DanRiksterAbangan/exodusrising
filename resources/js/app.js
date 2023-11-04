@@ -1,13 +1,13 @@
 import './bootstrap';
 
-
 import Clipboard from "@ryangjchandler/alpine-clipboard"
-
+import numeral from 'numeral';
 import Tagify from '@yaireo/tagify'
 Alpine.plugin(Clipboard)
 
 window.Tagify = Tagify;
 
+window.numeral = numeral;
 
 
 // window.io = io;

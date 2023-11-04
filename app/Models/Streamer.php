@@ -25,7 +25,7 @@ class Streamer extends Model
     }
 
     public function claimableTopups(){
-        return $this->topups()->where("claimed_by_streamer", false);
+        return $this->topups()->where("status","approved")->where("claimed_by_streamer", false);
     }
 
 
