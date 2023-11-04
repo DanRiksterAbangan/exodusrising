@@ -175,16 +175,18 @@
 
 
                     @if (auth()->user()->isSuperAdmin())
-                        <div class="menu-item {{ Route::currentRouteName() == 'telescope' ? 'show' : '' }}">
-                            <a class="menu-link" href="{{ route('telescope') }}">
-                                <span class="menu-icon tw-text-white">
-                                    {!! Mdi::mdi('telescope', 'tw-text-white', 20, [
-                                        'fill' => Route::currentRouteName() == 'telescope' ? '#ffff' : '#fff5',
-                                    ]) !!}
-                                </span>
-                                <span class="menu-title">Telescope</span>
-                            </a>
-                        </div>
+                        @if($this->app->environment('local'))
+                            <div class="menu-item {{ Route::currentRouteName() == 'telescope' ? 'show' : '' }}">
+                                <a class="menu-link" href="{{ route('telescope') }}">
+                                    <span class="menu-icon tw-text-white">
+                                        {!! Mdi::mdi('telescope', 'tw-text-white', 20, [
+                                            'fill' => Route::currentRouteName() == 'telescope' ? '#ffff' : '#fff5',
+                                        ]) !!}
+                                    </span>
+                                    <span class="menu-title">Telescope</span>
+                                </a>
+                            </div>
+                        @endif
                         <div class="menu-item {{ Route::currentRouteName() == 'admin.settings' ? 'show' : '' }}">
                             <a class="menu-link" href="{{ route('admin.settings') }}">
                                 <span class="menu-icon tw-text-white">
