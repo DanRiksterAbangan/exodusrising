@@ -123,7 +123,6 @@
 @push('scripts')
     <script>
         async function remove(streamer) {
-            const payoutAmount = await @this.getPayoutAmount(streamer)
             Swal.fire({
                 title: `Are you sure you want to remove ${streamer.name} as streamer ?`,
                 icon: 'warning',
