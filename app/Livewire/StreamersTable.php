@@ -15,7 +15,9 @@ class StreamersTable extends Component
     private $streamers = [];
 
     public function getData(){
-        $this->streamers = Streamer::with("user")->where(function ($q) {
+        $this->streamers = Streamer::with([
+            "user"
+            ])->withSum('topups', 'amount')->where(function ($q) {
             $q->where("name", "like", "%" . $this->search . "%")
                 ->orWhere("code", "like", "%$this->search%");
         })->latest("id")->paginate($this->limit);
@@ -28,6 +30,7 @@ class StreamersTable extends Component
             'message' => 'Streamer deleted successfully.'
         ]);
     }
+
     public function render()
     {
         $this->getData();

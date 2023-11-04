@@ -32,6 +32,7 @@
                             <th class="min-w-125px">USER NAME</th>
                             <th class="min-w-125px">STREAMER NAME</th>
                             <th class="min-w-125px">PERCENTAGE</th>
+                            <th class="min-w-125px">COMMISSIONS</th>
                             <th class="min-w-125px">STATUS</th>
                             <th class="min-w-125px">ACTION</th>
                         </tr>
@@ -63,6 +64,9 @@
                                     <div class="badge badge-light fw-bold">{{ $streamer->code_percentage }}</div>
                                 </td>
                                 <td>
+                                    <div class="badge badge-light fw-bold">{{ $streamer->topups_sum_amount * ($streamer->code_percentage / 100) }}</div>
+                                </td>
+                                <td>
                                     @if ($streamer->is_active)
                                         <div class="badge badge-success">Active</div>
                                     @else
@@ -71,8 +75,15 @@
                                 </td>
 
                                 <td>
+                                    @if(($streamer->topups_sum_amount * ($streamer->code_percentage / 100)) > 0)
+                                    <button class="btn btn-primary btn-sm tw-px-4 tw-py-2 tw-text-sm"
+                                        x-on:click="payout({{ $streamer }})">Payout</button>
+                                    @endif
+
+
                                     <button class="btn btn-danger btn-sm tw-px-4 tw-py-2 tw-text-sm"
                                         x-on:click="remove({{ $streamer }})">Remove</button>
+
                                 </td>
 
 
@@ -111,10 +122,26 @@
 
 @push('scripts')
     <script>
-        function remove(streamer) {
+        async function remove(streamer) {
+            const payoutAmount = await @this.getPayoutAmount(streamer)
             Swal.fire({
                 title: `Are you sure you want to remove ${streamer.name} as streamer ?`,
                 icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                showLoaderOnConfirm: true,
+                preConfirm: (data) => {
+                    return @this.removeAsStreamer(streamer)
+                },
+                allowOutsideClick: () => !Swal.isLoading(),
+
+            })
+        }
+
+        function payout(streamer){
+            Swal.fire({
+                title: `Are you sure you want to Payout ${streamer.name} as streamer with amount (${streamer.topups_sum_amount * (streamer.code_percentage / 100)})?`,
+                icon: 'info',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
                 showLoaderOnConfirm: true,
