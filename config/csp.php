@@ -1,4 +1,5 @@
 <?php
+use App\Support\MainPolicy;
 
 return [
 
@@ -6,7 +7,7 @@ return [
      * A policy will determine which CSP headers will be set. A valid CSP policy is
      * any class that extends `Spatie\Csp\Policies\Policy`
      */
-    'policy' => Spatie\Csp\Policies\Basic::class,
+    'policy' => MainPolicy::class,
 
     /*
      * This policy which will be put in report only mode. This is great for testing out
@@ -26,6 +27,12 @@ return [
      * Headers will only be added if this setting is set to true.
      */
     'enabled' => env('CSP_ENABLED', true),
+
+    'script-src' => [
+        'self',
+        'https://fonts.googleapis.com',
+        'https://custom-url.example.com', // Add your custom URL here
+    ],
 
     /*
      * The class responsible for generating the nonces used in inline tags and headers.
