@@ -175,7 +175,7 @@
 
 
                     @if (auth()->user()->isSuperAdmin())
-                        @if($this->app->environment('local'))
+                        @if(app()->environment('local'))
                             <div class="menu-item {{ Route::currentRouteName() == 'telescope' ? 'show' : '' }}">
                                 <a class="menu-link" href="{{ route('telescope') }}">
                                     <span class="menu-icon tw-text-white">
