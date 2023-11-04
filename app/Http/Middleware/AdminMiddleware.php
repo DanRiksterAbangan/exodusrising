@@ -16,8 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->user() && $request->user()->isAdmin())
-        return $next($request);
-        return abort(404);
+        if ($request->user() && ($request->user()->isAdmin() || $request->user()->isSuperAdmin())) {
+            return $next($request);
+        }
+            return abort(404);
     }
 }

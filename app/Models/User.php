@@ -65,9 +65,6 @@ class User extends Authenticatable
         return $this->hasManyThrough(Kill::class,Character::class,"user_id","pk_char_id","user_id","id");
     }
 
-    public function isAdmin(){
-        return $this->grade == 250;
-    }
     public function carts(){
         return $this->hasMany(Cart::class,"user_id","user_id");
     }
@@ -116,6 +113,15 @@ class User extends Authenticatable
         return $this->hasMany(Role::class,"user_id","user_id");
     }
 
+    public function getRoles(){
+        return $this->hasMany(Role::class,"user_id","user_id")->pluck("role");
+    }
+
+
+    public function isAdmin(){
+        return $this->roles()->where("role","admin")->first();
+    }
+
     public function isSuperAdmin(){
         return $this->roles()->where("role","superadmin")->first();
     }
@@ -126,6 +132,10 @@ class User extends Authenticatable
 
     public function streamer(){
         return $this->hasOne(Streamer::class,"user_id","user_id");
+    }
+
+    public function hadManagementAccess(){
+        return $this->roles()->whereIn("role", ["admin", "superadmin"])->exists();
     }
 
 

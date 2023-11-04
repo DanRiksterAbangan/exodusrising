@@ -106,7 +106,7 @@
                 </div>
 
                 @if (auth()->check() &&
-                        auth()->user()->isAdmin())
+                        (auth()->user()->hadManagementAccess()))
                     <div class="menu-item pt-5">
                         <div class="menu-content">
                             <span class="menu-heading fw-bold text-uppercase fs-7">Administration</span>
