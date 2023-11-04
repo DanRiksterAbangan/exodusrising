@@ -34,7 +34,7 @@
                             <th class="min-w-125px">ACTION</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 fw-semibold" wire:loading.remove wire:target="searchData">
+                    <tbody class="text-gray-600 fw-semibold" wire:loading.remove>
                         @forelse($users as $user)
                             <tr>
                                 <td class="d-flex align-items-center">
