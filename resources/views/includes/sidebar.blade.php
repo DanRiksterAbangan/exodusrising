@@ -113,6 +113,16 @@
                         </div>
                     </div>
 
+                    <div class="menu-item {{ Route::currentRouteName() == 'admin.dashboard' ? 'show' : '' }}">
+                        <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                            <span class="menu-icon tw-text-white">
+                                {!! Mdi::mdi('view-dashboard', 'tw-text-white', 20, [
+                                    'fill' => Route::currentRouteName() == 'admin.dashboard' ? '#ffff' : '#fff5',
+                                ]) !!}
+                            </span>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </div>
 
 
                     <div class="menu-item {{ Route::currentRouteName() == 'admin.users' ? 'show' : '' }}">

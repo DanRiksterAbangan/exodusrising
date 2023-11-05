@@ -2,6 +2,7 @@
 
 use App\Events\SampleEvent;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GatewayController;
 use App\Http\Controllers\GiftCodeController;
 use App\Http\Controllers\ItemmallController;
@@ -46,6 +47,7 @@ Route::group(["prefix"=>"admin","middleware"=>"admin"],function(){
         Route::get("/tracer",[TracerController::class,"tracer"])->name("admin.tracer");
         Route::get("/topups",[TopupController::class,"topupList"])->name("admin.topups");
         Route::get("/giftcodes",[GiftCodeController::class,"giftcodes"])->name("admin.giftcodes");
+        Route::get("/dashboard",[DashboardController::class,"dashboard"])->name("admin.dashboard");
 
         Route::group(["middleware" => "super-admin"], function () {
             Route::get("/settings",[SettingsController::class,"settings"])->name("admin.settings");
