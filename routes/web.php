@@ -3,6 +3,7 @@
 use App\Events\SampleEvent;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\GatewayController;
 use App\Http\Controllers\GiftCodeController;
 use App\Http\Controllers\ItemmallController;
@@ -38,6 +39,7 @@ Route::group(["middleware" => "auth"], function () {
 
     Route::get("/upload/topups/{image}",[TopupController::class,"topupImage"])->name("topup.image");
     Route::get("/topup",[TopupController::class,"topup"])->name("topup");
+    Route::get("/download",[DownloadController::class,"download"])->name("download");
 
 Route::group(["prefix"=>"admin","middleware"=>"admin"],function(){
         Route::get("/users",[UserController::class,"users"])->name("admin.users");

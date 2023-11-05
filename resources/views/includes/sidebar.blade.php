@@ -2,9 +2,8 @@
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px"
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
     <div class="app-sidebar-logo px-6 tw-bg-slate-900" id="kt_app_sidebar_logo">
-        <a href="/" >
-            <img alt="Logo" src="{{ asset('assets/media/logos/main.png') }}"
-                class="h-90px" />
+        <a href="/">
+            <img alt="Logo" src="{{ asset('assets/media/logos/main.png') }}" class="h-90px" />
         </a>
         <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-sm h-30px w-30px rotate "
             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
@@ -106,7 +105,7 @@
                 </div>
 
                 @if (auth()->check() &&
-                        (auth()->user()->hasManagementAccess()))
+                        auth()->user()->hasManagementAccess())
                     <div class="menu-item pt-5">
                         <div class="menu-content">
                             <span class="menu-heading fw-bold text-uppercase fs-7">Administration</span>
@@ -185,7 +184,7 @@
 
 
                     @if (auth()->user()->isSuperAdmin())
-                        @if(app()->environment('local'))
+                        @if (app()->environment('local'))
                             <div class="menu-item {{ Route::currentRouteName() == 'telescope' ? 'show' : '' }}">
                                 <a class="menu-link" href="{{ route('telescope') }}">
                                     <span class="menu-icon tw-text-white">
@@ -257,5 +256,18 @@
 
             </div>
         </div>
+    </div>
+
+
+    <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6 tw-bg-slate-900" id="kt_app_sidebar_footer">
+        <a href="{{ route('download') }}"
+            class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100"
+            data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click"
+            data-bs-original-title="200+ in-house components and 3rd-party plugins" data-kt-initialized="1">
+
+            <span class="btn-label">
+                Download
+            </span>
+        </a>
     </div>
 </div>
