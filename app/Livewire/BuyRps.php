@@ -21,7 +21,7 @@ class BuyRps extends Component
     public $pendingTopup = [];
     protected $rules = [
         'amount' => 'required|numeric|min:100|max:100000',
-        'image' => 'required|image|max:1024',
+        'image' => 'required|image|mimes:jpeg,png||max:1024',
         'streamerCode' => 'string|exists:streamers,code',
     ];
 
@@ -56,6 +56,12 @@ class BuyRps extends Component
         if ($lock->get()) {
             if($user->pendingTopupTransactions->count()){
                 session()->flash('warning', 'You have pending topup request.');
+                $lock->release();
+                return;
+            }
+            $imageInfo = getimagesize($this->image);
+            if ($imageInfo === false) {
+                session()->flash('warning', 'Image not valid please specify .png or .jpg image format.');
                 $lock->release();
                 return;
             }
