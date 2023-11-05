@@ -202,6 +202,8 @@
                             <span>
                                 @if (auth()->user()->isAdmin())
                                     <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Admin</span>
+                                @elseif (auth()->user()->isSuperAdmin())
+                                <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Super-Admin</span>
                                 @else
                                     <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Normal</span>
                                 @endif
