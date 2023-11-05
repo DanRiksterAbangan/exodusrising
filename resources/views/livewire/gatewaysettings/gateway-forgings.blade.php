@@ -83,15 +83,69 @@
         var uniquearmor = document.querySelector("#uniquearmor")
         var ancientarmor = document.querySelector("#ancientarmor")
 
-        rareweaptagify = new Tagify(rareweap);
-        uniqueweaptagify = new Tagify(uniqueweap);
-        ancientweaptagify = new Tagify(ancientweap);
-        rareshieldtagify = new Tagify(rareshield);
-        uniqueshieldtagify = new Tagify(uniqueshield);
-        ancientshieldtagify = new Tagify(ancientshield);
-        rarearmortagify = new Tagify(rarearmor);
-        uniquearmortagify = new Tagify(uniquearmor);
-        ancientarmortagify = new Tagify(ancientarmor);
+        rareweaptagify = new Tagify(rareweap,{
+        callbacks: {
+            "remove": (e) => {
+                @this.rareweapons = JSON.stringify(rareweaptagify.value.map(x => x.value))
+            },
+        }
+        });
+        uniqueweaptagify = new Tagify(uniqueweap,{
+        callbacks: {
+            "remove": (e) => {
+                @this.uniqueweapons = JSON.stringify(uniqueweaptagify.value.map(x => x.value))
+            },
+        }
+        });
+        ancientweaptagify = new Tagify(ancientweap,{
+        callbacks: {
+            "remove": (e) => {
+                @this.ancientweapons = JSON.stringify(ancientweaptagify.value.map(x => x.value))
+            },
+        }
+        });
+        rareshieldtagify = new Tagify(rareshield,{
+        callbacks: {
+            "remove": (e) => {
+                @this.rareshields = JSON.stringify(rareshieldtagify.value.map(x => x.value))
+            },
+        }
+        });
+        uniqueshieldtagify = new Tagify(uniqueshield,{
+        callbacks: {
+            "remove": (e) => {
+                @this.uniqueshields = JSON.stringify(uniqueshieldtagify.value.map(x => x.value))
+            },
+        }
+        });
+        ancientshieldtagify = new Tagify(ancientshield,{
+        callbacks: {
+            "remove": (e) => {
+                @this.ancientshields = JSON.stringify(ancientshieldtagify.value.map(x => x.value))
+            },
+        }
+        });
+        rarearmortagify = new Tagify(rarearmor,{
+        callbacks: {
+            "remove": (e) => {
+                @this.rarearmors = JSON.stringify(rarearmortagify.value.map(x => x.value))
+            },
+        }
+        });
+        uniquearmortagify = new Tagify(uniquearmor,{
+        callbacks: {
+            "remove": (e) => {
+                @this.uniquearmors = JSON.stringify(uniquearmortagify.value.map(x => x.value))
+            },
+        }
+        });
+        ancientarmortagify = new Tagify(ancientarmor,{
+        callbacks: {
+            "remove": (e) => {
+                @this.ancientarmors = JSON.stringify(ancientarmortagify.value.map(x => x.value))
+            },
+        }
+        });
 
         rareweap.addEventListener('change', onChangeRareWeap)
         uniqueweap.addEventListener('change', onChangeUniqueWeap)
@@ -105,7 +159,6 @@
 
         function onChangeRareWeap(e) {
             if (e.target.value) {
-                console.log(JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
                 @this.rareweapons = JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
@@ -154,6 +207,7 @@
 
         function onChangeAncientArmor(e) {
             if (e.target.value) {
+                console.log(JSON.stringify(JSON.parse(e.target.value).map(x => x.value)))
                 @this.ancientarmors = JSON.stringify(JSON.parse(e.target.value).map(x => x.value))
             }
         }
