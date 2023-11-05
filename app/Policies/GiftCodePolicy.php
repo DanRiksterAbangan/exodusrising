@@ -29,7 +29,7 @@ class GiftCodePolicy
      */
     public function create(User $user): bool
     {
-        return $user->isAdmin();
+        return $user->isAdmin() != null || $user->isSuperAdmin() != null;
     }
 
     /**
@@ -37,7 +37,7 @@ class GiftCodePolicy
      */
     public function update(User $user, GiftCode $giftCode): bool
     {
-        return $user->isAdmin();
+        return  $user->isAdmin() != null || $user->isSuperAdmin() != null;
     }
 
     /**
@@ -46,7 +46,7 @@ class GiftCodePolicy
     public function delete(User $user, GiftCode $giftCode): bool
     {
 
-        return $user->isAdmin() && $giftCode->claimed_by == null;
+        return ($user->isAdmin() || $user->isSuperAdmin()) && $giftCode->claimed_by == null;
     }
 
     /**
@@ -54,7 +54,7 @@ class GiftCodePolicy
      */
     public function restore(User $user, GiftCode $giftCode): bool
     {
-        return $user->isAdmin();
+        return  $user->isAdmin() != null || $user->isSuperAdmin() != null;
     }
 
     /**
@@ -62,6 +62,6 @@ class GiftCodePolicy
      */
     public function forceDelete(User $user, GiftCode $giftCode): bool
     {
-        return $user->isAdmin() && $giftCode->claimed_by == null;
+        return   ($user->isAdmin() || $user->isSuperAdmin()) && $giftCode->claimed_by == null;
     }
 }
