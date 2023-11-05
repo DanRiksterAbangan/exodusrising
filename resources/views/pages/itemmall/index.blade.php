@@ -22,7 +22,7 @@
                     </div>
                     <div>
                         @if (auth()->check() &&
-                                auth()->user()->isAdmin())
+                                auth()->user()->hasManagementAccess())
                             <div class="d-flex align-items-center gap-2 gap-lg-3">
                                 <div class="d-flex">
                                     <a href="{{ route('itemmall.additem') }}"
