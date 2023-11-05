@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\GiftCode;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class GiftCodePolicy
 {
@@ -29,7 +28,8 @@ class GiftCodePolicy
      */
     public function create(User $user): bool
     {
-        return $user->isAdmin() != null || $user->isSuperAdmin() != null;
+
+        return $user->hasManagementAccess();
     }
 
     /**
@@ -37,7 +37,7 @@ class GiftCodePolicy
      */
     public function update(User $user, GiftCode $giftCode): bool
     {
-        return  $user->isAdmin() != null || $user->isSuperAdmin() != null;
+        return  $user->hasManagementAccess();
     }
 
     /**
@@ -46,7 +46,7 @@ class GiftCodePolicy
     public function delete(User $user, GiftCode $giftCode): bool
     {
 
-        return ($user->isAdmin() || $user->isSuperAdmin()) && $giftCode->claimed_by == null;
+        return $user->hasManagementAccess() && $giftCode->claimed_by == null;
     }
 
     /**
@@ -54,7 +54,7 @@ class GiftCodePolicy
      */
     public function restore(User $user, GiftCode $giftCode): bool
     {
-        return  $user->isAdmin() != null || $user->isSuperAdmin() != null;
+        return  $user->hasManagementAccess();
     }
 
     /**
@@ -62,6 +62,6 @@ class GiftCodePolicy
      */
     public function forceDelete(User $user, GiftCode $giftCode): bool
     {
-        return   ($user->isAdmin() || $user->isSuperAdmin()) && $giftCode->claimed_by == null;
+        return   $user->hasManagementAccess() && $giftCode->claimed_by == null;
     }
 }

@@ -37,7 +37,7 @@ class TopupTransactionPolicy
      */
     public function update(User $user, TopupTransaction $topupTransaction): bool
     {
-       return $user->isAdmin() && $topupTransaction->status == "pending";
+       return $user->hasManagementAccess() && $topupTransaction->status == "pending";
     }
 
     /**

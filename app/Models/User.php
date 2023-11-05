@@ -134,7 +134,7 @@ class User extends Authenticatable
         return $this->hasOne(Streamer::class,"user_id","user_id");
     }
 
-    public function hadManagementAccess(){
+    public function hasManagementAccess(){
         return $this->roles()->whereIn("role", ["admin", "superadmin"])->exists();
     }
 
