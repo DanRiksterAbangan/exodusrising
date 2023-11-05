@@ -59,12 +59,6 @@ class BuyRps extends Component
                 $lock->release();
                 return;
             }
-            $imageInfo = getimagesize($this->image);
-            if ($imageInfo === false) {
-                session()->flash('warning', 'Image not valid please specify .png or .jpg image format.');
-                $lock->release();
-                return;
-            }
             //hash file name to prevent duplicate
             $filename = Ulid::generate()."_".time();
             $fileExtension = $this->image->getClientOriginalExtension();
