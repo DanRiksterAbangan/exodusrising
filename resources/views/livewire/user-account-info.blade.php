@@ -9,17 +9,27 @@
 
         <div>
             <div class="tw-flex tw-items-center">
-                <span class="tw-text-lg tw-font-semibold tw-text-gray-500">
+              <div>
+                <div class="tw-text-gray-500">Name:</div>
+                <span class="tw-text-lg tw-font-semibold tw-text-gray-700">
                     {{ $user->name }}</span>
+              </div>
             </div>
 
             <div class="tw-flex tw-items-center">
-                <span class="tw-text-lg tw-font-semibold tw-text-gray-500">
+                <div>
+                    <div class="tw-text-gray-500">Email</div>
+                <span class="tw-text-lg tw-font-semibold tw-text-gray-700">
                     {{ $user->email }}</span>
+                </div>
             </div>
-            <div class="tw-flex tw-items-center">
-                <span class="tw-italic tw-text-base tw-text-gray-500">
-                    {{ $user->login_id }}#{{ $user->user_id }}</span>
+            <div class="tw-flex tw-items-center tw-my-2">
+                <div>
+                    <div class="tw-text-gray-500">Login ID:</div>
+                    <span class="tw-italic tw-font-semibold tw-text-gray-700">
+                        {{ $user->login_id }}</span>
+                </div>
+
             </div>
         </div>
 
