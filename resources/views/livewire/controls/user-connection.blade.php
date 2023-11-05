@@ -14,8 +14,8 @@
                                     fill="currentColor" />
                             </svg>
                         </span>
-                        <input wire:loading.attr="disabled" wire:model="search" type="text"
-                            wire:keydown.enter="searchData" class="form-control form-control-solid w-250px ps-14"
+                        <input wire:loading.attr="disabled" wire:model.live.debounce.500="search" type="text"
+                            class="form-control form-control-solid w-250px ps-14"
                             placeholder="Search" />
                     </div>
 

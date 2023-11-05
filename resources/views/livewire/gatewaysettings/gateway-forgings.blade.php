@@ -84,6 +84,7 @@
         var ancientarmor = document.querySelector("#ancientarmor")
 
         rareweaptagify = new Tagify(rareweap,{
+            delimiters : ",| |:|[\\n\\r]",
         callbacks: {
             "remove": (e) => {
                 @this.rareweapons = JSON.stringify(rareweaptagify.value.map(x => x.value))
@@ -91,6 +92,7 @@
         }
         });
         uniqueweaptagify = new Tagify(uniqueweap,{
+            delimiters : ",| |:|[\\n\\r]",
         callbacks: {
             "remove": (e) => {
                 @this.uniqueweapons = JSON.stringify(uniqueweaptagify.value.map(x => x.value))
@@ -98,6 +100,7 @@
         }
         });
         ancientweaptagify = new Tagify(ancientweap,{
+            delimiters : ",| |:|[\\n\\r]",
         callbacks: {
             "remove": (e) => {
                 @this.ancientweapons = JSON.stringify(ancientweaptagify.value.map(x => x.value))
@@ -105,6 +108,7 @@
         }
         });
         rareshieldtagify = new Tagify(rareshield,{
+            delimiters : ",| |:|[\\n\\r]",
         callbacks: {
             "remove": (e) => {
                 @this.rareshields = JSON.stringify(rareshieldtagify.value.map(x => x.value))
@@ -112,6 +116,7 @@
         }
         });
         uniqueshieldtagify = new Tagify(uniqueshield,{
+            delimiters : ",| |:|[\\n\\r]",
         callbacks: {
             "remove": (e) => {
                 @this.uniqueshields = JSON.stringify(uniqueshieldtagify.value.map(x => x.value))
@@ -119,6 +124,7 @@
         }
         });
         ancientshieldtagify = new Tagify(ancientshield,{
+            delimiters : ",| |:|[\\n\\r]",
         callbacks: {
             "remove": (e) => {
                 @this.ancientshields = JSON.stringify(ancientshieldtagify.value.map(x => x.value))
@@ -126,6 +132,7 @@
         }
         });
         rarearmortagify = new Tagify(rarearmor,{
+            delimiters : ",| |:|[\\n\\r]",
         callbacks: {
             "remove": (e) => {
                 @this.rarearmors = JSON.stringify(rarearmortagify.value.map(x => x.value))
@@ -133,6 +140,7 @@
         }
         });
         uniquearmortagify = new Tagify(uniquearmor,{
+            delimiters : ",| |:|[\\n\\r]",
         callbacks: {
             "remove": (e) => {
                 @this.uniquearmors = JSON.stringify(uniquearmortagify.value.map(x => x.value))
@@ -140,6 +148,7 @@
         }
         });
         ancientarmortagify = new Tagify(ancientarmor,{
+            delimiters : ",| |:|[\\n\\r]",
         callbacks: {
             "remove": (e) => {
                 @this.ancientarmors = JSON.stringify(ancientarmortagify.value.map(x => x.value))

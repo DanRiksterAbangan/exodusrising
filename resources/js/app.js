@@ -3,11 +3,15 @@ import './bootstrap';
 import Clipboard from "@ryangjchandler/alpine-clipboard"
 import numeral from 'numeral';
 import Tagify from '@yaireo/tagify'
+import moment from 'moment-timezone';
 Alpine.plugin(Clipboard)
 
 window.Tagify = Tagify;
 
 window.numeral = numeral;
+window.getLocalDateTime = function (time) {
+    return moment(time).tz(moment.tz.guess());
+}
 
 
 // window.io = io;

@@ -14,14 +14,12 @@ class UserConnection extends Component
     public $search;
 
     public $connectionMessage = "";
-    public function mount(){
-
-    }
 
 
     public function getUserLogin(){
       $this->userLogins =  PlayerConnection::where(function ($q) {
             $q->where("machine_id", "like", "%$this->search%")
+                ->orWhere("pcode", "LIKE", "%$this->search%")
                 ->orWhere("login_id", "like", "%$this->search%")
                 ->orWhere("character_name", "like", "%$this->search%")
                 ->orWhere("remote_address", "like", "%$this->search%");
