@@ -201,8 +201,8 @@
         $(document).ready(function() {
 
             Livewire.on('buy_response', response => {
+                $("#checkout-items-modal").modal('hide');
                 if (response[0] && response[0].success) {
-                    $("#checkout-items-modal").modal('hide');
                     Swal.fire(
                         'Success',
                         response[0].message,
