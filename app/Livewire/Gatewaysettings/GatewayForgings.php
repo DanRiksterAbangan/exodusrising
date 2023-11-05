@@ -33,7 +33,18 @@ class GatewayForgings extends Component
         $ancientarmors = collect(json_decode($this->ancientarmors))->map(fn($item) => ['main_category' => 'armor', 'category' => 'ancient', 'item_type' => $item])->toArray();
 
         GatewayForging::truncate();
-        GatewayForging::insert(array_merge($rareweapons,$uniqueweapons,$ancientweapons,$rareshields,$uniqueshields,$ancientshields,$rarearmors,$uniquearmors,$ancientarmors));
+        GatewayForging::insert(array_merge($rareweapons));
+        GatewayForging::insert(array_merge($uniqueweapons));
+        GatewayForging::insert(array_merge($ancientweapons));
+
+        GatewayForging::insert(array_merge($rareshields));
+        GatewayForging::insert(array_merge($uniqueshields));
+        GatewayForging::insert(array_merge($ancientshields));
+
+        GatewayForging::insert(array_merge($rarearmors));
+        GatewayForging::insert(array_merge($uniquearmors));
+        GatewayForging::insert(array_merge($ancientarmors));
+
         $this->sendUpdateToGateway();
        $this->dispatch('alert', ['type' => 'success', 'message' => 'Forging settings updated successfully!']);
     }
