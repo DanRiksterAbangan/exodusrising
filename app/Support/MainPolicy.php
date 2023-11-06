@@ -11,15 +11,15 @@ class MainPolicy extends Basic
     public function configure()
     {
         parent::configure();
-        $this->addDirective(Directive::STYLE,' fonts.googleapis.com');
-        $this->addDirective(Directive::FONT,'data:');
-        $this->addDirective(Directive::FONT,'fonts.gstatic.com');
-        $this->addDirective(Directive::FONT,'self');
-        $this->addDirective(Directive::STYLE,'self');
-        $this->addDirective(Directive::SCRIPT,'self');
+        $this->addDirective(Directive::STYLE, ' fonts.googleapis.com')
+            ->addDirective(Directive::STYLE, ' fonts.gstatic.com')
+            ->addDirective(Directive::FONT, ' fonts.gstatic.com/s/')
+            ->addDirective(Directive::FONT, ' data:');
         if (app()->environment('local')) {
             $this->addDirective(Directive::SCRIPT, '127.0.0.1:5173');
-            $this->addDirective(Directive::STYLE, '127.0.0.1:5173');
+            $this->addDirective(Directive::STYLE, '127.0.0.1:5173')
+            ->addDirective(Directive::FONT, 'self')
+            ->addDirective(Directive::SCRIPT,['http://gc.kis.v2.scr.kaspersky-labs.com']);
         }
 
 

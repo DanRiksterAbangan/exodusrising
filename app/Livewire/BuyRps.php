@@ -15,14 +15,14 @@ class BuyRps extends Component
     use WithFileUploads;
     public $amount;
     public $image;
-    public $streamerCode;
+    public $streamerCode = "";
     public $streamerCodeData;
     public $successMessage = '';
     public $pendingTopup = [];
     protected $rules = [
         'amount' => 'required|numeric|min:100|max:100000',
         'image' => 'required|image|mimes:jpeg,png||max:1024',
-        'streamerCode' => 'string|exists:streamers,code',
+        'streamerCode' => 'exists:streamers,code',
     ];
 
     protected $messages = [
@@ -61,9 +61,8 @@ class BuyRps extends Component
             }
             //hash file name to prevent duplicate
             $filename = Ulid::generate()."_".time();
-            $fileExtension = $this->image->getClientOriginalExtension();
+            $fileExtension = $this->image->extension();
             $this->image->storeAs("/upload/topups", $filename.".".$fileExtension, "local");
-
 
             $topup = $user->topupTransactions()->create([
                 'ref_id' => 'REF-' . time(),
