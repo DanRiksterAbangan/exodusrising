@@ -12,7 +12,16 @@
             </div>
 
 
-            @livewire('Controls.user-connection')
+
+            <div class="app-content flex-column-fluid">
+                <div class="app-container container-xxl">
+                    <div class="card">
+                        <div class="card-header border-0 pt-6">
+                            @livewire('Controls.user-connection')
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

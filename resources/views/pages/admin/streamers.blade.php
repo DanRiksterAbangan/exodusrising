@@ -11,7 +11,16 @@
                 </div>
             </div>
 
-            @livewire('streamers-table')
+            <div class="app-content flex-column-fluid">
+                <div class="app-container container-xxl">
+                    <div class="card">
+                        <div class="card-header border-0 pt-6">
+                            @livewire('streamers-table')
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection

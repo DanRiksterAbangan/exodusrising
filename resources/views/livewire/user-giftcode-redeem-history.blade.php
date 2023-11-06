@@ -17,7 +17,7 @@
             </div>
         </div>
         <table class="table align-middle table-row-bordered table-row-solid gy-4 gs-9">
-            <thead>
+            <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
                 <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
 
                     <th class="min-w-125px">CODE</th>

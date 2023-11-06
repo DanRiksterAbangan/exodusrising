@@ -5,15 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Rohan 2</title>
+    <title>Global Rohan S2</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-    <link rel="stylesheet" href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}">
-    <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link nonce="{{ csp_nonce() }}" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <link nonce="{{ csp_nonce() }}" rel="stylesheet"
+        href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}">
+    <link nonce="{{ csp_nonce() }}" href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link nonce="{{ csp_nonce() }}" href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet"
+        type="text/css" />
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
-    @livewireStyles
+    @livewireStyles(['nonce' => csp_nonce()])
 
 </head>
 
@@ -54,7 +58,7 @@
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     @stack('scripts');
-    @livewireScripts
+    @livewireScripts(['nonce' => csp_nonce()])
 
 </body>
 
