@@ -62,6 +62,12 @@ class BuyRps extends Component
             //hash file name to prevent duplicate
             $filename = Ulid::generate()."_".time();
             $fileExtension = $this->image->extension();
+            if (!in_array($fileExtension, ['jpg', 'jpeg', 'png'])) {
+                session()->flash('warning', 'Invalid file type. Upload image .jpg, .jpeg, .png only.');
+                $lock->release();
+                return;
+            }
+
             $this->image->storeAs("/upload/topups", $filename.".".$fileExtension, "local");
 
             $topup = $user->topupTransactions()->create([
