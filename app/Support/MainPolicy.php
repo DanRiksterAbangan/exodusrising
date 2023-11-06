@@ -12,13 +12,14 @@ class MainPolicy extends Basic
     {
         parent::configure();
         $this->addDirective(Directive::STYLE, 'fonts.googleapis.com')
-        ->addDirective(Directive::STYLE, 'fonts.gstatic.com')
-        ->addDirective(Directive::FONT, 'fonts.gstatic.com/s/')
-        ->addDirective(Directive::FONT, 'data:')
-        ->addDirective(Directive::FONT, 'self')
-        ->addDirective(Directive::STYLE, ['self','unsafe-inline'])
-        ->addDirective(Directive::SCRIPT, ['self','unsafe-eval'])
-        ->addDirective(Directive::SCRIPT,['self','unsafe-inline']);
+            ->addDirective(Directive::STYLE, 'fonts.gstatic.com')
+            ->addDirective(Directive::FONT, 'fonts.gstatic.com/s/')
+            ->addDirective(Directive::FONT, 'data:')
+            ->addDirective(Directive::FONT, 'self')
+            ->addDirective(Directive::STYLE, ['self', 'unsafe-inline'])
+            ->addDirective(Directive::SCRIPT, ['self', 'unsafe-eval'])
+            ->addDirective(Directive::SCRIPT, ['self', 'unsafe-inline'])
+            ->addDirective(Directive::IMG, 'data:');
         // if (app()->environment('local')) {
         //     $this->addDirective(Directive::SCRIPT, '127.0.0.1:5173');
         //     $this->addDirective(Directive::STYLE, '127.0.0.1:5173')
