@@ -65,7 +65,7 @@
 </div>
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         $(document).ready(function() {
             $('.form-select').select2();
             $('.form-select').on('change', function(e) {

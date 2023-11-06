@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('scripts')
-    <script src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
+    <script nonce="{{ csp_nonce() }}" src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
 @endpush
 
 @section('section')

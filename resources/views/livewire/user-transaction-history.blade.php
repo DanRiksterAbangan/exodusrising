@@ -66,5 +66,5 @@
 
 
 @push('scripts')
-    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+    <script nonce="{{ csp_nonce() }}" src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 @endpush

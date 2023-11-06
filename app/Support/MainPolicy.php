@@ -16,11 +16,13 @@ class MainPolicy extends Basic
         ->addDirective(Directive::FONT, ' fonts.gstatic.com/s/')
         ->addDirective(Directive::FONT, ' data:')
         ->addDirective(Directive::FONT, 'self')
-        ->addDirective(Directive::SCRIPT,'unsafe-eval unsafe-inline');
+        ->addDirective(Directive::STYLE, 'self')
+        ->addDirective(Directive::SCRIPT, ['self','unsafe-eval'])
+        ->addDirective(Directive::SCRIPT,['self','unsafe-inline']);
         if (app()->environment('local')) {
             $this->addDirective(Directive::SCRIPT, '127.0.0.1:5173');
             $this->addDirective(Directive::STYLE, '127.0.0.1:5173')
-            ->addDirective(Directive::FONT, 'self');
+                ->addDirective(Directive::FONT, 'self');
         }
     }
 }

@@ -32,7 +32,7 @@
 
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         $(document).ready(function() {
             Livewire.on('alert', response => {
                 Swal.fire(

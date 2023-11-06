@@ -19,7 +19,8 @@
                             placeholder="Search" />
                     </div>
                     <div>
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createGiftCodes">Create
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#createGiftCodes">Create
                             Giftcode</button>
 
                     </div>
@@ -42,13 +43,13 @@
                             <th class="min-w-125px">ACTION</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 fw-semibold" wire:loading.remove wire:target="searchData">
+                    <tbody class="text-gray-600 fw-semibold" wire:loading.remove>
                         @forelse($giftcodes as $giftcode)
                             <tr>
                                 <td class="d-flex align-items-center">
                                     <div class="d-flex flex-column" x-data="{}">
-                                        <a href="#"
-                                            class="text-gray-800 text-hover-primary mb-1"  x-clipboard="'{{$giftcode->code }}'">{{ $giftcode->code }}</a>
+                                        <a href="#" class="text-gray-800 text-hover-primary mb-1"
+                                            x-clipboard="'{{ $giftcode->code }}'">{{ $giftcode->code }}</a>
                                     </div>
                                 </td>
                                 <td>
@@ -166,7 +167,7 @@
 
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         $(document).ready(function() {
             $('.form-select').select2();
             $('.form-select').on('change', function(e) {

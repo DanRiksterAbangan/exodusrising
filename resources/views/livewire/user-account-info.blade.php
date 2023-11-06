@@ -9,18 +9,18 @@
 
         <div>
             <div class="tw-flex tw-items-center">
-              <div>
-                <div class="tw-text-gray-500">Name:</div>
-                <span class="tw-text-lg tw-font-semibold tw-text-gray-700">
-                    {{ $user->name }}</span>
-              </div>
+                <div>
+                    <div class="tw-text-gray-500">Name:</div>
+                    <span class="tw-text-lg tw-font-semibold tw-text-gray-700">
+                        {{ $user->name }}</span>
+                </div>
             </div>
 
             <div class="tw-flex tw-items-center">
                 <div>
                     <div class="tw-text-gray-500">Email</div>
-                <span class="tw-text-lg tw-font-semibold tw-text-gray-700">
-                    {{ $user->email }}</span>
+                    <span class="tw-text-lg tw-font-semibold tw-text-gray-700">
+                        {{ $user->email }}</span>
                 </div>
             </div>
             <div class="tw-flex tw-items-center tw-my-2">
@@ -36,7 +36,8 @@
         @if ($user->session_date > new Carbon('2023-10-01'))
             <div class="tw-absolute tw-top-4 tw-right-4 tw-text-gray-500 tw-text-sm tw-italic">
 
-                Last login: <span><span x-text="window.getLocalDateTime('{{ $user->session_date }}').fromNow()"></span></span>
+                Last login: <span><span
+                        x-text="window.getLocalDateTime('{{ $user->session_date }}').fromNow()"></span></span>
             </div>
         @endif
 
@@ -73,7 +74,7 @@
 
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         function claimGiftCode() {
             Swal.fire({
                 title: `Claim Gift code`,

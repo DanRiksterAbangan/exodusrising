@@ -55,14 +55,14 @@
                                 </td>
                                 <td>
                                     @if ($topup->streamer_code)
-                                    <div class="badge badge-success tw-cursor-pointer"
-                                        x-clipboard="'{{ $topup->streamer_code }}'">
-                                        {{ $topup->streamer_code }}
-                                    </div>
+                                        <div class="badge badge-success tw-cursor-pointer"
+                                            x-clipboard="'{{ $topup->streamer_code }}'">
+                                            {{ $topup->streamer_code }}
+                                        </div>
                                     @else
-                                    <div class="badge badge-secondary tw-cursor-pointer">
-                                        -
-                                    </div>
+                                        <div class="badge badge-secondary tw-cursor-pointer">
+                                            -
+                                        </div>
                                     @endif
 
                                 </td>
@@ -78,7 +78,7 @@
 
                                 <td x-data="{}">
                                     <button class="tw-p-2 tw-rounded-lg hover:tw-bg-gray-100"
-                                        x-on:click="viewReceipt('{{ route("topup.image",$topup->image) }}')">
+                                        x-on:click="viewReceipt('{{ route('topup.image', $topup->image) }}')">
                                         {!! Mdi::mdi('receipt-text-outline', '', 20, ['fill' => '#555']) !!}
                                     </button>
                                 </td>
@@ -132,7 +132,7 @@
 </div>
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         function viewReceipt(image) {
             Swal.fire({
                 imageUrl: image,
@@ -145,9 +145,11 @@
         }
 
         function confirmApprove(data) {
-            let html = `<div>REF ID: ${data.ref_id}</div><div class="alert alert-primary tw-my-3 tw-relative">${data.rps_amount} RPS</div><div>USER: <span class="badge badge-primary">${data.user.login_id}</span></div>`;
-            if(data.streamer_code){
-                html = `<div>REF ID: ${data.ref_id}</div><div class='badge badge-success'>Streamer Code: <strong>${data.streamer_code}</strong> </div> <div class="alert alert-primary tw-my-3 tw-relative">${data.rps_amount} RPS</div><div>USER: <span class="badge badge-primary">${data.user.login_id}</span></div>`;
+            let html =
+                `<div>REF ID: ${data.ref_id}</div><div class="alert alert-primary tw-my-3 tw-relative">${data.rps_amount} RPS</div><div>USER: <span class="badge badge-primary">${data.user.login_id}</span></div>`;
+            if (data.streamer_code) {
+                html =
+                    `<div>REF ID: ${data.ref_id}</div><div class='badge badge-success'>Streamer Code: <strong>${data.streamer_code}</strong> </div> <div class="alert alert-primary tw-my-3 tw-relative">${data.rps_amount} RPS</div><div>USER: <span class="badge badge-primary">${data.user.login_id}</span></div>`;
             }
             Swal.fire({
                 title: 'Are you sure you wan to approve this topup?',

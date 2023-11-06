@@ -57,7 +57,7 @@
 </form>
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         $(document).ready(() => {
             Livewire.on('updatedUser', (user) => {
                 document.getElementById('user_points').innerHTML = user[0].Point

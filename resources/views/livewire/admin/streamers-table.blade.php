@@ -15,8 +15,7 @@
                             </svg>
                         </span>
                         <input wire:loading.attr="disabled" wire:model.live.debounce.500ms="search" type="text"
-                          class="form-control form-control-solid w-250px ps-14"
-                            placeholder="Search" />
+                            class="form-control form-control-solid w-250px ps-14" placeholder="Search" />
                     </div>
 
                 </div>
@@ -37,11 +36,12 @@
                             <th class="min-w-125px">ACTION</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 fw-semibold" wire:loading.remove >
+                    <tbody class="text-gray-600 fw-semibold" wire:loading.remove>
                         @forelse($streamers as $streamer)
                             <tr>
                                 <td>
-                                    <div class="badge badge-success tw-cursor-pointer" x-clipboard="'{{$streamer->code }}'">
+                                    <div class="badge badge-success tw-cursor-pointer"
+                                        x-clipboard="'{{ $streamer->code }}'">
                                         {{ $streamer->code }}
                                     </div>
                                 </td>
@@ -55,7 +55,7 @@
                                     <div class="badge badge-light fw-bold">{{ $streamer->user?->login_id }}</div>
                                 </td>
                                 <td>
-                                    <div  class="badge badge-light fw-bold">
+                                    <div class="badge badge-light fw-bold">
                                         {{ $streamer->name }}
                                     </div>
                                 </td>
@@ -64,7 +64,9 @@
                                     <div class="badge badge-light fw-bold">{{ $streamer->code_percentage }}</div>
                                 </td>
                                 <td>
-                                    <div class="badge badge-light fw-bold">{{ number_format($streamer->claimable_topups_sum_amount * ($streamer->code_percentage / 100),2) }}</div>
+                                    <div class="badge badge-light fw-bold">
+                                        {{ number_format($streamer->claimable_topups_sum_amount * ($streamer->code_percentage / 100), 2) }}
+                                    </div>
                                 </td>
                                 <td>
                                     @if ($streamer->is_active)
@@ -75,9 +77,9 @@
                                 </td>
 
                                 <td>
-                                    @if(($streamer->claimable_topups_sum_amount * ($streamer->code_percentage / 100)) > 0)
-                                    <button class="btn btn-primary btn-sm tw-px-4 tw-py-2 tw-text-sm"
-                                        x-on:click="payout({{ $streamer }})">Payout</button>
+                                    @if ($streamer->claimable_topups_sum_amount * ($streamer->code_percentage / 100) > 0)
+                                        <button class="btn btn-primary btn-sm tw-px-4 tw-py-2 tw-text-sm"
+                                            x-on:click="payout({{ $streamer }})">Payout</button>
                                     @endif
 
 
@@ -121,7 +123,7 @@
 
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         async function remove(streamer) {
             Swal.fire({
                 title: `Are you sure you want to remove ${streamer.name} as streamer ?`,
@@ -137,7 +139,7 @@
             })
         }
 
-        function payout(streamer){
+        function payout(streamer) {
             Swal.fire({
                 title: `Are you sure you want to Payout ${streamer.name} as streamer with amount <strong>₱ ${window.numeral(streamer.claimable_topups_sum_amount * (streamer.code_percentage / 100)).format("0,0.00")}</strong>?`,
                 icon: 'info',

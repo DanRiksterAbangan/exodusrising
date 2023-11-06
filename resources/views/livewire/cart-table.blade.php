@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="card-body py-4">
-                <table  class="table align-middle table-row-bordered table-row-solid gy-4 gs-9 ">
+                <table class="table align-middle table-row-bordered table-row-solid gy-4 gs-9 ">
                     <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                             <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1"
@@ -68,19 +68,23 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div   class="position-relative w-md-200px tw-flex"  >
+                                    <div class="position-relative w-md-200px tw-flex">
                                         <!--begin::Decrease control-->
-                                        <button wire:click.throttle.100ms="decrement({{$item->id}})" type="button" class="btn" data-kt-dialer-control="decrease">
-                                            {!! Mdi::mdi("minus",'',20,['fill'=>'#555']) !!}               </button>
+                                        <button wire:click.throttle.100ms="decrement({{ $item->id }})"
+                                            type="button" class="btn" data-kt-dialer-control="decrease">
+                                            {!! Mdi::mdi('minus', '', 20, ['fill' => '#555']) !!} </button>
                                         <!--end::Decrease control-->
 
                                         <!--begin::Input control-->
-                                        <input type="text" class="form-control text-center tw-m-0" data-kt-dialer-control="input" placeholder="Amount"  readonly="" value="{{$item->stack}}" wfd-id="id21">
+                                        <input type="text" class="form-control text-center tw-m-0"
+                                            data-kt-dialer-control="input" placeholder="Amount" readonly=""
+                                            value="{{ $item->stack }}" wfd-id="id21">
                                         <!--end::Input control-->
 
                                         <!--begin::Increase control-->
-                                        <button wire:click.throttle.100ms="increment({{$item->id}})" type="button" class="btn" data-kt-dialer-control="increase">
-                                            {!! Mdi::mdi("plus",'',20,['fill'=>'#555']) !!}                     </button>
+                                        <button wire:click.throttle.100ms="increment({{ $item->id }})"
+                                            type="button" class="btn" data-kt-dialer-control="increase">
+                                            {!! Mdi::mdi('plus', '', 20, ['fill' => '#555']) !!} </button>
                                         <!--end::Increase control-->
                                     </div>
                                 </td>
@@ -150,8 +154,8 @@
                         <span class="svg-icon svg-icon-1">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                    rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="currentColor" />
                                 <rect x="7.41422" y="6" width="16" height="2" rx="1"
                                     transform="rotate(45 7.41422 6)" fill="currentColor" />
                             </svg>
@@ -195,9 +199,10 @@
 </div>
 
 @push('scripts')
-<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+    <script nonce="{{ csp_nonce() }}" src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}">
+    </script>
 
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         $(document).ready(function() {
 
             Livewire.on('buy_response', response => {

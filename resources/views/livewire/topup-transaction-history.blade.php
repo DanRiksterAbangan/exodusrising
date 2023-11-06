@@ -47,7 +47,7 @@
                         </td>
                         <td x-data="{}">
                             <button class="tw-p-2 tw-rounded-lg hover:tw-bg-gray-100"
-                                x-on:click="viewReceipt('{{ route("topup.image",$transaction->image) }}')">
+                                x-on:click="viewReceipt('{{ route('topup.image', $transaction->image) }}')">
                                 {!! Mdi::mdi('receipt-text-outline', '', 20, ['fill' => '#555']) !!}
                             </button>
                         </td>
@@ -79,7 +79,7 @@
 </div>
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         function viewReceipt(image) {
             Swal.fire({
                 imageUrl: image,

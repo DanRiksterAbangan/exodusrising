@@ -169,7 +169,7 @@
 </div>
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         function removeServer(key) {
             Swal.fire({
                 title: `Are you sure you want to remove this server ?`,

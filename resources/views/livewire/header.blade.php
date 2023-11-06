@@ -203,7 +203,8 @@
                                 @if (auth()->user()->isAdmin())
                                     <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Admin</span>
                                 @elseif (auth()->user()->isSuperAdmin())
-                                <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Super-Admin</span>
+                                    <span
+                                        class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Super-Admin</span>
                                 @else
                                     <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Normal</span>
                                 @endif
@@ -243,7 +244,7 @@
     </div>
 </div>
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         $(document).ready(() => {
             Livewire.on('updatedUser', (user) => {
                 document.getElementById('user_points').innerHTML = user[0].Point

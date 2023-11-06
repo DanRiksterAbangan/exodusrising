@@ -10,19 +10,22 @@
                             </div>
                             <div class="tw-flex tw-gap-2">
                                 <input wire:model.live.debounce.100="amount" type="number"
-                                class="form-control form-control-solid rounded-3 tw-col-span-3" placeholder="Topup Amount">
+                                    class="form-control form-control-solid rounded-3 tw-col-span-3"
+                                    placeholder="Topup Amount">
                                 <div>
-                                    <input wire:model.live.debounce.200="streamerCode" type="text" class="form-control form-control-solid rounded-3" placeholder="Streamer code">
+                                    <input wire:model.live.debounce.200="streamerCode" type="text"
+                                        class="form-control form-control-solid rounded-3" placeholder="Streamer code">
                                 </div>
                             </div>
                             @error('amount')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        @if($streamerCodeData)
-                        <div class="tw-bg-green-100 tw-p-5 tw-rounded-lg tw-my-2">
-                           <span class="tw-text-green-700"> CODE: <strong>{{ $streamerCodeData->code }}</strong> <br></span>
-                        </div>
+                        @if ($streamerCodeData)
+                            <div class="tw-bg-green-100 tw-p-5 tw-rounded-lg tw-my-2">
+                                <span class="tw-text-green-700"> CODE: <strong>{{ $streamerCodeData->code }}</strong>
+                                    <br></span>
+                            </div>
                         @endif
                         @error('streamerCode')
                             <div class="text-danger tw-my-2 tw-mb-5">{{ $message }}</div>
@@ -30,8 +33,8 @@
 
                         <div class=" mb-4 fv-row tw-text-gray-600">
                             <div>Equivalent RPS: <span class="badge badge-success">{{ $this->EquivalentRPS }}</span>
-                                @if($streamerCodeData)
-                                <i><sup>+{{number_format($streamerCodeData->code_percentage,0)}}%</sup></i>
+                                @if ($streamerCodeData)
+                                    <i><sup>+{{ number_format($streamerCodeData->code_percentage, 0) }}%</sup></i>
                                 @endif
                             </div>
                         </div>
@@ -46,7 +49,8 @@
                                 </span>
                             </label>
                         </div>
-                        <button class="btn btn-primary tw-my-4" type="submit" wire:loading.attr="disabled">Submit</button>
+                        <button class="btn btn-primary tw-my-4" type="submit"
+                            wire:loading.attr="disabled">Submit</button>
                     </div>
                     <div class="col-md-6">
                         <div class="image-input image-input-outline tw-relative">
@@ -121,7 +125,7 @@
 </div>
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         $(document).ready(function() {
             Livewire.on('pending-topup', function(data) {
                 @this.set('pendingTopup', data[0]);

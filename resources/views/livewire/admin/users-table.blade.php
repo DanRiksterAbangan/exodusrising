@@ -70,22 +70,25 @@
                                     <a class="btn btn-primary tw-px-4 tw-py-2 tw-text-sm"
                                         href="{{ route('admin.user', ['user' => $user]) }}">View</a>
                                     @if (!$user->isBanned())
-                                    @if(!$user->streamer)
-                                        <span>
-                                            <button class="btn btn-success tw-px-4 tw-py-2 tw-text-sm" wire:ignore
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#setStreamerModal{{ $user->user_id }}">Set as streamer</button>
+                                        @if (!$user->streamer)
+                                            <span>
+                                                <button class="btn btn-success tw-px-4 tw-py-2 tw-text-sm" wire:ignore
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#setStreamerModal{{ $user->user_id }}">Set as
+                                                    streamer</button>
 
-                                        <div class="modal fade" id="setStreamerModal{{ $user->user_id }}" tabindex="-1"
-                                            aria-modal="true" role="dialog" data-bs-backdrop='static' wire:ignore>
-                                            <div class="modal-dialog modal-dialog-centered mw-650px" wire:ignore>
-                                                <div class="modal-content">
-                                                    @livewire('admin.set-streamer', ['user' => $user])
+                                                <div class="modal fade" id="setStreamerModal{{ $user->user_id }}"
+                                                    tabindex="-1" aria-modal="true" role="dialog"
+                                                    data-bs-backdrop='static' wire:ignore>
+                                                    <div class="modal-dialog modal-dialog-centered mw-650px"
+                                                        wire:ignore>
+                                                        <div class="modal-content">
+                                                            @livewire('admin.set-streamer', ['user' => $user])
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        </span>
-                                    @endif
+                                            </span>
+                                        @endif
 
                                         <span>
                                             <button class="btn btn-danger tw-px-4 tw-py-2 tw-text-sm" wire:ignore
@@ -98,7 +101,8 @@
                                                     <div class="modal-content">
                                                         <form wire:submit="banUser({{ $user->user_id }})">
                                                             <div class="modal-header">
-                                                                <h1 class="fw-bold tw-text-xl">Ban {{ $user->login_id }}
+                                                                <h1 class="fw-bold tw-text-xl">Ban
+                                                                    {{ $user->login_id }}
                                                                 </h1>
                                                                 <div class="btn btn-icon btn-sm btn-active-icon-primary"
                                                                     data-bs-dismiss="modal">
@@ -187,7 +191,7 @@
 </div>
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         function disconnect(user) {
 
             Swal.fire({

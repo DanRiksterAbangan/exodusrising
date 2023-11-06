@@ -35,7 +35,7 @@
 </div>
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         function shutdown(id) {
             Swal.fire({
                 title: 'Are you sure?',
