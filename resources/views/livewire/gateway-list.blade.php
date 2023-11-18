@@ -22,7 +22,12 @@
                     </div>
                     <div>
                         @if ($gateway->status == 'online')
-                            <button class="btn btn-sm btn-light-primary tw-px-5 tw-py-2 tw-text-xs">SHOW</button>
+                            <button class="btn btn-sm btn-light-success tw-px-5 tw-py-2 tw-text-xs">VIEW</button>
+                            @if(!$gateway->show_logs)
+                            <button class="btn btn-sm btn-light-primary tw-px-5 tw-py-2 tw-text-xs" wire:click="showLogs({{ $gateway->id }},1)">SHOW LOGS</button>
+                            @else
+                            <button class="btn btn-sm btn-light-primary tw-px-5 tw-py-2 tw-text-xs" wire:click="showLogs({{ $gateway->id }},0)">HIDE LOGS</button>
+                            @endif
                             <button class="btn btn-sm btn-light-danger tw-px-5 tw-py-2 tw-text-xs"
                                 x-on:click="shutdown({{ $gateway->id }})">SHUTDOWN</button>
                         @endif

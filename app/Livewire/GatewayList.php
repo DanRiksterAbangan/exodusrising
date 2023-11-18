@@ -14,6 +14,12 @@ class GatewayList extends Component
         $gateway->shutdown_signal = true;
         $gateway->save();
     }
+
+    public function showLogs($id,$status){
+        $gateway = Gateway::find($id);
+        $gateway->show_logs = $status == 1;
+        $gateway->save();
+    }
     public function render()
     {
         return view('livewire.gateway-list',[
