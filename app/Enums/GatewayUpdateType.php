@@ -13,4 +13,6 @@ final class GatewayUpdateType extends Enum
     const UpdateForging = 4;
 
     const UpdateFirecracker = 5;
+
+    const UpdateGateway = 6;
 }

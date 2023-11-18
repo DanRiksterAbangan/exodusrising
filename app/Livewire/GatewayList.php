@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Enums\GatewayUpdateType;
 use App\Models\Gateway;
 use Livewire\Component;
 
@@ -19,6 +20,19 @@ class GatewayList extends Component
         $gateway = Gateway::find($id);
         $gateway->show_logs = $status == 1;
         $gateway->save();
+        $this->sendUpdateToGateway($gateway->id);
+    }
+
+    public function sendUpdateToGateway($id){
+        if ($id == null) {
+            Gateway::where("status", "online")->update([
+                'setting_update' => GatewayUpdateType::UpdateGateway,
+            ]);
+        }else{
+            Gateway::where("id", $id)->where("status","online")->update([
+                'setting_update' => GatewayUpdateType::UpdateGateway,
+            ]);
+        }
     }
     public function render()
     {
