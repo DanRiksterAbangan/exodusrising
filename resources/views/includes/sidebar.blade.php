@@ -1,13 +1,13 @@
 {{-- <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer-name="app-sidebar"
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px"
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle"> --}}
-<div id="kt_app_sidebar" class="app-sidebar flex-column drawer drawer-start" data-kt-drawer="true"
+<div nonce="{{ csp_nonce() }}" id="kt_app_sidebar" class="app-sidebar flex-column drawer drawer-start" data-kt-drawer="true"
     data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
     data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle"
-    style="width: 225px !important;">
+   >
     <div class="app-sidebar-logo px-6 tw-bg-slate-900" id="kt_app_sidebar_logo">
         <a href="/">
-            <img alt="Logo" src="{{ asset('assets/media/logos/main.png') }}" class="h-90px" />
+            <img alt="Logo" src="{{ asset('assets/images/logo.png') }}" class="h-90px" />
         </a>
         <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-sm h-30px w-30px rotate "
             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"

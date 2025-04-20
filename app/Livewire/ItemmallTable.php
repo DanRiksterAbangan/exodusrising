@@ -16,7 +16,7 @@ class ItemmallTable extends Component
     public $categories;
     public $category = "all";
     public $search = "";
-    public $page = 1;
+    // public $page = 1;
     public $quantity = 1;
     public $limit = 20;
 
@@ -40,8 +40,12 @@ class ItemmallTable extends Component
         $this->categories = $tcat;
     }
 
+    public function updatedCategory($value)
+    {
+        $this->resetPage();
+    }
     public function searchData(){
-        $this->page = 1;
+        $this->resetPage();
     }
 
     public function itemsData(){
@@ -52,9 +56,9 @@ class ItemmallTable extends Component
             $items = $items->where("show",true);
         }
         if(strtolower($this->category ?? "all") == "all"){
-            $items = $items->paginate($this->limit, ['*'], 'page', $this->page);
+            $items = $items->paginate($this->limit);
         }else{
-            $items = $items->where("category",$this->category)->paginate($this->limit, ['*'], 'page', $this->page);
+            $items = $items->where("category",$this->category)->paginate($this->limit);
         }
         $this->items = $items;
 
@@ -74,6 +78,13 @@ class ItemmallTable extends Component
             $user = User::where("user_id",auth()->user()->user_id)->first();
             $amountToDeductOrig =  $item->amount * $this->quantity;
             $amountToDeduct = $amountToDeductOrig - ($amountToDeductOrig * ($item->discount / 100));
+            if($amountToDeduct <= 0 || $this->quantity <= 0){
+                return $this->dispatch("buy_response",[
+                    "success"=>false,
+                    "message"=>"Please select a valid Item."
+                ]);
+            }
+
             if($user->Point >= $amountToDeduct){
                 $from_rps = $user->Point;
                 $user->decrement("Point", $amountToDeduct);

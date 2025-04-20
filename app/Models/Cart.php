@@ -23,4 +23,8 @@ class Cart extends Model
     public function getDiscountedPriceAttribute(){
         return ($this->item->amount - ($this->item->amount * ($this->item->discount / 100))) * $this->stack ;
     }
+
+    public function getPriceAttribute(){
+        return $this->item->amount * $this->stack;
+    }
 }

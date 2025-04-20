@@ -36,7 +36,7 @@
                                 </div>
                             </th>
                             <th class="min-w-125px">Item</th>
-                            <th class="min-w-125px">Stack(s)</th>
+                            <th class="min-w-125px">Quantity</th>
                             <th class="min-w-125px">Category</th>
                             <th class="min-w-125px">Amount</th>
                             <th class="min-w-125px">Actions</th>

@@ -16,13 +16,13 @@
                     <div class="card ">
                         <div class="card-body p-10">
                             <div class="tw-grid tw-grid-cols-1 sm:tw-grid-cols-3 tw-gap-6">
-                                <a href="" target="_blank"
+                                <a href="https://drive.google.com/file/d/1cGknLQwenVHzp5JaBefpmPoL0-M0yhDt/view?usp=sharing" target="_blank"
                                     class="hover:tw-text-gray-800 tw-text-gray-600 hover:tw-scale-110 tw-transition-all tw-duration-150 hover:tw-z-20">
                                     <div class="tw-rounded-xl tw-bg-gray-100 tw-drop-shadow-md  tw-overflow-hidden">
                                         <div class="tw-flex tw-justify-between tw-align-baseline  tw-overflow-hidden">
                                             <div class="tw-p-10">
-                                                <div class="tw-font-bold tw-text-xl ">Download Global Rohan
-                                                    S2
+                                                <div class="tw-font-bold tw-text-xl ">Download Exodus Rising
+                                                  
                                                 </div>
                                                 <div class="tw-text-lg">Google Drive</div>
                                             </div>
@@ -32,15 +32,15 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="" target="_blank"
+                                <a href="https://www.mediafire.com/file/ufvgqpiqsjitdde/ExodusRisingFC.rar/file" target="_blank"
                                     class="hover:tw-text-gray-800 tw-text-gray-600 hover:tw-scale-110 tw-transition-all tw-duration-150 hover:tw-z-20">
                                     <div class=" tw-rounded-xl tw-bg-gray-100 tw-drop-shadow-md  tw-overflow-hidden">
                                         <div class="tw-flex tw-justify-between tw-items-stretch ">
                                             <div class="tw-p-10">
-                                                <div class="tw-font-bold tw-text-xl tw-text-gray-600">Download Global Rohan
-                                                    S2
+                                                <div class="tw-font-bold tw-text-xl tw-text-gray-600">Download Exodus Rising
+                                                    
                                                 </div>
-                                                <div class="tw-text-gray-500 tw-text-lg">Easyupload</div>
+                                                <div class="tw-text-gray-500 tw-text-lg">Mediafire</div>
                                             </div>
                                             <div class=" tw-p-10 tw-bg-[#5933AAbb]">
                                                 {!! Mdi::mdi('download', '', 40, ['fill' => '#fff']) !!}
@@ -53,8 +53,8 @@
                                     <div class="tw-rounded-xl tw-bg-gray-100 tw-drop-shadow-md  tw-overflow-hidden">
                                         <div class="tw-flex tw-justify-between tw-align-baseline">
                                             <div class="tw-p-10">
-                                                <div class="tw-font-bold tw-text-xl tw-text-gray-600">Download Global Rohan
-                                                    S2
+                                                <div class="tw-font-bold tw-text-xl tw-text-gray-600">Download Exodus Rising
+                                                   
                                                 </div>
                                                 <div class="tw-text-gray-500 tw-text-lg">Mega</div>
                                             </div>

@@ -11,12 +11,17 @@
 @endpush
 
 @section('section')
-    <div class="d-flex flex-column flex-root "
+
+    <div nonce="{{csp_nonce()}}" class="d-flex flex-column flex-root "
         style="background: url('{{ asset('assets/images/sec_bg (1).jpg') }}')  no-repeat center center / cover !important">
+      
         <div class="d-flex flex-column flex-lg-row flex-column-fluid tw-z-10">
+    
             <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10">
+     
                 <div class="d-flex flex-center flex-column flex-lg-row-fluid">
                     <div class="w-lg-500px p-10 tw-bg-white tw-rounded-lg">
+                
                         @livewire('login-form')
                     </div>
                 </div>

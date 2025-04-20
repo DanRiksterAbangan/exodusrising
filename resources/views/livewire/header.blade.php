@@ -30,7 +30,7 @@
                             class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0">
                             <div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                 <span class="menu-link">
-                                    <span class="menu-title" style="color: rgba(120,120,120); margin-right: 5px">RPS:
+                                    <span class="menu-title">RPS:
                                     </span>
                                     <span class="menu-title" id="user_points">{{ $user->Point }}</span>
                                 </span>
@@ -252,7 +252,6 @@
             })
 
             Livewire.on('updateCartCount', (cart) => {
-                console.log("awd", cart[0].count)
                 if (Number(cart[0].count) <= 0) {
                     $("#cart_count").addClass('tw-hidden')
                 } else {

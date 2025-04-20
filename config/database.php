@@ -91,7 +91,9 @@ return [
             'encrypt' => 'yes',
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
-            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),
+            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),'options'   => [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ],
         ],
         'sqlsrv_user' => [
             'driver' => 'sqlsrv',
@@ -106,7 +108,9 @@ return [
             'encrypt' => 'yes',
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
-            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),
+            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),'options'   => [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ],
         ],
         'sqlsrv_game' => [
             'driver' => 'sqlsrv',
@@ -121,7 +125,9 @@ return [
             'encrypt' => 'yes',
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
-            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),
+            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),'options'   => [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ],
         ],
         'sqlsrv_mall' => [
             'driver' => 'sqlsrv',
@@ -136,7 +142,9 @@ return [
             'encrypt' => 'yes',
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
-            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),
+            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),'options'   => [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ],
         ],
 
         'sqlsrv_stat' => [
@@ -152,7 +160,9 @@ return [
             'encrypt' => 'yes',
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
-            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),
+            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),'options'   => [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ],
         ],
 
     ],

@@ -22,7 +22,7 @@
                     <th class="min-w-250px ps-9">Date</th>
                     <th class="min-w-150px px-0">Name</th>
                     <th class="min-w-350px">Description</th>
-                    <th class="min-w-150px px-0">Stack</th>
+                    <th class="min-w-150px px-0">Quantity</th>
                     <th>Amount <span class="badge badge-primary tw-bg-gray-400 tw-text-xs tw-py-1">RPS</span></th>
                 </tr>
             </thead>

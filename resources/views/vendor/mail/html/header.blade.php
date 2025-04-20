@@ -3,7 +3,7 @@
 <td class="header">
 <a href="{{ $url }}" style="display: inline-block;">
 @if (trim($slot) === 'Laravel')
-<strong>Global Rohan 2</strong>
+<strong>Exodus Rising</strong>
 @else
 {{ $slot }}
 @endif

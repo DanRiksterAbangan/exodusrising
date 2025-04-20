@@ -24,13 +24,17 @@ class CartTable extends Component
     protected $queryString = ['search'=>['except'=>''],'limit','page'=>['except'=>1]];
 
     public function mount(){
-        $this->itemSelections = collect(Cart::all()->pluck("id")->toArray());
+        $this->itemSelections = collect(Cart::where("user_id",auth()->id())->pluck("id")->toArray());
 
     }
 
     #[Computed]
     public function TotalPrice(){
         return Cart::whereIn("id",$this->itemSelections)->get()->sum("discounted_price");
+    }
+    #[Computed]
+    public function TotalOrigPrice(){
+        return Cart::whereIn("id",$this->itemSelections)->get()->sum("price");
     }
 
     #[Computed]
@@ -108,13 +112,58 @@ class CartTable extends Component
 
         if($lock->get()){
             try {
-                $items = Cart::with("user")->whereIn("id", $this->itemSelections)->get();
+                $items = Cart::with(["user","item"])->whereIn("id", $this->itemSelections)->get();
                 if ($items->count()) {
-                    if($user->Point > $this->TotalPrice){
+                    if($this->TotalPrice <= 0){
+                        $this->dispatch("buy_response",[
+                            "success"=>false,
+                            "message"=>"Please select a valid Item."
+                        ]);
+                        $lock->release();
+                        return;
+                    }
+
+                    if($user->Point >= $this->TotalPrice){
                        $this->itemSelections = collect();
-                       $user->decrement("Point", $this->TotalPrice);
-                       $this->dispatch("updatedUser",$user);
-                       $items->toQuery()->delete();
+                      
+                       foreach($items as $item){
+                            $amountToDeductOrig =  $item->item->amount * $item->stack;
+                            $amountToDeduct = $amountToDeductOrig - ($amountToDeductOrig * ($item->item->discount / 100));
+                            if($item->stack <= 0){
+                                continue;
+                            }
+                            $from_rps = $user->Point;
+                            $user->decrement("Point",  $amountToDeduct);
+
+                            for($i = 0; $i < $item->stack ;$i++){
+                                $user->mallItems()->create([
+                                        'type' => $item->item->type,
+                                        'attr' => 0x0,
+                                        'stack' => $item->item->stack,
+                                        'rank' => 0,
+                                        'equip_level' => 0,
+                                        'equip_strength' => 0,
+                                        'equip_dexterity' => 0,
+                                        'equip_intelligence' => 0,
+                                        'date' => now(),
+                                ]);
+                            }
+
+                            $item->item->transactions()->create([
+                                "user_id"=>$user->user_id,
+                                "item_type"=>$item->item->type,
+                                "stacks"=>$item->stack,
+                                "amount"=>$amountToDeduct,
+                                "original_amount"=>$amountToDeductOrig,
+                                "from_rps"=>$from_rps,
+                                "to_rps"=>$user->Point,
+                                "discount"=>$item->item->discount,
+                            ]);
+                        }
+                        $items->toQuery()->delete();
+                        $this->dispatch("updatedUser",$user);
+                        
+
 
                        $this->dispatch("buy_response",[
                            "success"=>true,

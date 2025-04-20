@@ -40,7 +40,7 @@
 {{ $salutation }}
 @else
 @lang('Regards'),<br>
-Global Rohan 2
+Exodus Rising
 @endif
 
 {{-- Subcopy --}}

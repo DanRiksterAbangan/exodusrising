@@ -1,8 +1,14 @@
-<div>
-    <form class="form w-100" novalidate="novalidate" wire:submit.prevent="submit">
+
+<div >
+    <form class="form w-100 tw-relative" novalidate="novalidate" wire:submit.prevent="submit">
+       <div class="tw-absolute tw-w-full tw-inset -tw-top-[150px]">
+    <div class="tw-flex tw-justify-center">
+    <img  src="{{ asset('assets/images/logo.png') }}"  width="200">
+    </div>
+       </div>
         <div class="text-center mb-11">
             <h1 class="text-dark fw-bolder mb-3">Login </h1>
-            <span>Welcome to Global Rohan 2</span>
+            <span>Welcome to Exodus Rising</span>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-warning">

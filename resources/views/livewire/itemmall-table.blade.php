@@ -16,10 +16,10 @@
                     class="form-control form-control-solid w-250px ps-14" placeholder="Search Item" name="search" />
             </div>
             <div class="card-toolbar ">
-                <div class="d-flex justify-content-end " style="align-items:flex-start">
-                    <div style="width:700px !important" wire:ignore>
+                <div  class="tw-flex tw-justify-end tw-items-start" >
+                    <div class="!tw-w-[200px]"  wire:ignore>
                         <select class="form-select form-select-solid fw-bold" data-placeholder="Select category">
-                            <option style="color: #fff; background-color: #333; padding-top: 10px" value="all"
+                            <option class="tw-text-white tw-bg-[#333] tw-pt-[10px]"  value="all"
                                 selected>
                                 All</option>
                             @foreach ($categories as $category)
