@@ -1,0 +1,6 @@
+1 exodus1.thor
+2 exodus2.thor
+3 exodus3.thor
+4 exodus4.thor
+5 exodus5.thor
+6 exodus6.thor

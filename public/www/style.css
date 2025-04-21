@@ -1,0 +1,27 @@
+body {
+	margin: 0px;
+	border: 0px;
+	background-color: white;
+	background: url(bg.jpg) no-repeat center center fixed;
+}
+h3
+{
+font-size: 14px;
+font-family: Tahoma, Arial;
+color: #00FF00;
+}
+div#date
+{
+font-size: 10px;
+font-family: Tahoma, Arial;
+color: #FFF;
+margin-top:-20px;
+}
+
+div#news
+{
+font-size: 11px;
+font-family: Tahoma, Arial;
+font-style:italic;
+color: #FFF;
+}
